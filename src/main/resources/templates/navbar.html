@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+
+</head>
+<body>
+
+<p>You should not see this</p>
+
+<nav id="my-nav" class="navbar" th:fragment="main-navbar">
+    <ul>
+
+        <li sec:authorize="!isAuthenticated()">
+            <a href="#">Log In</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a href="#">Sign Up</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" th:method="post">
+                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+            </form>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="#">Profile</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="#">Conversations</a>
+        </li>
+    </ul>
+</nav>
+
+<p>You should not see this</p>
+
+</body>
+</html>
