@@ -21,6 +21,8 @@ public class Category {
     @JsonBackReference
     private List<Thread> threads;
 
+    public Category(){}
+
     public Category(String title, String image_url_path) {
         this.title = title;
         this.image_url_path = image_url_path;
@@ -48,5 +50,13 @@ public class Category {
 
     public void setImage_url_path(String image_url_path) {
         this.image_url_path = image_url_path;
+    }
+
+    public List<Thread> getThreads() {
+        return threads;
+    }
+
+    public void setThreads(List<Thread> threads) {
+        this.threads = threads;
     }
 }
