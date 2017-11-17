@@ -26,6 +26,8 @@ public class Post {
     @JoinColumn(name="thread_id")
     private Thread thread;
 
+    public Post(){}
+
     public Post(String description, String image_url_path, Date date, User user, Thread thread) {
         this.description = description;
         this.image_url_path = image_url_path;

@@ -39,6 +39,9 @@ public class User {
     @Column(nullable = true)
     private Date birthday;
 
+    public User(){
+
+    }
     public User(String username, String email, String password, Date date, List<Post> posts, String userpic_path, String userbanner_pic_path, Date birthday) {
         this.username = username;
         this.email = email;
@@ -148,5 +151,13 @@ public class User {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public List<Thread> getThreads() {
+        return threads;
+    }
+
+    public void setThreads(List<Thread> threads) {
+        this.threads = threads;
     }
 }

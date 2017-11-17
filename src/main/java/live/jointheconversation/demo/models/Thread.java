@@ -35,7 +35,9 @@ public class Thread {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "thread")
     private List<ThreadWinner> threadWinners;
 
+    public Thread(){
 
+    }
     public Thread(String title, String image_url_path, Date date, User user) {
         this.title = title;
         this.image_url_path = image_url_path;
@@ -87,5 +89,29 @@ public class Thread {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<ThreadWinner> getThreadWinners() {
+        return threadWinners;
+    }
+
+    public void setThreadWinners(List<ThreadWinner> threadWinners) {
+        this.threadWinners = threadWinners;
     }
 }
