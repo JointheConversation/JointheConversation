@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+        th:replace="fragments/header::header('Join the Conversation')">
+    <meta charset="UTF-8"/>
+    <title>Join the Conversation</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar::main-navbar"></nav>
+<h1>Join Our Conversations</h1>
+<div class="home-display">
+    <div><p> Select a topic of discussion</p></div>
+    <div><p>Start your own conversation, or Join in a conversation</p></div>
+    <div><p>Earn a badge for each conversation you took part in that had the most amount of participation at the end of
+        a 12 hour period.. </p></div>
+    <div><p>Stay up to date, Learn something new, and have some some fun incentive.</p></div>
+</div>
+
+
+<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>
