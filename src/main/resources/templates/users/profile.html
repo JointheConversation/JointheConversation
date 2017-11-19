@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+        th:replace="fragments/header::header('Profile')">
+    <meta charset="UTF-8"/>
+    <title>Join the Conversation</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar::main-navbar"></nav>
+
+<h1 class="title-text" th:text="${sessionScope.user.username}">
+</h1>
+
+</body>
+</html>
