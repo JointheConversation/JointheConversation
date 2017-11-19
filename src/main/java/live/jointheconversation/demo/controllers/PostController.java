@@ -27,13 +27,13 @@ public class PostController {
     }
 
     //This getmapping will allow users to view all posts within a given thread
-    @GetMapping("/thread/{threadId}/posts")
+    @GetMapping("/categories/threads/{threadId}/posts")
     public String showAllPosts(Model viewModel, @PathVariable long threadId){
         viewModel.addAttribute("posts",postService.findAll());
         return "posts/index";
     }
 
-    @GetMapping("/thread/{threadId}/posts/{id}")
+    @GetMapping("/categories/threads/{threadId}/posts/{id}")
     public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel){
         Post post=postService.findById(id);
         if(userOwnerService.isOwner(post)){
@@ -46,13 +46,13 @@ public class PostController {
     //Creates Posts
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
-    @GetMapping("/thread/{id}/posts/create")
+    @GetMapping("/categories/threads/{id}/posts/create")
     public String viewPostForm(Model viewModel){
         viewModel.addAttribute("post",new Post());
         return "posts/create";
     }
 
-    @PostMapping("/thread/{threadId}/posts/create")
+    @PostMapping("/categories/threads/{threadId}/posts/create")
     public String createPost(
             @PathVariable long threadId,
             @Valid Post post,
@@ -67,21 +67,21 @@ public class PostController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postService.save(post);
-        return "redirect:/thread/{id}/posts";
+        return "redirect:/categories/threads/{id}/posts";
     }
 
 
     //Edits Posts
-    @GetMapping("/thread/{threadId}/posts{id}/edit")
+    @GetMapping("/categories/threads/{threadId}/posts/{id}/edit")
     public String postEdit(@PathVariable long threadId, @PathVariable long id, Model viewModel, UserOwnerService userOwnerService){
         Post post=postService.findById(id);
         if(!userOwnerService.isOwner(post)){
-            return "redirect:/thread/{threadId}/posts/" +id;
+            return "redirect:/categories/threads/{threadId}/posts/" +id;
         }
         viewModel.addAttribute("post", postService.findById(id));
         return "posts/edit";
     }
-    @PostMapping("/thread/{threadId}/posts{id}/edit")
+    @PostMapping("/categories/threads/{threadId}/posts/{id}/edit")
     public String submitEdit(
             @PathVariable long threadId,
             @PathVariable long id,
@@ -92,14 +92,16 @@ public class PostController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postService.save(post);
-        return "redirect:/posts/" + post.getId();
+        return "redirect:/categories/threads/{threadId}/posts/" + post.getId();
     }
 
     //Destroys Posts
-    @PostMapping("/thread/{threadId}/posts/{id}/delete")
-    public String submitDelete(@PathVariable long threadId, @PathVariable long id){
+    @PostMapping("/categories/threads/{threadId}/{threadId}/posts/{id}/delete")
+    public String submitDelete(@PathVariable long threadId,
+                               @PathVariable long id)
+    {
         postService.delete(id);
-        return "redirect:/thread/{id}/posts";
+        return "redirect:/categories/threads/{threadId}/posts";
     }
 
 
