@@ -61,7 +61,7 @@ public class UserController {
         model.addAttribute("posts", user.getPosts());
         //Same if statement can be applied here.
 
-        return "users/userProfile";
+        return "users/profile";
     }
 
 }
