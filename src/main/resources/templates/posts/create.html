@@ -5,6 +5,7 @@
     <title>Start</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
 <div class="row">
     <form class="col-md-8 col-md-offset-2">
         <h1 class="text-center">Your thoughts?</h1>
@@ -14,8 +15,11 @@
               th:object="${post}"></form>
     </form>
     </div>
-        
+
 </div>
 
+
+
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
