@@ -85,7 +85,19 @@ public class PostController {
 
     //Edits Posts
     @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}/edit")
-    public String postEdit(@PathVariable long threadId,@PathVariable String categoryName, @PathVariable long id, Model viewModel, UserOwnerService userOwnerService){
+    public String postEdit(
+            @PathVariable long threadId,
+            @PathVariable String categoryName,
+            @PathVariable long id,
+            Model viewModel,
+            UserOwnerService userOwnerService,
+            Thread thread
+            ){
+
+        if(!thread.getActiveStatus()){
+            //Checks to see if the thread is still active before posting.
+            return "redirect:/categories/threads";
+        }
         Post post=postService.findById(id);
         if(!userOwnerService.isOwner(post)){
             return "redirect:/categories/threads/{threadId}/posts/" +id;
