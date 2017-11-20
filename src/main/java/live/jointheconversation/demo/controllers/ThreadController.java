@@ -24,13 +24,13 @@ public class ThreadController {
         this.userOwnerService=userOwnerService;
     }
     //These Getmappings will show thread information for all and single threads
-    @GetMapping("/categories/threads")
-    public String showAllThreads(Model viewModel){
+    @GetMapping("/categories/{categoryName}/threads")
+    public String showAllThreads(Model viewModel,@PathVariable String categoryName){
         viewModel.addAttribute("threads", threadService.findAll());
         return "threads/index";
     }
-    @GetMapping("/threads/{id}")
-    public String singleThread(@PathVariable long id, Model viewModel){
+    @GetMapping("/categories/{categoryName}/threads/{id}")
+    public String singleThread(@PathVariable long id, Model viewModel,@PathVariable String categoryName){
         Thread thread=threadService.findById(id);
         if(userOwnerService.isOwner(thread)){
             viewModel.addAttribute("createduser",true);
@@ -40,25 +40,26 @@ public class ThreadController {
 
     }
     //This postMapping will delete a thread if the user is user who created it.
-    @PostMapping("/categories/threads/{id}/delete")
-    public String deleteThread(@PathVariable long id){
+    @PostMapping("/categories/{categoryName}/threads/{id}/delete")
+    public String deleteThread(@PathVariable long id, @PathVariable String categoryName){
         threadService.delete(id);
-        return "redirect:/categories/threads";
+        return "redirect:/categories/{categoryName}/threads";
     }
 
     //This post and get mapping will take care of edits to threads based on user ownership
-    @GetMapping("/categories/threads/{id}/edit")
-    public String threadEdit(@PathVariable long id, Model viewModel, UserOwnerService userOwnerService){
+    @GetMapping("/categories/{categoryName}/threads/{id}/edit")
+    public String threadEdit(@PathVariable long id,@PathVariable String categoryName, Model viewModel, UserOwnerService userOwnerService){
         Thread thread=threadService.findById(id);
         if(!userOwnerService.isOwner(thread)){
-            return "redirect:/categories/threads/"+id;
+            return "redirect:/categories/{categoryName}/threads/"+id;
         }
         viewModel.addAttribute("thread", threadService.findById(id));
         return "threads/edit";
     }
 
-    @PostMapping("/categories/threads/{id}/edit")
+    @PostMapping("/categories/{categoryName}/threads/{id}/edit")
     public String submitEdit(
+            @PathVariable String categoryName,
             @PathVariable long id,
             @ModelAttribute Thread thread,
             Model viewModel
@@ -67,18 +68,19 @@ public class ThreadController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         thread.setUser(user);
         threadService.save(thread);
-        return "redirect:/categories/threads/"+thread.getId();
+        return "redirect:/categories/{categoryName}/threads/"+thread.getId();
     }
 
     //This post and get mapping will allow users to create discussion threads
-    @GetMapping("/categories/threads/create")
-    public String viewThreadForm(Model viewModel){
+    @GetMapping("/categories/{categoryName}/threads/create")
+    public String viewThreadForm(Model viewModel, @PathVariable String categoryName){
         viewModel.addAttribute("thread",new Thread());
         return "thread/create";
     }
 
-    @PostMapping("/categories/threads/create")
+    @PostMapping("/categories/{categoryName}/threads/create")
     public String submitThreadForm(
+            @PathVariable String categoryName,
             @Valid Thread thread,
             Errors validation,
             Model model
@@ -91,7 +93,7 @@ public class ThreadController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         thread.setUser(user);
         threadService.save(thread);
-        return "redirect:/categories/threads";
+        return "redirect:/categories/{categoryName}/threads";
     }
 
 }
