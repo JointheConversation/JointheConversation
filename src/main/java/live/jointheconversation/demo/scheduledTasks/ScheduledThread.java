@@ -26,17 +26,15 @@ public class ScheduledThread {
         this.threadService=threadService;
     }
 
-    @Scheduled(fixedRate = 30000)
-    public void reportCurrentTime() {
-//        log.info("30 seconds have passed, the time is now {}", dateFormat.format(new Date()));
-
-    }
+//    @Scheduled(fixedRate = 30000)
+//    public void reportCurrentTime() {
+////        log.info("30 seconds have passed, the time is now {}", dateFormat.format(new Date()));
+//
+//    }
 
     @Scheduled(fixedRate = 30000) // 30 seconds
     public void updateThreads(){
 //        this.threadService=threadService;
-
-
         for (Thread thread:threadService.findAll()) {
             Date endDate = new Date();
             Date startDate=thread.getDate();
