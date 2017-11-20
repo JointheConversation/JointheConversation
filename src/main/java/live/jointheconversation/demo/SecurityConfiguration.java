@@ -1,5 +1,6 @@
 package live.jointheconversation.demo;
 
+import live.jointheconversation.demo.services.UserDetailsLoader;
 import live.jointheconversation.demo.services.UserOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    private UserOwnerService userOwner;
+    private UserDetailsLoader userDetails;
     private static SecurityConfiguration ourInstance = new SecurityConfiguration();
 
     @Bean
@@ -51,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure
             (AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userOwner) .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
     }
 
 }

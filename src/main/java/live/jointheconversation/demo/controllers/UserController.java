@@ -19,13 +19,13 @@ import javax.validation.Valid;
 public class UserController {
     private UserRepository usersDao;
     private CreateUserValidationService userValidationService;
-//    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService){
+    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder){
         this.usersDao=usersDao;
         this.userValidationService=userValidationService;
-//        this.passwordEncoder=passwordEncoder;
+        this.passwordEncoder=passwordEncoder;
     }
 
     @GetMapping("/register")
@@ -45,7 +45,8 @@ public class UserController {
             model.addAttribute("user",user);
             return "users/registration";
         }
-        user.setPassword(user.getPassword());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //BEncryptPassword goes here.
         usersDao.save(user);
         return "redirect:/login";
 
