@@ -1,7 +1,5 @@
 package live.jointheconversation.demo.models;
 
-import com.sun.tools.javah.Gen;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
