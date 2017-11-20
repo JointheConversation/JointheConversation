@@ -18,6 +18,8 @@ public class Thread {
 
     @Column(insertable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date date;
+    @Column(updatable = true, nullable = true, columnDefinition = "boolean default true")
+    private boolean activeStatus;
 
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -47,6 +49,17 @@ public class Thread {
         this.title = title;
         this.image_url_path = image_url_path;
         this.user = user;
+    }
+
+    public Thread(String title, String image_url_path, Date date, Boolean activeStatus, User user, Category category, List<Post> posts, List<ThreadWinner> threadWinners) {
+        this.title = title;
+        this.image_url_path = image_url_path;
+        this.date = date;
+        this.activeStatus = activeStatus;
+        this.user = user;
+        this.category = category;
+        this.posts = posts;
+        this.threadWinners = threadWinners;
     }
 
     public long getId() {
@@ -111,5 +124,13 @@ public class Thread {
 
     public void setThreadWinners(List<ThreadWinner> threadWinners) {
         this.threadWinners = threadWinners;
+    }
+
+    public boolean getActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(Boolean activeStatus) {
+        this.activeStatus = activeStatus;
     }
 }

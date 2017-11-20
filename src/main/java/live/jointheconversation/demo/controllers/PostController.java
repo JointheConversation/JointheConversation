@@ -1,6 +1,7 @@
 package live.jointheconversation.demo.controllers;
 
 import live.jointheconversation.demo.models.Post;
+import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.services.PostService;
 import live.jointheconversation.demo.services.UserOwnerService;
@@ -47,7 +48,16 @@ public class PostController {
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
     @GetMapping("/categories/{categoryName}/threads/{id}/posts/create")
-    public String viewPostForm(Model viewModel,@PathVariable String categoryName){
+    public String viewPostForm(
+            Model viewModel,
+            @PathVariable String categoryName,
+            Thread thread
+    ) {
+        if(!thread.getActiveStatus()){
+            //Checks to see if the thread is still active before posting.
+
+            return "redirect:/categories/threads";
+        }
         viewModel.addAttribute("post",new Post());
         return "posts/create";
     }
@@ -60,6 +70,7 @@ public class PostController {
             Errors validation,
             Model viewModel
     ) {
+
         if(validation.hasErrors()){
             viewModel.addAttribute("errors",validation);
             viewModel.addAttribute("post",post);
@@ -74,7 +85,19 @@ public class PostController {
 
     //Edits Posts
     @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}/edit")
-    public String postEdit(@PathVariable long threadId,@PathVariable String categoryName, @PathVariable long id, Model viewModel, UserOwnerService userOwnerService){
+    public String postEdit(
+            @PathVariable long threadId,
+            @PathVariable String categoryName,
+            @PathVariable long id,
+            Model viewModel,
+            UserOwnerService userOwnerService,
+            Thread thread
+            ){
+
+        if(!thread.getActiveStatus()){
+            //Checks to see if the thread is still active before posting.
+            return "redirect:/categories/threads";
+        }
         Post post=postService.findById(id);
         if(!userOwnerService.isOwner(post)){
             return "redirect:/categories/threads/{threadId}/posts/" +id;
@@ -88,7 +111,7 @@ public class PostController {
             @PathVariable String categoryName,
             @PathVariable long id,
             @ModelAttribute Post post,
-            Model model
+            Model viewModel
     ){
         post.setId(id);
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
