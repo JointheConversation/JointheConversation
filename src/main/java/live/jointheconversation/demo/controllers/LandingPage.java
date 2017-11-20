@@ -11,7 +11,7 @@ public class LandingPage {
 
     @GetMapping("/")
     public String landingPage( Model viewModel ){
-        viewModel.addAttribute("Converse", null);
+        viewModel.addAttribute("Welcome", null);
         return "index";
     }
 }
