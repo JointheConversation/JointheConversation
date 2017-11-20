@@ -27,14 +27,14 @@ public class PostController {
     }
 
     //This getmapping will allow users to view all posts within a given thread
-    @GetMapping("/categories/threads/{threadId}/posts")
-    public String showAllPosts(Model viewModel, @PathVariable long threadId){
+    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts")
+    public String showAllPosts(Model viewModel, @PathVariable long threadId, @PathVariable String categoryName){
         viewModel.addAttribute("posts",postService.findAll());
         return "posts/index";
     }
 
-    @GetMapping("/categories/threads/{threadId}/posts/{id}")
-    public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel){
+    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}")
+    public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel,@PathVariable String categoryName){
         Post post=postService.findById(id);
         if(userOwnerService.isOwner(post)){
             viewModel.addAttribute("createduser",true);
@@ -46,15 +46,16 @@ public class PostController {
     //Creates Posts
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
-    @GetMapping("/categories/threads/{id}/posts/create")
-    public String viewPostForm(Model viewModel){
+    @GetMapping("/categories/{categoryName}/threads/{id}/posts/create")
+    public String viewPostForm(Model viewModel,@PathVariable String categoryName){
         viewModel.addAttribute("post",new Post());
         return "posts/create";
     }
 
-    @PostMapping("/categories/threads/{threadId}/posts/create")
+    @PostMapping("/categories/{categoryName}/threads/{threadId}/posts/create")
     public String createPost(
             @PathVariable long threadId,
+            @PathVariable String categoryName,
             @Valid Post post,
             Errors validation,
             Model viewModel
@@ -72,8 +73,8 @@ public class PostController {
 
 
     //Edits Posts
-    @GetMapping("/categories/threads/{threadId}/posts/{id}/edit")
-    public String postEdit(@PathVariable long threadId, @PathVariable long id, Model viewModel, UserOwnerService userOwnerService){
+    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}/edit")
+    public String postEdit(@PathVariable long threadId,@PathVariable String categoryName, @PathVariable long id, Model viewModel, UserOwnerService userOwnerService){
         Post post=postService.findById(id);
         if(!userOwnerService.isOwner(post)){
             return "redirect:/categories/threads/{threadId}/posts/" +id;
@@ -81,9 +82,10 @@ public class PostController {
         viewModel.addAttribute("post", postService.findById(id));
         return "posts/edit";
     }
-    @PostMapping("/categories/threads/{threadId}/posts/{id}/edit")
+    @PostMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}/edit")
     public String submitEdit(
             @PathVariable long threadId,
+            @PathVariable String categoryName,
             @PathVariable long id,
             @ModelAttribute Post post,
             Model model
@@ -92,16 +94,17 @@ public class PostController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postService.save(post);
-        return "redirect:/categories/threads/{threadId}/posts/" + post.getId();
+        return "redirect:/categories/{categoryName}/threads/{threadId}/posts/" + post.getId();
     }
 
     //Destroys Posts
-    @PostMapping("/categories/threads/{threadId}/{threadId}/posts/{id}/delete")
+    @PostMapping("/categories/{categoryName}/threads/{threadId}/{threadId}/posts/{id}/delete")
     public String submitDelete(@PathVariable long threadId,
+                               @PathVariable String categoryName,
                                @PathVariable long id)
     {
         postService.delete(id);
-        return "redirect:/categories/threads/{threadId}/posts";
+        return "redirect:/categories/{categoryName}/threads/{threadId}/posts";
     }
 
 

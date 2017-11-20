@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class PostService {
     private final PostRepository postDao;
-    private List<Post> posts;
+//    private List<Post> posts;
 
     @Autowired
     public PostService(PostRepository postDao) {
@@ -28,9 +28,9 @@ public class PostService {
         return postDao.findOne(id);
     }
 
-    public void update(Post post){
-        posts.set((int) post.getId()-1, post);
-    }
+//    public void update(Post post){
+//        posts.set((int) post.getId()-1, post);
+//    }
     public void delete(long id) {
         postDao.delete(id);
     }
