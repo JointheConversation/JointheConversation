@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Create</title>
+    <meta charset="UTF-8"  th:replace="fragments/header::header('Start a conversation')" />
+    <title>Start</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
+<div class="row">
+    <form class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">Start a conversation</h1>
+        <form th:include="fragments/form::form"
+              th:method="post"
+              th:action="${/categories/{category.title}/threads/create}"
+              th:object="${post}"></form>
+    </form>
+</div>
 
+</div>
+
+
+
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
