@@ -40,7 +40,7 @@ public class ScheduledThread {
 //    }
     @Scheduled(fixedRate = 15000) //15 seconds
     public void countThreadPosts(){
-        //Post post = (Post)
+        //This is where the service is being implented that will run the thread counting service.
         List<ThreadCount> threadCounts = threadDao.countPostsInThreads();
         threadCountService.compare(threadCounts);
         }

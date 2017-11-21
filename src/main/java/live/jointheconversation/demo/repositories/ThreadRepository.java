@@ -17,6 +17,7 @@ public interface ThreadRepository extends CrudRepository<Thread, Long>{
     select count(*) as 'Number of Posts', title from threads as thread
   join posts as posts on thread.id = posts.thread_id  && thread.active_status=1 GROUP BY title order by count(*) DESC LIMIT 3;
      */
+    // THis statement allows us to access the information from the mysql databse and save it to a model ThreadCount.
     @Query("select new live.jointheconversation.demo.models.ThreadCount(count(p.id), t.title) from Thread t join t.posts p where t.activeStatus =1 group by t.title order by count(t) desc")
     List<ThreadCount> countPostsInThreads();
 }
