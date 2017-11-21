@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"  th:replace="fragments/header::header('Start a conversation')" />
+    <meta charset="UTF-8"  th:replace="fragments/header :: header('Start a conversation')" />
     <title>Start</title>
 </head>
 <body>
@@ -9,9 +9,9 @@
 <div class="row">
     <form class="col-md-8 col-md-offset-2">
         <h1 class="text-center">Start a conversation</h1>
-        <form th:include="fragments/form::form"
+        <form th:replace="fragments/form :: form-thread"
               th:method="post"
-              th:action="${/categories/{category.title}/threads/create}"
+              th:action="@{/categories/{title}/threads/create}"
               th:object="${post}"></form>
     </form>
 </div>
@@ -20,6 +20,6 @@
 
 
 
-<footer th:include="fragments/footer :: footer"></footer>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

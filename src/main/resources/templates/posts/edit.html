@@ -1,8 +1,8 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: main-header('View post')"></head>
+<head th:replace="fragments/head :: header('edit')"></head>
 <body>
-<nav th:replace="fragments/navbar :: mainNavbar"></nav>
+<nav th:replace="fragments/navbar :: main-navbar"></nav>
 
 
 <div class="row">
@@ -12,7 +12,7 @@
                 th:include="posts/form :: form"
                 th:object="${post}"
                 method="post"
-                th:action="${'/posts/' + post.id + '/edit'}" >
+                th:action="@{'/posts/' + ${post.description} + '/edit'}" >
         </form>
     </div>
 </div>

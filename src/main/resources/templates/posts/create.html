@@ -2,19 +2,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"  th:replace="fragments/header::header('your thoughts')" />
+    <meta charset="UTF-8"  th:replace="fragments/header :: header('your thoughts')" />
     <title>Start</title>
 </head>
 <body>
 <div class="row">
     <form class="col-md-8 col-md-offset-2">
         <h1 class="text-center">Your thoughts?</h1>
-        <form th:include="fragments/form::form"
+        <form th:replace="fragments/form :: form-post"
                 th:method="post"
-                th:action="@{/categories/{categoryName}/threads/{threadId}/posts/create}"
+                th:action="@{/{categories.title}/threads/{threads.id}/posts/create}"
               th:object="${post}"></form>
     </form>
     </div>
 </div>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
