@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"  th:replace="fragments/header::header('your thoughts')" />
-    <title>Start</title>
+    <meta charset="UTF-8"  th:replace="fragments/header::header('Join the conversation')" />
+    <title>Join</title>
 </head>
 <body>
 <nav th:replace="fragments/navbar :: mainNavbar"></nav>
 <div class="row">
     <form class="col-md-8 col-md-offset-2">
-        <h1 class="text-center">Your thoughts?</h1>
+        <h1 class="text-center">Join in</h1>
         <form th:include="fragments/form::form"
                 th:method="post"
-                th:action="@{/categories/{categoryName}/threads/{threadId}/posts/create}"
+                th:action="@{/categories/{category.title}/threads/{threadId}/posts/create}"
               th:object="${post}"></form>
     </form>
     </div>
