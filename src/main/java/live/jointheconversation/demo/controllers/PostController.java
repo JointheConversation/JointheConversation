@@ -47,7 +47,7 @@ public class PostController {
     //Creates Posts
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
-    @GetMapping("/categories/{categoryName}/threads/{id}/posts/create")
+    @GetMapping("/categories/{categoryName}/threads/{Id}/posts/create")
     public String viewPostForm(
             Model viewModel,
             @PathVariable String categoryName,

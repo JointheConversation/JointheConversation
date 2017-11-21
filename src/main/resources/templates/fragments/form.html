@@ -5,11 +5,10 @@
     <title>Title</title>
 </head>
 
-<nav th:replace="fragments/navbar::main-navbar"></nav>
+<nav th:replace="fragments/navbar :: main-navbar"></nav>
 
 <!-- if user is creating a thread -->
-<div th:if="${/categories/{category.title}/threads/create}" >
-<form th:fragment="form">
+    <form th:fragment="form-thread">
     <div class="form-group">
         <label for="title">Title</label>
         <input id="title" th:field="*{title}" class="form-control" />
@@ -20,14 +19,14 @@
     </div>
     <input type="submit" class="btn btn-primary btn-block" />
 </form>
-</div>
+
 
 <!-- if user is creating a post on a thread -->
-<div th:unless="${/categories/{category.title}/threads/{thread.id}/posts/create}">
-<form th:fragment="form">
+
+<form th:fragment="form-post">
 <div class="form-group">
-    <label for="body">Body</label>
-    <input id="body" th:field="*{body}" class="form-control" />
+    <label for="body">your thoughts?</label>
+    <input th:field="*{body}" class="form-control" />
 </div>
 <input type="submit" class="btn btn-primary btn-block" />
 </form>
