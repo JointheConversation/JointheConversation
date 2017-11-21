@@ -8,8 +8,10 @@
 <body>
 <nav th:replace="fragments/navbar::main-navbar"></nav>
 
-<h1 class="title-text" th:text="${sessionScope.user.username}">
+<h1 class="title-text" th:text="Welcome, ${name}">
 </h1>
+<p></p>
 
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

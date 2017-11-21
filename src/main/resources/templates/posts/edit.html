@@ -12,7 +12,8 @@
                 th:include="posts/form :: form"
                 th:object="${post}"
                 method="post"
-                th:action="${'/posts/' + post.id + '/edit'}" />
+                th:action="${'/posts/' + post.id + '/edit'}" >
+        </form>
     </div>
 </div>
 <footer th:include="fragments/footer :: footer"></footer>

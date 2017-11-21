@@ -1,10 +1,4 @@
-<<<<<<<<< Temporary merge branch 1
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: main-header('View post')"></head>
-<body>
-<nav th:replace="fragments/navbar :: mainNavbar"></nav>
-=========
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -21,22 +15,6 @@
               th:object="${post}"></form>
     </form>
     </div>
-        
 </div>
->>>>>>>>> Temporary merge branch 2
-
-
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <h1 class="text-center">Create A Post</h1>
-        <form
-                th:include="posts/form :: form"
-                th:method="post"
-                th:action="@{/posts/create}"
-                th:object="${post}" />
-    </div>
-</div>
-
-<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

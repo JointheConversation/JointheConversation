@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <h1>Create an account</h1>
-        <form th:action="@{/register}" method="POST" th:object="${user}">
+        <form th:action="@{/registration}" method="POST" th:object="${user}">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" th:field="*{username}" class="form-control"/>
