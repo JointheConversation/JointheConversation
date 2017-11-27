@@ -12,10 +12,10 @@ public class CheckUserValidationService {
     public CheckUserValidationService(UserRepository users) {
         this.usersDao = usersDao;
     }
-
     public void validateCredentials(Errors validation, User user) {
         User correctUsername = usersDao.findByUsername(user.getUsername().trim());
-        String correctPassword = usersDao.getPassword(user.getPassword());
+        User correctPassword = usersDao.findByPassword(user.getPassword());
+
         if (!correctUsername.equals(usersDao.findByUsername(user.getUsername().trim()))) {
             validation.rejectValue(
                     "username",
@@ -23,7 +23,7 @@ public class CheckUserValidationService {
                     "Incorrect username"
             );
         }
-        if (!correctPassword.equals(usersDao.getPassword(user.getPassword().trim()))) {
+        if (!correctPassword.equals(usersDao.findByPassword(user.getPassword().trim()))) {
             validation.rejectValue(
                     "password",
                     "user.password",

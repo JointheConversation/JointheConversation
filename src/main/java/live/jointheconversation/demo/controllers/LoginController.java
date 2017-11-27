@@ -14,10 +14,7 @@ import javax.validation.Valid;
 
 @Controller
 public class LoginController {
-
     private CheckUserValidationService userValidationService;
-
-
     @Autowired
     public LoginController(CheckUserValidationService userValidationService) {
         this.userValidationService = userValidationService;
@@ -27,7 +24,6 @@ public class LoginController {
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         return "users/login";
-
     }
 
     @PostMapping("/login")
