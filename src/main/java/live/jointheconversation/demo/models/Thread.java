@@ -18,6 +18,7 @@ public class Thread {
 
     @Column(insertable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date date;
+
     @Column(updatable = true, nullable = true, columnDefinition = "boolean default true")
     private boolean activeStatus;
 
