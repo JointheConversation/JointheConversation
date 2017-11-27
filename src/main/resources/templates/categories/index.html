@@ -17,9 +17,9 @@
 
     <!--iterates through data base, for each "category" display the title, then link there.-->
     <div class="categories-index">
-        <tr th:each="category:${categories}">
-            <td th:text="${categories.title}"></td>
-            <a th:href="@{'/category/{categoryName' + ${categories.title}}"></a></tr>
+        <tr th:each="category:${category}" >
+            <td th:text="${category.title}"></td>
+            <a th:href="@{'/category/{categoryName' + ${category.title}}"></a></tr>
     </div>
 
 
@@ -31,7 +31,7 @@
     <!--</div>-->
 
 
-    <footer th:include="fragments/footer :: footer"></footer>
+    <footer th:replace="fragments/footer :: footer"></footer>
     </body>
 </div>
 </html>

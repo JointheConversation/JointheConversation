@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6" th:each="post : ${posts}">
             <h2>
-                <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                <a th:href="@{/posts/{id}(id=${posts.id})}" th:text="${posts.title}"></a>
             </h2>
             <a class="btn btn-sm btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
             <p th:text="${post.body}"></p>
