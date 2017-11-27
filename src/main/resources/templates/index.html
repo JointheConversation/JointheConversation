@@ -8,6 +8,13 @@
 <body>
 <nav th:replace="fragments/navbar::main-navbar"></nav>
 <h1>Join Our Conversations</h1>
+<p th:if="${thread==null}" th:text="'There is No Current Winner'"></p>
+<div th:if="${thread!=null}">
+    <p th:text="${thread.title}"></p>
+    <p th:text="${thread.user.username}"></p>
+</div>
+
+<!--<p th:text="${thread.user.username}"></p>-->
 <div class="home-display">
     <div><p> Select a topic of discussion</p></div>
     <div><p>Start your own conversation, or Join in a conversation</p></div>
