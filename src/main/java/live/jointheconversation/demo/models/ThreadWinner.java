@@ -16,6 +16,9 @@ public class ThreadWinner {
     @Column(insertable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date date;
 
+    @Column(updatable = true, nullable = true, columnDefinition = "boolean default true")
+    private boolean activeStatus;
+
     @ManyToOne
     @JsonManagedReference
     @JoinColumn(name = "thread_id")
@@ -27,6 +30,11 @@ public class ThreadWinner {
         this.thread = thread;
     }
 
+    public ThreadWinner(Date date, Boolean activeStatus, Thread thread) {
+        this.date = date;
+        this.activeStatus = activeStatus;
+        this.thread = thread;
+    }
 
     public long getId() {
         return id;
@@ -44,6 +52,21 @@ public class ThreadWinner {
         this.thread = thread;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
+    }
 }
 
 

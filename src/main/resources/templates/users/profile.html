@@ -8,8 +8,12 @@
 <body>
 <nav th:replace="fragments/navbar::main-navbar"></nav>
 
-<h1><span class="title-text" th:text="|Welcome, ${users.username}|"></span></h1>
-<p></p>
+<h1><span class="title-text" th:text="|Welcome, ${user.username}|"></span></h1>
+<div th:each="award : ${awards}" th:if="${award!=null}">
+    <img src="/achievement_icons/threadWinner.png"/>
+    <p th:text="${award.title}"></p>
+    <p th:text="${award.user.username}"></p>
+</div>
 
 <footer th:include="fragments/footer :: footer"></footer>
 </body>

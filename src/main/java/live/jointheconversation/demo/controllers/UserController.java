@@ -1,8 +1,10 @@
 package live.jointheconversation.demo.controllers;
 
+import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.repositories.UserRepository;
 import live.jointheconversation.demo.services.CreateUserValidationService;
+import live.jointheconversation.demo.services.UserThreadWinsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,18 +16,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
     private UserRepository usersDao;
     private CreateUserValidationService userValidationService;
     private PasswordEncoder passwordEncoder;
+    private UserThreadWinsService userThreadWinsService;
 
     @Autowired
-    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder, UserThreadWinsService userThreadWinsService){
         this.usersDao=usersDao;
         this.userValidationService=userValidationService;
         this.passwordEncoder=passwordEncoder;
+        this.userThreadWinsService= userThreadWinsService;
     }
 
     @GetMapping("/register")
@@ -57,6 +62,8 @@ public class UserController {
             Model model
     ){
         User user=usersDao.findByUsername(name);
+        List<Thread> threadAwards=userThreadWinsService.ShowAllAwards(user);
+        model.addAttribute("awards",threadAwards);
         model.addAttribute("user", user);
         model.addAttribute("threads", user.getThreads()); //Can create an if statement in the view if they have any threads to display them.
         model.addAttribute("posts", user.getPosts());
