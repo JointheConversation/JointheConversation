@@ -43,6 +43,7 @@ public class ScheduledThread {
         //This is where the service is being implented that will run the thread counting service.
         List<ThreadCount> threadCounts = threadDao.countPostsInThreads();
         threadCountService.compare(threadCounts);
+
         }
 //
 //
