@@ -25,4 +25,8 @@ public interface ThreadRepository extends CrudRepository<Thread, Long>{
     //Checks winning threads and creates a list of threads that were created by the User
     @Query("select t from ThreadWinner w join w.thread t join t.user u where u = ?1")
     List<Thread> findAllWinnerThreadsOfUser(User user);
+
+    //This bottom code will compare the threads from their winning categories.
+//    @Query("select t from ThreadWinner w join w.thread.... ")
+//    List<Thread> findAllWinnerCategoryThreadsOfUser(User user);
 }

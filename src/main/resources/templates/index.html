@@ -7,6 +7,8 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar::main-navbar"></nav>
+
+<div id="time"></div>
 <h1>Join Our Conversations</h1>
 <p th:if="${thread==null}" th:text="'There is No Current Winner'"></p>
 <div th:if="${thread!=null}">
@@ -29,5 +31,6 @@
 <div>Trending topic 3</div>
 </div>
 <footer th:include="fragments/footer :: footer"></footer>
+<script src="../static/js/index_timer.js"></script>
 </body>
 </html>
