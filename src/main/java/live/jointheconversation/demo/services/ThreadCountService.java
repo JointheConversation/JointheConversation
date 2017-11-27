@@ -28,6 +28,9 @@ public class ThreadCountService {
         //This code sorts through the list based on the thread count and orders them from high count to low count
             //will need to refactor later in the event of a tie.
         threadCounts.sort(Comparator.comparingLong(ThreadCount::getCount).reversed());
+
+
+
         //THis for each loop checks to make sure hta the sort worked correctly and that the information is being displayed from high thread count to low
 //            int i=0;
 //            for (ThreadCount threadcount:threadCounts) {
@@ -40,10 +43,12 @@ public class ThreadCountService {
 //
 //                }
 //                i++;
-            ThreadCount threadCount= threadCounts.get(0);
-                    Thread thread=threadDao.findOne(threadCount.getId());
+
+                    ThreadCount threadCount= threadCounts.get(0);
                     ThreadWinner threadWinner = new ThreadWinner();
+                    Thread thread=threadDao.findOne(threadCount.getId());
                     threadWinner.setThread(thread);
+                    threadWinner.setActiveStatus(true);
                     threadWinnerDao.save(threadWinner);
 
                 System.out.println("The title is "
