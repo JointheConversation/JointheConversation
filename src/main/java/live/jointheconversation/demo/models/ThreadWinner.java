@@ -3,6 +3,7 @@ package live.jointheconversation.demo.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="thread_winner")
@@ -11,6 +12,9 @@ public class ThreadWinner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(insertable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date date;
 
     @ManyToOne
     @JsonManagedReference
