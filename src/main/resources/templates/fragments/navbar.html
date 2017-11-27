@@ -7,14 +7,14 @@
 
 <p>You should not see this</p>
 
-<nav id="my-nav" class="navbar" th:fragment="main-navbar">
+<nav id="my-nav" class="navbar" th:fragment="navbar">
     <ul>
 
         <li sec:authorize="!isAuthenticated()">
-            <a href="#">Log In</a>
+            <a href="/login">Log In</a>
         </li>
         <li sec:authorize="!isAuthenticated()">
-            <a href="users/registration">Sign Up</a>
+            <a href="/registration">Sign Up</a>
         </li>
         <li sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" th:method="post">

@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
-<head th:replace="fragments/header :: main-header('Login')">
+<head th:replace="fragments/header :: header('Login')">
 </head>
 <body>
-<nav th:replace="fragments/navbar :: main-navbar"></nav>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
     <div class="row">
-        <h1>Create an account</h1>
+        <h1>Remember Me</h1>
         <form th:action="@{/login}" method="POST" th:object="${user}">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" th:field="*{username}" class="form-control"/>
+
+                    <label for="username" >username</label>
+                    <input th:type="text" id="username" name="username"  class="form-control"/>
             </div>
 
-
             <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" type="password" th:field="*{password}" class="form-control"/>
+                <label for="password">password</label>
+                <input id="password" th:type="text" class="form-control"/>
             </div>
 
             <input value="login!" type="submit" class="btn btn-primary"/>
         </form>
     </div>
 </div>
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
