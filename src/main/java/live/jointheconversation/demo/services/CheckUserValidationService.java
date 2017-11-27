@@ -15,6 +15,7 @@ public class CheckUserValidationService {
     public void validateCredentials(Errors validation, User user) {
         User correctUsername = usersDao.findByUsername(user.getUsername().trim());
         User correctPassword = usersDao.findByPassword(user.getPassword());
+
         if (!correctUsername.equals(usersDao.findByUsername(user.getUsername().trim()))) {
             validation.rejectValue(
                     "username",
