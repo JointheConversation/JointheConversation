@@ -1,7 +1,7 @@
 package live.jointheconversation.demo;
 
 import live.jointheconversation.demo.services.UserDetailsLoader;
-import live.jointheconversation.demo.services.UserOwnerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

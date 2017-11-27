@@ -11,7 +11,7 @@
         <h1 class="text-center">Start a conversation</h1>
         <form th:replace="fragments/form :: form-thread"
               th:method="post"
-              th:action="@{/categories/{title}/threads/create}"
+              th:action="@{/categories/{categoryName}/threads/create}"
               th:object="${post}"></form>
     </form>
 </div>

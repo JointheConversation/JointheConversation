@@ -11,7 +11,7 @@
         <h1 class="text-center">Your thoughts?</h1>
         <form th:replace="fragments/form :: form-post"
                 th:method="post"
-                th:action="@{/{categories.title}/threads/{threads.id}/posts/create}"
+                th:action="@{/categories/{categoryName}/threads/{threadId}/posts/create}"
               th:object="${post}"></form>
     </form>
     </div>
