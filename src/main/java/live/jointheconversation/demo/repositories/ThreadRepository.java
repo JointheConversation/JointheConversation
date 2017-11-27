@@ -2,6 +2,7 @@ package live.jointheconversation.demo.repositories;
 
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.ThreadCount;
+import live.jointheconversation.demo.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,12 @@ public interface ThreadRepository extends CrudRepository<Thread, Long>{
     // THis statement allows us to access the information from the mysql databse and save it to a model ThreadCount.
     @Query("select new live.jointheconversation.demo.models.ThreadCount(count(p.id), t.title, t.id) from Thread t join t.posts p where t.activeStatus =1 group by t.title, t.id order by count(t) desc")
     List<ThreadCount> countPostsInThreads();
+
+    //Checks winning threads and creates a list of threads that were created by the User
+    @Query("select t from ThreadWinner w join w.thread t join t.user u where u = ?1")
+    List<Thread> findAllWinnerThreadsOfUser(User user);
+
+    //This bottom code will compare the threads from their winning categories.
+//    @Query("select t from ThreadWinner w join w.thread.... ")
+//    List<Thread> findAllWinnerCategoryThreadsOfUser(User user);
 }
