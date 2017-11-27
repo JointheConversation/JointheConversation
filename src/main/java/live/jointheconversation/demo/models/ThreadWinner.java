@@ -7,17 +7,22 @@ import javax.persistence.*;
 @Entity
 @Table(name="thread_winner")
 public class ThreadWinner {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
     @JsonManagedReference
-    @JoinColumn(name="thread_id")
+    @JoinColumn(name = "thread_id")
     private Thread thread;
+
+    public ThreadWinner(){}
 
     public ThreadWinner(Thread thread) {
         this.thread = thread;
     }
+
 
     public long getId() {
         return id;
@@ -34,4 +39,9 @@ public class ThreadWinner {
     public void setThread(Thread thread) {
         this.thread = thread;
     }
+
 }
+
+
+
+
