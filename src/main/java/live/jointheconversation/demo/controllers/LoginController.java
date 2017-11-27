@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-
 @Controller
 public class LoginController {
     private CheckUserValidationService userValidationService;
@@ -22,7 +21,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String showLoginForm() {
         return "users/login";
     }
 
@@ -35,7 +34,7 @@ public class LoginController {
         userValidationService.validateCredentials(validation, user);
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
-            return "users/registration";
+            return "users/login";
         }
         return "/profile";
     }
