@@ -1,8 +1,6 @@
 package live.jointheconversation.demo.repositories;
-
 import live.jointheconversation.demo.models.User;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 @Repository

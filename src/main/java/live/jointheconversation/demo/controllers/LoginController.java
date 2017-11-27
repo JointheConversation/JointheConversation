@@ -1,10 +1,8 @@
 package live.jointheconversation.demo.controllers;
 
 import live.jointheconversation.demo.models.User;
-import live.jointheconversation.demo.repositories.UserRepository;
 import live.jointheconversation.demo.services.CheckUserValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
