@@ -7,14 +7,33 @@
 
 <p>You should not see this</p>
 
-<nav id="my-nav" class="navbar" th:fragment="navbar">
-    <ul>
+<nav id="my-nav" class="navbar navbar-default navbar-right" th:fragment="navbar">
+    <ul class="nav navbar-nav nav-rig">
+
+        <!--<li sec:authorize="!isAuthenticated()">-->
+            <!--<a href="#" id="login">Log In</a>-->
+        <!--</li>-->
+
+        <li id="login" sec:authorize="!isAuthenticated()">
+            <a id="login-trigger" href="#">
+                Log in <span>▼</span>
+            </a>
+            <div id="login-content">
+                <form th:action="@{/login}" method="POST">
+                    <fieldset id="inputs">
+                        <input for="username" id="username" type="text" name="username" placeholder="Username"/>
+                        <input for="password" id="password" type="password" name="password" placeholder="Password"/>
+                    </fieldset>
+                    <fieldset id="actions">
+                        <input type="submit" id="submit" value="Log in"/>
+                        <label><input type="checkbox" checked="checked" value="1"/> Keep me signed in</label>
+                    </fieldset>
+                </form>
+            </div>
+        </li>
 
         <li sec:authorize="!isAuthenticated()">
-            <a href="/login">Log In</a>
-        </li>
-        <li sec:authorize="!isAuthenticated()">
-            <a href="/registration">Sign Up</a>
+            <a href="/register">Sign Up</a>
         </li>
         <li sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" th:method="post">

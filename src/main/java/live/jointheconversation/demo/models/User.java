@@ -11,12 +11,6 @@ import java.util.List;
 @Table(name="users")
 public class User {
 
-    public User(User copy) {
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-        email = copy.email;
-        username = copy.username;
-        password = copy.password;
-    }
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -75,6 +69,18 @@ public class User {
         this.password = password;
         this.posts = posts;
     }
+    public User (long id, String username, String email, String password){
+        this.username=username.trim();
+        this.id=id;
+        this.email=email.trim();
+        this.password=password.trim();
+    }
+
+    public User (String username, String email, String password){
+        this.username=username.trim();
+        this.email=email.trim();
+        this.password=password.trim();
+    }
 
     public User(String username, String email, String password, Date date, List<Post> posts, List<Thread> threads, String userpic_path, String userbanner_pic_path, Date birthday) {
         this.username = username;
@@ -86,6 +92,13 @@ public class User {
         this.userpic_path = userpic_path;
         this.userbanner_pic_path = userbanner_pic_path;
         this.birthday = birthday;
+    }
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+        userpic_path = copy.userpic_path;
     }
 
     public long getId() {

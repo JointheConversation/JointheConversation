@@ -7,25 +7,32 @@
 <div class="container">
     <div class="row">
         <h1>Create an account</h1>
-        <form th:action="@{/registration}" method="POST" th:object="${user}">
+        <form th:action="@{/register}" method="POST" th:object="${user}">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" th:field="*{username}" class="form-control"/>
+                <p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" />
+
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" th:field="*{email}" class="form-control"/>
+                <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
+
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" type="password" th:field="*{password}" class="form-control"/>
+                <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
+
             </div>
 
             <input value="Sign me up!" type="submit" class="btn btn-primary"/>
         </form>
     </div>
 </div>
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

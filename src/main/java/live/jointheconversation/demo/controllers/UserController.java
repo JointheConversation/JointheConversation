@@ -55,7 +55,7 @@ public class UserController {
         usersDao.save(user);
         return "redirect:/login";
 
-}
+    }
     @GetMapping("/profile/{name}")
     public String goToUserProfile(
             @PathVariable String name,
@@ -68,7 +68,6 @@ public class UserController {
         model.addAttribute("threads", user.getThreads()); //Can create an if statement in the view if they have any threads to display them.
         model.addAttribute("posts", user.getPosts());
         //Same if statement can be applied here.
-
         return "users/profile";
     }
 

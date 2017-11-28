@@ -19,7 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
     private UserDetailsLoader userDetails;
-    private static SecurityConfiguration ourInstance = new SecurityConfiguration();
+//    private static SecurityConfiguration ourInstance = new SecurityConfiguration();
 
     @Bean
     public PasswordEncoder passwordEncoder()
@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure (HttpSecurity http) throws Exception {
         http .formLogin()
-                .loginPage ("/login") .defaultSuccessUrl("/index") // users homepage
+                .loginPage ("/login") .defaultSuccessUrl("/") // users homepage
         .permitAll()
                 .and()
                 .authorizeRequests()
@@ -40,8 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .and()
                 .logout()
                 .logoutSuccessUrl
-
-                        ("/login?logout")
+                        ("/")
                 .and()
                 .authorizeRequests()
                 .antMatchers(

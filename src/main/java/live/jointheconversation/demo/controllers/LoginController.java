@@ -13,31 +13,32 @@ import javax.validation.Valid;
 
 @Controller
 public class LoginController {
-    private CheckUserValidationService userValidationService;
-    @Autowired
-    public LoginController(CheckUserValidationService userValidationService) {
-        this.userValidationService = userValidationService;
-
-    }
+//    private CheckUserValidationService userValidationService;
+//
+//    @Autowired
+//    public LoginController(CheckUserValidationService userValidationService) {
+//        this.userValidationService = userValidationService;
+//
+//    }
 
     @GetMapping("/login")
     public String showLoginForm() {
         return "users/login";
     }
 
-    @PostMapping("/login")
-    public String loginUser(
-            @Valid User user,
-            Errors validation,
-            Model model) {
-        model.addAttribute("username", user);
-        userValidationService.validateCredentials(validation, user);
-        if (validation.hasErrors()) {
-            model.addAttribute("errors", validation);
-            return "users/login";
-        }
-        return "/profile";
-    }
+//    @PostMapping("/login")
+//    public String loginUser(
+//            @Valid User user,
+//            Errors validation,
+//            Model model) {
+//        model.addAttribute("username", user);
+//        userValidationService.validateCredentials(validation, user);
+//        if (validation.hasErrors()) {
+//            model.addAttribute("errors", validation);
+//            return "users/login";
+//        }
+//        return "/profile";
+//    }
 
 }
 

@@ -8,7 +8,7 @@ import org.springframework.validation.Errors;
 @Service
 public class CreateUserValidationService {
     private UserRepository usersDao;
-    public CreateUserValidationService(UserRepository users) {
+    public CreateUserValidationService(UserRepository usersDao) {
         this.usersDao = usersDao;
     }
     public void validateDuplicate(Errors validation, User user) {
