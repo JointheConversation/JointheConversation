@@ -1,15 +1,11 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
-<div lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head
-            th:replace="fragments/header :: header('Choose a category')">
-        <meta charset="UTF-8"/>
-        <title>Choose a category</title>
-    </head>
-    <>
+    <head th:replace="fragments/header :: header('Choose a category')"/>
+    <body>
     <nav th:replace="fragments/navbar :: main-navbar"></nav>
     <h1>#Trending here</h1>
-    <div class="trendingtopics" th:each="">
+    <div class="trendingtopics">
         <div>Trending topic 1</div>
         <div>Trending topic 2</div>
         <div>Trending topic 3</div>
@@ -17,9 +13,9 @@
 
     <!--iterates through data base, for each "category" display the title, then link there.-->
     <div class="categories-index">
-        <tr th:each="category:${category}" >
+        <tr th:each="category:${categories}" >
             <td th:text="${category.title}"></td>
-            <a th:href="@{'/category/{categoryName' + ${category.title}}"></a></tr>
+            <a th:href="@{'/category/'+ ${category.title}}"></a></tr>
     </div>
 
 
@@ -30,8 +26,7 @@
     <!--<div th:href="@{/category.title(title='category 5')}">Category 5</div>-->
     <!--</div>-->
 
-
-    <footer th:replace="fragments/footer :: footer"></footer>
+    <footer th:include="fragments/footer :: footer"></footer>
     </body>
-</div>
+
 </html>
