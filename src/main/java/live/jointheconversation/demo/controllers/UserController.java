@@ -4,6 +4,7 @@ import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.repositories.UserRepository;
 import live.jointheconversation.demo.services.CreateUserValidationService;
+import live.jointheconversation.demo.services.UploadCheckService;
 import live.jointheconversation.demo.services.UserThreadWinsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,6 +14,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.validation.Valid;
@@ -24,13 +27,15 @@ public class UserController {
     private CreateUserValidationService userValidationService;
     private PasswordEncoder passwordEncoder;
     private UserThreadWinsService userThreadWinsService;
+    private UploadCheckService uploadCheckService;
 
     @Autowired
-    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder, UserThreadWinsService userThreadWinsService){
+    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder, UserThreadWinsService userThreadWinsService, UploadCheckService uploadCheckService){
         this.usersDao=usersDao;
         this.userValidationService=userValidationService;
         this.passwordEncoder=passwordEncoder;
         this.userThreadWinsService= userThreadWinsService;
+        this.uploadCheckService=uploadCheckService;
     }
 
     @GetMapping("/register")
@@ -42,7 +47,8 @@ public class UserController {
     public String registerUser(
             @Valid User user,
             Errors validation,
-            Model model){
+            Model model,
+            @RequestParam(name = "file") MultipartFile uploadedFile){
         userValidationService.validateDuplicate(validation, user);
         userValidationService.checkBlankSpace(validation, user);
         if(validation.hasErrors()){
@@ -50,6 +56,8 @@ public class UserController {
             model.addAttribute("user",user);
             return "users/registration";
         }
+        uploadCheckService.UploadValidation(uploadedFile,model,user);
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         //BEncryptPassword goes here.
         usersDao.save(user);

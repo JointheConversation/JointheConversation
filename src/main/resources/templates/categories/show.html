@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Show</title>
-</head>
+<head th:replace="fragments/header :: header('Category:'+category.title)"/>
 <body>
+<nav th:replace="fragments/navbar :: main-navbar"></nav>
+<h1 th:text="${category.title}"></h1>
 
+
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

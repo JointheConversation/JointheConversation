@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<div lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
 </head>
-
+<body>
 <nav th:replace="fragments/navbar :: main-navbar"></nav>
 
 <!-- if user is creating a thread -->
@@ -17,20 +17,34 @@
         <label for="body">Body</label>
         <input id="body" th:field="*{body}" class="form-control" />
     </div>
+
+        <div>
+            <label for="file">Upload a file!</label>
+            <input id="file" name="file" type="file" />
+            <br />
+
+        </div>
+
     <input type="submit" class="btn btn-primary btn-block" />
 </form>
 
 
 <!-- if user is creating a post on a thread -->
 
+
 <form th:fragment="form-post">
 <div class="form-group">
     <label for="body">your thoughts?</label>
     <input th:field="*{body}" class="form-control" />
 </div>
+    <div>
+        <label for="file">Upload a file!</label>
+        <input id="file" name="file" type="file" />
+        <br />
+    </div>
 <input type="submit" class="btn btn-primary btn-block" />
 </form>
-</div>
+
     </body>
 </html>
 </div>

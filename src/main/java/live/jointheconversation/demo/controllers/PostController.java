@@ -4,6 +4,7 @@ import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.services.PostService;
+import live.jointheconversation.demo.services.UploadCheckService;
 import live.jointheconversation.demo.services.UserOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,12 +20,14 @@ import javax.validation.Valid;
 public class PostController {
     private PostService postService;
     private final UserOwnerService userOwnerService;
+    private final UploadCheckService uploadCheckService;
 
     // Shows posts
     @Autowired
-    public PostController(PostService postService, UserOwnerService userOwnerService){
+    public PostController(PostService postService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService){
         this.postService=postService;
         this.userOwnerService=userOwnerService;
+        this.uploadCheckService=uploadCheckService;
     }
 
     //This getmapping will allow users to view all posts within a given thread
@@ -51,8 +54,11 @@ public class PostController {
     public String viewPostForm(
             Model viewModel,
             @PathVariable String categoryName,
-            Thread thread
-    ) {
+            Thread thread,
+            @RequestParam(name = "file") MultipartFile uploadedFile
+
+    )
+    {
         if(!thread.getActiveStatus()){
             //Checks to see if the thread is still active before posting.
 
@@ -68,7 +74,8 @@ public class PostController {
             @PathVariable String categoryName,
             @Valid Post post,
             Errors validation,
-            Model viewModel
+            Model viewModel,
+            @RequestParam(name = "file") MultipartFile uploadedFile
     ) {
 
         if(validation.hasErrors()){
@@ -76,6 +83,7 @@ public class PostController {
             viewModel.addAttribute("post",post);
             return "posts/create";
         }
+        uploadCheckService.UploadValidation(uploadedFile,viewModel,post);
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postService.save(post);
@@ -89,19 +97,23 @@ public class PostController {
             @PathVariable long threadId,
             @PathVariable String categoryName,
             @PathVariable long id,
+            @ModelAttribute Post post,
             Model viewModel,
             UserOwnerService userOwnerService,
-            Thread thread
-            ){
+            Thread thread,
+            @RequestParam(name = "file") MultipartFile uploadedFile
+    ){
 
         if(!thread.getActiveStatus()){
             //Checks to see if the thread is still active before posting.
             return "redirect:/categories/threads";
         }
-        Post post=postService.findById(id);
+
+        post.setId(id);
         if(!userOwnerService.isOwner(post)){
             return "redirect:/categories/threads/{threadId}/posts/" +id;
         }
+        uploadCheckService.UploadValidation(uploadedFile,viewModel,post);
         viewModel.addAttribute("post", postService.findById(id));
         return "posts/edit";
     }
