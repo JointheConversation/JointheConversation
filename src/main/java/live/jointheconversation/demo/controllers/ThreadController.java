@@ -1,7 +1,10 @@
 package live.jointheconversation.demo.controllers;
 
+import live.jointheconversation.demo.models.Category;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
+import live.jointheconversation.demo.repositories.ThreadRepository;
+import live.jointheconversation.demo.services.CategoryService;
 import live.jointheconversation.demo.services.ThreadService;
 import live.jointheconversation.demo.services.UploadCheckService;
 import live.jointheconversation.demo.services.UserOwnerService;
@@ -20,32 +23,41 @@ public class ThreadController {
     private final ThreadService threadService;
     private final UserOwnerService userOwnerService;
     private final UploadCheckService uploadCheckService;
+    private final CategoryService categoryService;
+    private final ThreadRepository threadDao;
 
     @Autowired
-    public ThreadController(ThreadService threadService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService){
+    public ThreadController(ThreadService threadService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService, CategoryService categoryService, ThreadRepository threadDao){
         this.threadService=threadService;
         this.userOwnerService=userOwnerService;
         this.uploadCheckService=uploadCheckService;
+        this.categoryService=categoryService;
+        this.threadDao=threadDao;
     }
     //These Getmappings will show thread information for all and single threads
     @GetMapping("/categories/{categoryName}/threads")
     public String showAllThreads(Model viewModel,@PathVariable String categoryName){
-        viewModel.addAttribute("threads", threadService.findAll());
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
+        viewModel.addAttribute("threads", threadDao.findByCategory(category));
         return "threads/index";
     }
     @GetMapping("/categories/{categoryName}/threads/{id}")
     public String singleThread(@PathVariable long id, Model viewModel,@PathVariable String categoryName){
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
         Thread thread=threadService.findById(id);
         if(userOwnerService.isOwner(thread)){
             viewModel.addAttribute("createduser",true);
         }
-        viewModel.addAttribute("post",threadService.findById(id));
+        viewModel.addAttribute("thread",thread);
         return "threads/show";
 
     }
     //This postMapping will delete a thread if the user is user who created it.
     @PostMapping("/categories/{categoryName}/threads/{id}/delete")
     public String deleteThread(@PathVariable long id, @PathVariable String categoryName){
+        Category category=categoryService.findByTitle(categoryName);
         threadService.delete(id);
         return "redirect:/categories/{categoryName}/threads";
     }
@@ -53,6 +65,8 @@ public class ThreadController {
     //This post and get mapping will take care of edits to threads based on user ownership
     @GetMapping("/categories/{categoryName}/threads/{id}/edit")
     public String threadEdit(@PathVariable long id,@PathVariable String categoryName, Model viewModel, UserOwnerService userOwnerService){
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
         Thread thread=threadService.findById(id);
         if(!userOwnerService.isOwner(thread)){
             return "redirect:/categories/{categoryName}/threads/"+id;
@@ -80,6 +94,8 @@ public class ThreadController {
     //This post and get mapping will allow users to create discussion threads
     @GetMapping("/categories/{categoryName}/threads/create")
     public String viewThreadForm(Model viewModel, @PathVariable String categoryName){
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
         viewModel.addAttribute("thread",new Thread());
         return "thread/create";
     }
@@ -93,6 +109,8 @@ public class ThreadController {
             @RequestParam(name = "file") MultipartFile uploadedFile
 
     ){
+        Category category=categoryService.findByTitle(categoryName);
+        model.addAttribute("category",category);
         model.addAttribute("media", false);
         if(validation.hasErrors()){
             model.addAttribute("errors",validation);
