@@ -1,11 +1,12 @@
 package live.jointheconversation.demo.controllers;
 
+import live.jointheconversation.demo.models.Category;
 import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
-import live.jointheconversation.demo.services.PostService;
-import live.jointheconversation.demo.services.UploadCheckService;
-import live.jointheconversation.demo.services.UserOwnerService;
+import live.jointheconversation.demo.repositories.PostRepository;
+import live.jointheconversation.demo.repositories.ThreadRepository;
+import live.jointheconversation.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,49 +22,67 @@ public class PostController {
     private PostService postService;
     private final UserOwnerService userOwnerService;
     private final UploadCheckService uploadCheckService;
+    private final CategoryService categoryService;
+    private final ThreadService threadService;
+    private PostRepository postDao;
 
     // Shows posts
     @Autowired
-    public PostController(PostService postService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService){
+    public PostController(PostService postService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService, ThreadService threadService, CategoryService categoryService, PostRepository postDao){
         this.postService=postService;
         this.userOwnerService=userOwnerService;
         this.uploadCheckService=uploadCheckService;
+        this.threadService=threadService;
+        this.categoryService=categoryService;
+        this.postDao=postDao;
     }
 
     //This getmapping will allow users to view all posts within a given thread
     @GetMapping("/categories/{categoryName}/threads/{threadId}/posts")
     public String showAllPosts(Model viewModel, @PathVariable long threadId, @PathVariable String categoryName){
-        viewModel.addAttribute("posts",postService.findAll());
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
+        Thread thread=threadService.findById(threadId);
+        viewModel.addAttribute("thread",thread);
+        viewModel.addAttribute("posts",postDao.findByThread(thread));
         return "posts/index";
     }
-
-    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}")
-    public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel,@PathVariable String categoryName){
-        Post post=postService.findById(id);
-        if(userOwnerService.isOwner(post)){
-            viewModel.addAttribute("createduser",true);
-        }
-        viewModel.addAttribute("post", postService.findById(id));
-        return "posts/show";
-    }
+    //May not need this.
+//    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}")
+//    public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel,@PathVariable String categoryName){
+//        Post post=postService.findById(id);
+//        if(userOwnerService.isOwner(post)){
+//            viewModel.addAttribute("createduser",true);
+//        }
+//        Category category=categoryService.findByTitle(categoryName);
+//        viewModel.addAttribute("category",category);
+//        Thread thread=threadService.findById(threadId);
+//        viewModel.addAttribute("thread",thread);
+//        viewModel.addAttribute("post", postService.findById(id));
+//        return "posts/show";
+//    }
 
     //Creates Posts
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
-    @GetMapping("/categories/{categoryName}/threads/{Id}/posts/create")
+    @GetMapping("/categories/{categoryName}/threads/{id}/posts/create")
     public String viewPostForm(
             Model viewModel,
+            @PathVariable long id,
             @PathVariable String categoryName,
-            Thread thread,
             @RequestParam(name = "file") MultipartFile uploadedFile
 
     )
     {
+        Thread thread=threadService.findById(id);
         if(!thread.getActiveStatus()){
             //Checks to see if the thread is still active before posting.
 
             return "redirect:/categories/threads";
         }
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
+        viewModel.addAttribute("thread",thread);
         viewModel.addAttribute("post",new Post());
         return "posts/create";
     }
@@ -77,7 +96,10 @@ public class PostController {
             Model viewModel,
             @RequestParam(name = "file") MultipartFile uploadedFile
     ) {
-
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
+        Thread thread=threadService.findById(threadId);
+        viewModel.addAttribute("thread",thread);
         if(validation.hasErrors()){
             viewModel.addAttribute("errors",validation);
             viewModel.addAttribute("post",post);
@@ -100,9 +122,10 @@ public class PostController {
             @ModelAttribute Post post,
             Model viewModel,
             UserOwnerService userOwnerService,
-            Thread thread,
             @RequestParam(name = "file") MultipartFile uploadedFile
     ){
+        Thread thread=threadService.findById(threadId);
+
 
         if(!thread.getActiveStatus()){
             //Checks to see if the thread is still active before posting.
@@ -114,6 +137,8 @@ public class PostController {
             return "redirect:/categories/threads/{threadId}/posts/" +id;
         }
         uploadCheckService.UploadValidation(uploadedFile,viewModel,post);
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
         viewModel.addAttribute("post", postService.findById(id));
         return "posts/edit";
     }
@@ -125,6 +150,10 @@ public class PostController {
             @ModelAttribute Post post,
             Model viewModel
     ){
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
+        Thread thread=threadService.findById(threadId);
+        viewModel.addAttribute("thread",thread);
         post.setId(id);
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
@@ -136,8 +165,13 @@ public class PostController {
     @PostMapping("/categories/{categoryName}/threads/{threadId}/{threadId}/posts/{id}/delete")
     public String submitDelete(@PathVariable long threadId,
                                @PathVariable String categoryName,
-                               @PathVariable long id)
+                               @PathVariable long id,
+                               Model viewModel)
     {
+        Category category=categoryService.findByTitle(categoryName);
+        viewModel.addAttribute("category",category);
+        Thread thread=threadService.findById(id);
+        viewModel.addAttribute("thread",threadService.findById(id));
         postService.delete(id);
         return "redirect:/categories/{categoryName}/threads/{threadId}/posts";
     }

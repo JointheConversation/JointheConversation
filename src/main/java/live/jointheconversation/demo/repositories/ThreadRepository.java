@@ -1,5 +1,6 @@
 package live.jointheconversation.demo.repositories;
 
+import live.jointheconversation.demo.models.Category;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.ThreadCount;
 import live.jointheconversation.demo.models.User;
@@ -13,6 +14,7 @@ import java.util.List;
 public interface ThreadRepository extends CrudRepository<Thread, Long>{
     Thread findByTitle(String title);
     Thread save(Thread thread);
+    List<Thread> findByCategory(Category category);
 
     /*
     select count(*) as 'Number of Posts', title from threads as thread

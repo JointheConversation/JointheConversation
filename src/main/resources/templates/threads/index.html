@@ -1,11 +1,20 @@
+<!--May not need this portion of code-->
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
+<head th:replace="fragments/header :: header('Choose a Thread topic')"/>
+
 <body>
-<p th:text="hello"></p>
+<nav th:replace="fragments/navbar :: main-navbar"></nav>
+
+<div th:each="thread:${threads}">
+    <ul><a th:href="@{${'/categories/'+ category.title+'/threads/'+thread.id}+'/posts'}"><li th:text="${thread.title}"></li></a></ul>
+</div>
+
+
+
+
+
+<footer th:include="fragments/footer :: footer"></footer>
 
 </body>
 </html>
