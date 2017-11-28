@@ -18,9 +18,7 @@ public class CategoryController {
     @Autowired
     public CategoryController(CategoryService service){
         this.service=service;
-
     }
-
     //Displays all categories on landing page.
     @GetMapping("/categories")
     public String showAllCategories(Model viewModel){
@@ -34,7 +32,7 @@ public class CategoryController {
     ){
         Category category=service.findByTitle(categoryName);
         viewModel.addAttribute("category",category);
-        return "category/show";
+        return "categories/show";
     }
 
 
