@@ -3,6 +3,7 @@ package live.jointheconversation.demo.controllers;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.services.ThreadService;
+import live.jointheconversation.demo.services.UploadCheckService;
 import live.jointheconversation.demo.services.UserOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -17,11 +19,13 @@ import javax.validation.Valid;
 public class ThreadController {
     private final ThreadService threadService;
     private final UserOwnerService userOwnerService;
+    private final UploadCheckService uploadCheckService;
 
     @Autowired
-    public ThreadController(ThreadService threadService, UserOwnerService userOwnerService){
+    public ThreadController(ThreadService threadService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService){
         this.threadService=threadService;
         this.userOwnerService=userOwnerService;
+        this.uploadCheckService=uploadCheckService;
     }
     //These Getmappings will show thread information for all and single threads
     @GetMapping("/categories/{categoryName}/threads")
@@ -56,20 +60,22 @@ public class ThreadController {
         viewModel.addAttribute("thread", threadService.findById(id));
         return "threads/edit";
     }
-
-    @PostMapping("/categories/{categoryName}/threads/{id}/edit")
-    public String submitEdit(
-            @PathVariable String categoryName,
-            @PathVariable long id,
-            @ModelAttribute Thread thread,
-            Model viewModel
-    ){
-        thread.setId(id);
-        User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        thread.setUser(user);
-        threadService.save(thread);
-        return "redirect:/categories/{categoryName}/threads/"+thread.getId();
-    }
+        //Threads should be allowed to be edited.
+//    @PostMapping("/categories/{categoryName}/threads/{id}/edit")
+//    public String submitEdit(
+//            @PathVariable String categoryName,
+//            @PathVariable long id,
+//            @ModelAttribute Thread thread,
+//            Model viewModel,
+//            @RequestParam(name = "file") MultipartFile uploadedFile
+//    ){
+//        thread.setId(id);
+//        uploadCheckService.UploadValidation(uploadedFile,viewModel,thread);
+//        User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        thread.setUser(user);
+//        threadService.save(thread);
+//        return "redirect:/categories/{categoryName}/threads/"+thread.getId();
+//    }
 
     //This post and get mapping will allow users to create discussion threads
     @GetMapping("/categories/{categoryName}/threads/create")
@@ -83,13 +89,17 @@ public class ThreadController {
             @PathVariable String categoryName,
             @Valid Thread thread,
             Errors validation,
-            Model model
+            Model model,
+            @RequestParam(name = "file") MultipartFile uploadedFile
+
     ){
+        model.addAttribute("media", false);
         if(validation.hasErrors()){
             model.addAttribute("errors",validation);
             model.addAttribute("thread",thread);
             return "threads/create";
         }
+        uploadCheckService.UploadValidation(uploadedFile,model,thread);
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         thread.setUser(user);
         threadService.save(thread);

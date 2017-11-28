@@ -12,7 +12,8 @@
         <form th:replace="fragments/form :: form-post"
                 th:method="post"
                 th:action="@{/categories/{categoryName}/threads/{threadId}/posts/create}"
-              th:object="${post}"></form>
+              th:object="${post}"
+              enctype="multipart/form-data"></form>
     </form>
     </div>
 </div>
