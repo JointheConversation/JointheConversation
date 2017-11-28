@@ -24,7 +24,7 @@ public class CategoryController {
     //Displays all categories on landing page.
     @GetMapping("/categories")
     public String showAllCategories(Model viewModel){
-        viewModel.addAttribute("category",service.findAll());
+        viewModel.addAttribute("categories",service.findAll());
         return "categories/index";
     }
     @GetMapping("/categories/{categoryName}")

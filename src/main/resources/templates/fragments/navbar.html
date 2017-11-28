@@ -7,14 +7,14 @@
 
 <p>You should not see this</p>
 
-<nav id="my-nav" class="navbar navbar-default navbar-right" th:fragment="navbar">
+<nav id="my-nav" class="navbar navbar-default" th:fragment="navbar">
     <ul class="nav navbar-nav nav-rig">
 
         <!--<li sec:authorize="!isAuthenticated()">-->
             <!--<a href="#" id="login">Log In</a>-->
         <!--</li>-->
 
-        <li id="login" sec:authorize="!isAuthenticated()">
+        <li id="login" class="navbar-right" sec:authorize="!isAuthenticated()">
             <a id="login-trigger" href="#">
                 Log in <span>▼</span>
             </a>
@@ -41,10 +41,10 @@
             </form>
         </li>
         <li sec:authorize="isAuthenticated()">
-            <a href="users/profile">Profile</a>
+            <a th:href="@{'/profile/'+ ${#authentication.principal.username}}">Profile</a>
         </li>
         <li sec:authorize="isAuthenticated()">
-            <a href="categories/index">Conversations</a>
+            <a href="/categories">Conversations</a>
         </li>
     </ul>
 </nav>
