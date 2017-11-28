@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/head :: main-header('All posts')"></head>
+<head th:replace="fragments/header :: main-header('All posts')"></head>
 <body>
 <nav th:replace="fragments/navbar :: mainNavbar"></nav>
 
 <h1>Post Away!</h1>
 
 <div class="container">
+    <h1 th:text="${thread.title}"></h1>
     <div class="row">
-        <div class="col-md-6" th:each="post : ${posts}">
-            <h2>
-                <a th:href="@{/posts/{id}(id=${posts.id})}" th:text="${posts.title}"></a>
-            </h2>
-            <a class="btn btn-sm btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
-            <p th:text="${post.body}"></p>
-        </div>
+            <ul>
+                <li class="col-md-6" th:each="post : ${posts}">
+                    <p th:text="${post.description}"></p>
+                </li>
+                <!--th:href="@{/posts/{id}(id=${posts.id})}"-->
+            </ul>
+            <a th:if="${createduser}" class="btn btn-sm btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+
     </div>
 </div>
 
-
+<footer th:text="${thread.date}"></footer>
 <footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
