@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head
-        th:replace="fragments/header::header('Profile')">
-    <meta charset="UTF-8"/>
-    <title>Join the Conversation</title>
+<head th:replace="fragments/header :: header('Profile')">
 </head>
 <body>
-<nav th:replace="fragments/navbar::main-navbar"></nav>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
 <h1><span class="title-text" th:text="|Welcome, ${user.username}|"></span></h1>
 <div th:each="award : ${awards}" th:if="${award!=null}">
@@ -15,6 +12,6 @@
     <p th:text="${award.user.username}"></p>
 </div>
 
-<footer th:include="fragments/footer :: footer"></footer>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
