@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface ThreadRepository extends CrudRepository<Thread, Long>{
     Thread findByTitle(String title);
@@ -31,4 +32,11 @@ public interface ThreadRepository extends CrudRepository<Thread, Long>{
     //This bottom code will compare the threads from their winning categories.
 //    @Query("select t from ThreadWinner w join w.thread.... ")
 //    List<Thread> findAllWinnerCategoryThreadsOfUser(User user);
+
+
+    //code to find top three trending posts
+//    @Query("select new live.jointheconversation.demo.models.ThreadCount(count(p.id), t.title, t.id) from Thread t join t.posts p where t.activeStatus=1 group by t.title, t.id order by count(t) DESC LIMIT 0, 3")
+//    Stream<ThreadCount> countpostsfortrending();
 }
+
+
