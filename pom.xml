@@ -73,6 +73,12 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+			<groupId>io.getstream.client</groupId>
+			<artifactId>stream-repo-apache</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

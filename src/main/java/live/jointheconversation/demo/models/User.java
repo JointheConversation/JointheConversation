@@ -3,6 +3,9 @@ package live.jointheconversation.demo.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +24,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -28,7 +32,9 @@ public class User {
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
     private List<Thread> threads;
 
     @Column(nullable = true)
