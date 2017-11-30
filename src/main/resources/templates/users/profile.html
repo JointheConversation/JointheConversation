@@ -4,6 +4,8 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
+<div th:replace="fragments/footer::jQuery"></div>
+
 
 <h1><span class="title-text" th:text="|Welcome, ${user.username}|"></span></h1>
 <div th:each="award : ${awards}" th:if="${award!=null}">

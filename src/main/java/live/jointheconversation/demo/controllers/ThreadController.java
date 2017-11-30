@@ -1,6 +1,7 @@
 package live.jointheconversation.demo.controllers;
 
 import live.jointheconversation.demo.models.Category;
+import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.repositories.ThreadRepository;
@@ -122,6 +123,12 @@ public class ThreadController {
         thread.setUser(user);
         threadService.save(thread);
         return "redirect:/categories/{categoryName}/threads";
+    }
+
+    @GetMapping("/threads.json")
+    @ResponseBody
+    public Iterable<Thread> viewAllPostsInJSONFormat(){
+        return threadDao.findAll();
     }
 
 }

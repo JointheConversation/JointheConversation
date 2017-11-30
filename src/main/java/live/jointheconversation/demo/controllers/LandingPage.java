@@ -26,10 +26,9 @@ public class LandingPage {
 
     @GetMapping("/")
     public String landingPage(Model viewModel){
-        Thread thread= winningThreadInfoService.RetrieveThreadWinnerInfo();
-        viewModel.addAttribute("Welcome", null);
+        System.out.println("It passed through the Landing controller");
+        Thread thread = winningThreadInfoService.RetrieveThreadWinnerInfo();
         viewModel.addAttribute("thread", thread);
-        System.out.println("It passed through the controller");
         return "index";
     }
 }
