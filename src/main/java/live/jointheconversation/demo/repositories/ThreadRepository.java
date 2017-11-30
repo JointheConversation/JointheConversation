@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface ThreadRepository extends CrudRepository<Thread, Long> {
     Thread findByTitle(String title);
