@@ -63,15 +63,15 @@ body{
     /*}*/
 
     h1{
-        color: #396;
+        color: #FFFFFF;
         font-weight: 100;
         font-size: 40px;
-        margin: 40px 0 20px;
+        margin: 40px 0px 20px;
     }
 
     #clockdiv{
         font-family: sans-serif;
-        color: #fff;
+        color: #FFFFFF;
         display: inline-block;
         font-weight: 100;
         text-align: center;
@@ -88,7 +88,7 @@ body{
     #clockdiv div > span{
         padding: 15px;
         border-radius: 3px;
-        background: #00816A;
+        background: #FF69B4;
         display: inline-block;
     }
 
