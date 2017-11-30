@@ -1,10 +1,20 @@
 body{
-    background:url('http://cdn.makeuseof.com/wp-content/uploads/2017/01/calming-colors.png');
+    /*background-image: url('Presence.jpg');*/
+    background-position:center;
     padding:50px;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+.img-logo{width:100%;
+    margin:32px 0
+}
+
+
+/*.bgimg {*/
+    /*background-image: url('Presence.jpg');*/
+/*}*/
+/*login drop down style*/
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
@@ -55,3 +65,6 @@ body{
         border-top:0 none;
     }
 }
+/*styling site*/
+body,h1,h2{font-family: "Raleway", sans-serif}
+body, html {height: 100%}
