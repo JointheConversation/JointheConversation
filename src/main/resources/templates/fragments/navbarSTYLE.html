@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">>
+<head>
+    <meta charset="UTF-8" th:replace="fragments/header :: header('Start a conversation')" />
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="nave">
+<div class="head">
+    <div class="headerobjectswrapper">
+        <header>Join The Conversation</header>
+    </div>
+
+    <div class="subhead"><ul>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{'/profile/'+ ${#authentication.principal.username}}" th:text="${#authentication.principal.username}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></li>
+
+        <li sec:authorize="isAuthenticated()">
+            <a href="/categories">Conversations <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+        </li>
+    </ul></div>
+
+</div>
+</nav>
+</body>
+</html>
