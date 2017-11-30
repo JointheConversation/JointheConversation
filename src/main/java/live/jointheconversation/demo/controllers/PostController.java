@@ -178,7 +178,8 @@ public class PostController {
 
 
     @GetMapping("/posts.json")
-    public @ResponseBody Iterable<Post> viewAllPostsInJSONFormat(){
+    @ResponseBody
+    public Iterable<Post> viewAllPostsInJSONFormat(){
         return postDao.findAll();
     }
     @GetMapping("/posts/ajax")
