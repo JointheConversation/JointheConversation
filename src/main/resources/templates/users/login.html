@@ -5,6 +5,8 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
+    <div th:replace="fragments/footer::jQuery"></div>
+
     <div class="row">
         <h1>Login</h1>
         <div th:if="${param.error}" class="error">
