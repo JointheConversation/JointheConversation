@@ -31,6 +31,7 @@ public class User {
     private Date date;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
     private List<Post> posts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -41,9 +42,11 @@ public class User {
     private String userpic_path;
 
     @Column(nullable = true)
+    @JsonIgnore
     private String userbanner_pic_path;
 
     @Column(nullable = true)
+    @JsonIgnore
     private Date birthday;
 
     public User(){

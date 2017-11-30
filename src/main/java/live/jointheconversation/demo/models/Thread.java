@@ -13,7 +13,6 @@ public class Thread {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Column(nullable = false)
     private String title;
 
@@ -32,6 +31,7 @@ public class Thread {
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="category_id")
     private Category category;
 
@@ -40,7 +40,9 @@ public class Thread {
     private List<Post> posts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "thread")
+    @JsonBackReference
     private List<ThreadWinner> threadWinners;
+
 
     public Thread(){
 
