@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header::header('Join the Conversation')"/>
 
 <body>
+<nav th:replace="fragments/navbarSTYLE :: nave"></nav>
+
+<div class="jumbotron"><img src="/css/JOIN THE CONVERSATION.png" class="img-logo" /></div>
+
 <div th:replace="fragments/footer::jQuery"></div>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -22,12 +26,15 @@
 
 
 
+
+
+
+
 <p th:if="${thread==null}" th:text="'There is No Current Winner'"></p>
 <div th:if="${thread!=null}">
     <p th:text="${'The Last thradwinner was '+threadwinner.title}"></p>
     <p th:text="${'It was created by '+threadwinner.user.username}"></p>
 </div>
-
 
 <!--<p th:text="${thread.user.username}"></p>-->
 <div class="home-display">
@@ -43,7 +50,6 @@
 <!--<div>Trending topic 2</div>-->
 <!--<div>Trending topic 3</div>-->
 </div>
-
 <footer th:include="fragments/footer :: footer"></footer>
 <!--<script src="/js/index_timer.js"></script>-->
 </body>
