@@ -1,9 +1,7 @@
 package live.jointheconversation.demo.controllers;
 
-import live.jointheconversation.demo.models.Category;
-import live.jointheconversation.demo.models.Post;
+import live.jointheconversation.demo.models.*;
 import live.jointheconversation.demo.models.Thread;
-import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.repositories.PostRepository;
 import live.jointheconversation.demo.repositories.ThreadRepository;
 import live.jointheconversation.demo.services.*;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -25,16 +24,20 @@ public class PostController {
     private final CategoryService categoryService;
     private final ThreadService threadService;
     private PostRepository postDao;
+    private ThreadCountService threadCountService;
+    private ThreadRepository threadDao;
 
     // Shows posts
     @Autowired
-    public PostController(PostService postService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService, ThreadService threadService, CategoryService categoryService, PostRepository postDao){
+    public PostController(PostService postService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService, ThreadService threadService, CategoryService categoryService, PostRepository postDao, ThreadRepository threadDao, ThreadCountService threadCountService){
         this.postService=postService;
         this.userOwnerService=userOwnerService;
         this.uploadCheckService=uploadCheckService;
         this.threadService=threadService;
         this.categoryService=categoryService;
         this.postDao=postDao;
+        this.threadDao=threadDao;
+        this.threadCountService=threadCountService;
     }
 
     //This getmapping will allow users to view all posts within a given thread
@@ -175,6 +178,21 @@ public class PostController {
         postService.delete(id);
         return "redirect:/categories/{categoryName}/threads/{threadId}/posts";
     }
+
+
+    @GetMapping("/posts.json")
+    @ResponseBody
+    public Iterable<Post> viewAllWinningPostsInJSONFormat(){
+        List<ThreadCount> threadCounts = threadDao.countPostsInThreads();
+        Thread thread = threadCountService.firstPlaceThread(threadCounts);
+        System.out.println("Is the livefeed example the displayed thread is " + thread.getTitle());
+        List<Post> posts = postDao.findByThread(thread);
+                return posts;
+    }
+//    @GetMapping("/posts/ajax")
+//    public String viewAllAdsWithAjax(){
+//        return "posts/ajax1";
+//    }
 
 
 }

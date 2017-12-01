@@ -22,8 +22,12 @@ public class WinningThreadInfoService {
         Iterable<ThreadWinner> threadWinners=threadWinnerDao.findAll();
         for (ThreadWinner threadWinner:threadWinners) {
             if(threadWinner.isActiveStatus()){
-                Thread thread=threadDao.findOne(threadWinner.getId());
+                Thread thread=threadDao.findByThreadWinners(threadWinner);
+//                System.out.println("The id number for winning thread is "+id);
+                System.out.println("It passed into the Winning Service: Winning thread id: "+thread.getId());
+//                Thread thread=threadDao.findOne(id);
                 System.out.println("Winning thread title "+thread.getTitle());
+
                 return thread;
             }
         }
