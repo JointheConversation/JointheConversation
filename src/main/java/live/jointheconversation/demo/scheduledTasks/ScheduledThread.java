@@ -42,7 +42,7 @@ public class ScheduledThread {
 ////        log.info("30 seconds have passed, the time is now {}", dateFormat.format(new Date()));
 //
 //    }
-    @Scheduled(fixedRate = 300000) //  6 minutes 
+//    @Scheduled(fixedRate = 360000) //  6 minutes
     public void countThreadPosts(){
         //Sets all of the winner posts to in-active so that only the current winner will be displayed.
         Iterable<ThreadWinner> threadsWinnerList=threadWinnerDao.findAll();
@@ -53,6 +53,7 @@ public class ScheduledThread {
         //This is where the service is being implemented that will run the thread counting service.
         List<ThreadCount> threadCounts = threadDao.countPostsInThreads();
         threadCountService.compare(threadCounts);
+
 
 
         }

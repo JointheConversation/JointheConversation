@@ -5,6 +5,8 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: main-navbar"></nav>
+<div th:replace="fragments/footer::jQuery"></div>
+
 <h1 th:text="${thread.title}"></h1>
 <h1>Converstaion Closes</h1>
 <div id="clockdiv">
@@ -21,6 +23,7 @@
         <div class="smalltext">Seconds</div>
     </div>
 </div>
+
 
 
 <footer th:text="${thread.date}"></footer>

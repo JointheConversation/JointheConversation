@@ -1,20 +1,22 @@
 package live.jointheconversation.demo.repositories;
 
-import live.jointheconversation.demo.models.Category;
+import live.jointheconversation.demo.models.*;
 import live.jointheconversation.demo.models.Thread;
-import live.jointheconversation.demo.models.ThreadCount;
-import live.jointheconversation.demo.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
-public interface ThreadRepository extends CrudRepository<Thread, Long>{
+public interface ThreadRepository extends CrudRepository<Thread, Long> {
     Thread findByTitle(String title);
+
     Thread save(Thread thread);
+
     List<Thread> findByCategory(Category category);
+
 
     /*
     select count(*) as 'Number of Posts', title from threads as thread
@@ -28,7 +30,15 @@ public interface ThreadRepository extends CrudRepository<Thread, Long>{
     @Query("select t from ThreadWinner w join w.thread t join t.user u where u = ?1")
     List<Thread> findAllWinnerThreadsOfUser(User user);
 
+    //    @Query("select t from ThreadWinner w join t where w.activeStatus =1")
+//    @Query("select t from ThreadWinner w where w=?1")
+//    Thread findActiveWinningThread(ThreadWinner threadWinner);
+    Thread findByThreadWinners(ThreadWinner threadWinner);
+}
+
+//    @Query("select t from ThreadWinner w join w.thread t join t.thread where u=?1")
+
     //This bottom code will compare the threads from their winning categories.
 //    @Query("select t from ThreadWinner w join w.thread.... ")
 //    List<Thread> findAllWinnerCategoryThreadsOfUser(User user);
-}
+

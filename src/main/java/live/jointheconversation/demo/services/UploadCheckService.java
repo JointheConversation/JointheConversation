@@ -3,6 +3,7 @@ package live.jointheconversation.demo.services;
 import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -14,10 +15,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
+
 public class UploadCheckService {
 
     @Value("${file-upload-path}")
-    private String uploadPath;
+    private String  uploadPath;
 
     @Value("${file-upload-path-user}")
     private String uploadPathUser;

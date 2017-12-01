@@ -1,5 +1,7 @@
 package live.jointheconversation.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,10 +21,12 @@ public class Post {
     private Date date;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="thread_id")
     private Thread thread;
 

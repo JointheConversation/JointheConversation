@@ -7,103 +7,45 @@
 
 <p>You should not see this</p>
 
-<!--<nav id="my-nav" class="navbar navbar-default" th:fragment="navbar">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-                <!--<ul class="nav navbar-nav"><a href="/"><li>Join The Conversation</li></a></ul>-->
-
-
-    <!--<ul class="nav navbar-nav navbar-right">-->
-
-        <!--&lt;!&ndash;<li sec:authorize="!isAuthenticated()">&ndash;&gt;-->
-            <!--&lt;!&ndash;<a href="#" id="login">Log In</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-        <!--<li sec:authorize="isAuthenticated()"><p class="navbar-text">Signed in as <a th:href="@{'/profile/'+ ${#authentication.principal.username}}" class="navbar-link" th:text="${#authentication.principal.username}"></a></p></li>-->
-
-
-
-
-
-
-
-        <!--&lt;!&ndash;<li sec:authorize="isAuthenticated()">&ndash;&gt;-->
-            <!--&lt;!&ndash;<a th:href="@{'/profile/'+ ${#authentication.principal.username}}">Profile</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-
-        <!--<li sec:authorize="isAuthenticated()">-->
-            <!--<a href="/categories">Conversations</a>-->
-        <!--</li>-->
-    <!--</ul>-->
-
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
 
 <nav class="navbar navbar-default" th:fragment="navbar">
-    <div class="container-fluid">
+<div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
+            <!--<div class="w3-bar w3-white w3-center w3-opacity-min w3-hover-opacity-off">-->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Join The Conversation</a>
-        </div>
+                <a class="navbar-brand" href="/">Join The Conversation</a>
 
+        </div>
 
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><p class="navbar-text">Welcome <a th:href="@{'/profile/'+ ${#authentication.principal.username}}" class="navbar-link" th:text="${#authentication.principal.username}"></a></p></li>
-                <!--<li class="dropdown">-->
-                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="#">Action</a></li>-->
-                        <!--<li><a href="#">Another action</a></li>-->
-                        <!--<li><a href="#">Something else here</a></li>-->
-                        <!--<li role="separator" class="divider"></li>-->
-                        <!--<li><a href="#">Separated link</a></li>-->
-                        <!--<li role="separator" class="divider"></li>-->
-                        <!--<li><a href="#">One more separated link</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
+            <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAuthenticated()"><p class="navbar-text nav navbar-nav  nav-link"><a th:href="@{'/profile/'+ ${#authentication.principal.username}}" th:text="${#authentication.principal.username}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></p></li>
+
                 <li sec:authorize="isAuthenticated()">
-                <a href="/categories">Conversations</a>
+                    <a href="/categories">Conversations <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li sec:authorize="!isAuthenticated()" >
-                <a href="/register">Sign Up</a>
+                    <a href="/register">Sign Up</a>
                 </li>
-                <!--<li class="dropdown">-->
-                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="#">Action</a></li>-->
-                        <!--<li><a href="#">Another action</a></li>-->
-                        <!--<li><a href="#">Something else here</a></li>-->
-                        <!--<li role="separator" class="divider"></li>-->
-                        <!--<li><a href="#">Separated link</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
+
                 <li class="dropdown" sec:authorize="!isAuthenticated()">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form class="form" role="form" method="post" th:action="@{/login}" accept-charset="UTF-8" id="login-nav">
+                                    <form class="form nav-link" role="form" method="post" th:action="@{/login}" accept-charset="UTF-8" id="login-nav">
                                         <div class="form-group">
                                             <label class="sr-only" for="username">Username</label>
                                             <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required"/>
@@ -131,11 +73,11 @@
                     </ul>
                 </li>
 
-
+                <ul class=" nav navbar-nav navbar-form navbar-right">
                 <li sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" th:method="post" class="navbar-form">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                </form>
+                    <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn nav-link">Logout</button>
+                    </form>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

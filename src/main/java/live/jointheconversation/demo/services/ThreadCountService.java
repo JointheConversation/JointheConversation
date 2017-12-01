@@ -19,6 +19,7 @@ public class ThreadCountService {
     private final ThreadWinnerRepository threadWinnerDao;
     private final ThreadService threadService;
 
+
     public ThreadCountService(ThreadRepository threadDao, ThreadWinnerRepository threadWinnerDao, ThreadService threadService){
         this.threadDao=threadDao;
         this.threadWinnerDao=threadWinnerDao;
@@ -56,12 +57,20 @@ public class ThreadCountService {
                 System.out.println("The thread count is "+threadCount.getCount());
 
                 // This segment will close out the all active threads since they are no longer able to be viewed or commented on.
-                Iterable<Thread> threadsList=threadService.findAll();
-            for (Thread threadIndexed:threadsList) {
-                threadIndexed.setActiveStatus(false);
-                threadService.save(threadIndexed);
-            }
+            //Turn back on later
+//                Iterable<Thread> threadsList=threadService.findAll();
+//            for (Thread threadIndexed:threadsList) {
+//                threadIndexed.setActiveStatus(false);
+//                threadService.save(threadIndexed);
+//            }
                 //This is there We will call up on the ThreadWInner model in order to set the winner into that table.
+            }
+            public Thread firstPlaceThread(List<ThreadCount> threadCounts){
+                threadCounts.sort(Comparator.comparingLong(ThreadCount::getCount).reversed());
+                ThreadCount threadCount=threadCounts.get(0); //This is the highest threadcount at the time.
+                Thread thread= new Thread();
+                thread=threadService.findById(threadCount.getId());
+                return thread;
             }
 
 

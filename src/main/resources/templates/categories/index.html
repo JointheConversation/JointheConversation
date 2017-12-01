@@ -5,6 +5,8 @@
     <body>
     <nav th:replace="fragments/navbar::navbar"></nav>
     <h1>#Trending here</h1>
+    <div th:replace="fragments/footer::jQuery"></div>
+
     <div class="trendingtopics">
         <ul >
             <a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><li th:text="${category.title}"></li></a>

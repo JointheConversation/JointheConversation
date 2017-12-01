@@ -96,4 +96,20 @@ body{
         padding-top: 5px;
         font-size: 16px;
     }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #fff4fe;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #12123e;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #12123e;
+        background-color: #98c0b2;
+    }
 }
+/*styling site*/
+/*body,h1,h2{font-family: "Raleway", sans-serif}*/
+/*body, html {height: 100%}*/
