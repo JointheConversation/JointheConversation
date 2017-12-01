@@ -19,6 +19,7 @@ public class WebSocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigu
 
     @Value("${app.origin}")
     private String origin;
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/questions").setAllowedOrigins(origin).withSockJS();

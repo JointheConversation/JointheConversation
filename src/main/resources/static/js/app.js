@@ -17,7 +17,7 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
         type: "GET",
         url: '/api/post/all',
         success: function (result) {
-            console.log(result);
+
             if(result.status=="Done") {
                 var custList = "";
                 $.each(result.data, function (i, post) {
