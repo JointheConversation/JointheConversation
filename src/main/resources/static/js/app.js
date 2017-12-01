@@ -1,18 +1,18 @@
 var stompClient = null;
+connect();
+// function setConnected(connected) {
+//     $("#connect").prop("disabled", connected);
+//     $("#disconnect").prop("disabled", !connected);
+//     if (connected) {
+//         $("#conversation").show();
+//     }
+//     else {
+//         $("#conversation").hide();
+//     }
+//     $("#greetings").html("");
+// }
 
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    }
-    else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
-}
-
-function ajaxStart(){
+function ajaxStart(){ //Gets all Posts from the Dao and displays them
     $.ajax({
         type: "GET",
         url: '/api/post/all',
@@ -20,7 +20,7 @@ function ajaxStart(){
             if(result.status=="Done") {
                 var custList = "";
                 $.each(result.data, function (i, post) {
-                    showGreeting(post.description)
+                    showGreeting(post.description, post.user.username)
                 })
             }
             else{
@@ -43,23 +43,14 @@ function connect() {
             stompClient = Stomp.over(ws);
 
             stompClient.connect({}, function (frame) {
-                setConnected(true);
+                // setConnected(true);
                 ajaxStart(); //Starts Ajax request get the descriptions
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic/questions', function (message) {
                         console.log("Received "+message);
-
-
-                    // ws.onmessage=function (message) {
-                        showGreeting(message.body)//make sure your printing out a string.
-
-                    // }
-
-                    //     ws.onmessage(post);
-                    // showGreeting(JSON.parse((post.body).description));
+                        showGreeting(message.body,$('#loggedinuser').val())//make sure your printing out a string.
                     }
                 )
-
                 },
                 function (error) {
                     console.log("STOMP protocol error "+error);
@@ -68,17 +59,17 @@ function connect() {
 };
 
 
-function disconnect() {
-    if (stompClient !== null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
+// function disconnect() {
+//     if (stompClient !== null) {
+//         stompClient.disconnect();
+//     }
+//     setConnected(false);
+//     console.log("Disconnected");
+// }
 
 function sendName() {
     sendForm();
-    sendPost();
+    sendPostToPostDao();
 
 
 }
@@ -93,48 +84,14 @@ $("#postsForm").submit(function(event) {
     sendName();
 });
 
-function sendPost(){
-    // var threadId = $('#thread').val();
-    // $.ajax({
-    //     type : "GET",
-    //     contentType : "application/json",
-    //     url : "api/post/all",
-    //     data : $("#postsForm").serialize(),
-    //     dataType : 'json',
-    //     success : function (post) {
-    //         // console.log(post);
-    //         stompClient.send("/app/livefeed", {}, JSON.stringify({
-    //             'posts': post.description
-    //         }));
-    //     },
-    //     error : function(e) {
-    //         console.log("ERROR: ", e);
-    //     }
-    // });
-
+function sendPostToPostDao(){
 // This code comes from the posts.js file REMEMBER THAT!!!!!!
     var threadId = $('#thread').val();
     var description=$('#description').val();
     $.ajax({
-
-
         type : "post",
         url : "/api/post/save/" + threadId+'/'+description,
-        data : $("#postsForm").serialize(),
-        success : function(result) {
-            if(result.status == "Done"){
-                $("#postResultDiv").html("<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>" +
-                    "Post Successfully! <br>" +
-                    "---> Post Description = " +
-                    result.data.description + " ,User = " + result.data.user.username + "</p>");
-            }else{
-                $("#postResultDiv").html("<strong>Error</strong>");
-            }
-        },
-        error : function(e) {
-            alert("Post field can't be empty!")
-            console.log("ERROR: ", e);
-        }
+        data : $("#postsForm").serialize()
     });
     // resetData();
 } //This will send to the server to be stored.
@@ -144,35 +101,20 @@ function resetData(){
 }
 
 
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+function showGreeting(message, user) {
+    $("#greetings").append("<tr><td>" + message + "</td><td>"+user+"</td></tr>");
 }
 
 $(function () {
     $(".form-post").on('submit', function (e) {
         e.preventDefault();
     });
-    $("#connect").click(function () {
-        connect();
-    });
-    $("#disconnect").click(function () {
-        disconnect();
-    });
     $("#send").click(function (e) {
         e.preventDefault();
         sendName();
+        resetData();
     });
 });
-
-// PREPARE FORM DATA
-// var formData = {
-//     id: $(), //need to find out how to fill out id.
-//     description: $("#description").val(),
-//     image_url_path: null,
-//     date: new Date(),
-//     user: $("#user").val, //will get the val of the logged in user
-//     thread: $
-// };
 
 
 

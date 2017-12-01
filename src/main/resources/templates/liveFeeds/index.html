@@ -16,17 +16,28 @@
     Javascript and reload this page!</h2></noscript>
 <div id="main-content" class="container">
     <div class="row">
-        <div class="col-md-6">
-            <form class="form-inline form-post">
-                <div class="form-group">
-                    <label for="connect">WebSocket connection:</label>
-                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
-                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-                    </button>
-                </div>
-            </form>
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th th:text="${'Hot Conversation Topics: '+thread.title +' Category: '+thread.category.title}" ></th>
+                    <input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>
+                </tr>
+                </thead>
+                <tbody id="greetings">
+                </tbody>
+            </table>
+
+
+            <!--<button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>-->
+            <!--<div id="getResultDiv" style="padding:20px 10px 20px 50px">-->
+            <!--<ul class="list-group">-->
+            <!--</ul>-->
+            <!--</div>-->
         </div>
-        <div class="col-md-6">
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
             <!--id="customerForm"-->
             <form id="postsForm" class="form-inline form-post" sec:authorize="isAuthenticated()">
                 <div class="form-group">
@@ -41,27 +52,7 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table id="conversation" class="table table-striped">
-                <thead>
-                <tr>
-                    <th th:text="${'Hot Conversation Topics: '+thread.title +' Category: '+thread.category.title}" ></th>
-                <input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>
-                </tr>
-                </thead>
-                <tbody id="greetings">
-                </tbody>
-            </table>
 
-
-            <!--<button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>-->
-            <!--<div id="getResultDiv" style="padding:20px 10px 20px 50px">-->
-                <!--<ul class="list-group">-->
-                <!--</ul>-->
-            <!--</div>-->
-        </div>
-    </div>
 </div>
 </div>
 
