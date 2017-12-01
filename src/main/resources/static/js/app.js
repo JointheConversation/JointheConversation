@@ -102,7 +102,7 @@ function resetData(){
 
 
 function showGreeting(message, user) {
-    $("#greetings").append("<tr><td>" + message + "</td><td>"+user+"</td></tr>");
+    $("#greetings").append("<tr><td>" + message + "</td><td>By: "+user+"</td></tr>");
 }
 
 $(function () {
