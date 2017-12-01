@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" >
-<head >
+<head>
     <title>Hello WebSocket</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="/main.css" rel="stylesheet"/>-->
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -44,13 +45,35 @@
                     <th th:text="|Hot Conversation Topics, ${thread.title}|"></th>
                 </tr>
                 </thead>
-                <tbody id="greetings" th:each="post:${posts}" th:text="post.description">
+                <tbody id="greetings">
                 </tbody>
             </table>
+
+
+            <!--<button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>-->
+            <!--<div id="getResultDiv" style="padding:20px 10px 20px 50px">-->
+            <!--<ul class="list-group">-->
+            <!--</ul>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!--id="customerForm"-->
+            <form id="postsForm" class="form-inline form-post" sec:authorize="isAuthenticated()">
+                <div class="form-group">
+                    <label for="description">Join the hottest Thread</label>
+                    <input type="text" id="description" name="description" class="form-control" placeholder="Type your post here..."/>
+                    <input type="hidden"
+                           id="csrf"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}"/>
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Send</button>
+            </form>
         </div>
     </div>
 </div>
 </div>
-
 </body>
 </html>

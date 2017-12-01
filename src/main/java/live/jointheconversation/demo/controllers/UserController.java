@@ -1,5 +1,6 @@
 package live.jointheconversation.demo.controllers;
 
+import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.repositories.UserRepository;
@@ -11,10 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -77,6 +75,11 @@ public class UserController {
         model.addAttribute("posts", user.getPosts());
         //Same if statement can be applied here.
         return "users/profile";
+    }
+    @GetMapping("/users.json")
+    @ResponseBody
+    public Iterable<User> viewAllPostsInJSONFormat(){
+        return usersDao.findAll();
     }
 
 }
