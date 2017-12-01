@@ -1,9 +1,161 @@
 body{
-    background:url('http://cdn.makeuseof.com/wp-content/uploads/2017/01/calming-colors.png');
-    padding:50px;
-    background-repeat: no-repeat;
-    background-size: cover;
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+    color: #2f2f2f;
+    background-color: #f5f5f5;
+    text-align: center;
 }
+
+.img-logo{width:100%;
+   height: auto;
+}
+header{
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 80px;
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 72px;
+    margin-bottom: 20px;
+
+}
+p{
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
+.head,
+nav{
+    text-align: center;
+    position: relative;
+
+
+}
+
+.headerobjectswrapper{
+}
+ul,li{
+    list-style: none;
+    display: inline-block;
+    color: black;
+    text-transform: uppercase;
+    margin-top: 1%;
+}
+
+button{
+    color: black;
+    text-transform: uppercase;
+    margin-top: 1%;
+    margin-right:1%;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+}
+
+.logoutbtn{
+    padding: 0;
+}
+
+
+
+.subhead
+{
+    color: black;
+    text-transform: uppercase;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    padding: 12px 0 12px 0;
+
+
+}
+
+.custom-nav {
+    background-color: #f5f5f5;
+    padding: 0;
+    border: none;
+    margin-bottom: 0;
+}
+.top-links {
+    color: black;
+    padding: 1em 1em;
+    font-size: 1.3em;
+}
+
+.logoutbtn{
+    padding: 0;
+}
+
+.row{
+    margin-right: auto;
+    margin-left: auto;
+}
+/*NAVBAR STYLING*/
+/*.navbar-default {*/
+    /*background-color: #0d3d23;*/
+
+
+
+/*}*/
+/*.navbar-default .navbar-brand {*/
+    /*color: #fff4fe;*/
+/*}*/
+/*.navbar-default .navbar-brand:hover,*/
+/*.navbar-default .navbar-brand:focus,*/
+/*.navbar-default .nav-link:hover,*/
+/*.navbar-default .nav-link:focus{*/
+    /*color: darkgrey;*/
+/*}*/
+
+/*.navbar-default .navbar-text,*/
+/*.navbar-default .nav-link{*/
+    /*color: #fff4fe;*/
+/*}*/
+
+/*.navbar-default .navbar-nav > li > a {*/
+    /*color: #fff4fe;*/
+/*}*/
+
+/*.navbar-default .navbar-nav > li > a:hover,*/
+/*.navbar-default .navbar-nav > li > a:focus,*/
+/*.navbar-default .nav-link > li > a:focus,*/
+/*.navbar-default .nav-link > li > a :hover*/
+/*{*/
+    /*color: darkgrey;*/
+/*}*/
+
+/*.navbar-default .navbar-nav > .active > a,*/
+/*.navbar-default .navbar-nav > .active > a,*/
+/*.navbar-default .navbar-nav > .active > a{*/
+    /*color: #12123e;*/
+    /*background-color: #98c0b2;*/
+/*}*/
+
+/*.navbar-default .navbar-nav > .open > a,*/
+/*.navbar-default .navbar-nav > .open > a:hover,*/
+/*.navbar-default .navbar-nav > .open > a:focus {*/
+    /*color: #12123e;*/
+    /*background-color: #98c0b2;*/
+/*}*/
+
+/*.navbar-default .navbar-toggle:hover,*/
+/*.navbar-default .navbar-toggle:focus {*/
+    /*background-color: #98c0b2;*/
+/*}*/
+/*.navbar-default .navbar-toggle .icon-bar {*/
+    /*background-color: #fff4fe;*/
+/*}*/
+/*.navbar-default .navbar-collapse,*/
+/*.navbar-default .navbar-form {*/
+    /*border-color: #fff4fe;*/
+/*}*/
+/*.navbar-default .navbar-link {*/
+    /*color: #fff4fe;*/
+/*}*/
+/*.navbar-default .navbar-link:hover {*/
+    /*color: #12123e;*/
+/*}*/
 
 #login-dp{
     min-width: 250px;
@@ -54,48 +206,6 @@ body{
         background-color: inherit;
         border-top:0 none;
     }
-
-    /*body{*/
-        /*text-align: center;*/
-        /*background: #00ECB9;*/
-        /*font-family: sans-serif;*/
-        /*font-weight: 100;*/
-    /*}*/
-
-    h1{
-        color: #00C799;
-        font-weight: 100;
-        font-size: 40px;
-        margin: 40px 0px 20px;
-    }
-
-    #clockdiv{
-        font-family: sans-serif;
-        color: #FFFFFF;
-        display: inline-block;
-        font-weight: 100;
-        text-align: center;
-        font-size: 30px;
-    }
-
-    #clockdiv > div{
-        padding: 10px;
-        border-radius: 3px;
-        background: #00BF96;
-        display: inline-block;
-    }
-
-    #clockdiv div > span{
-        padding: 15px;
-        border-radius: 3px;
-        background: #FF69B4;
-        display: inline-block;
-    }
-
-    .smalltext{
-        padding-top: 5px;
-        font-size: 16px;
-    }
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #fff4fe;
     }
@@ -109,6 +219,35 @@ body{
         color: #12123e;
         background-color: #98c0b2;
     }
+
+    #clockdiv{
+         font-family: sans-serif;
+            color: #FFFFFF;
+            display: inline-block;
+            font-weight: 100;
+           text-align: center;
+           font-size: 30px;
+        }
+        #clockdiv > div{
+            padding: 10px;
+            border-radius: 3px;
+            background: #00BF96;
+            display: inline-block;
+        }
+
+        #clockdiv div > span{
+            padding: 15px;
+            border-radius: 3px;
+            background: #FF69B4;
+            display: inline-block;
+        }
+
+        .smalltext{
+            padding-top: 5px;
+            font-size: 16px;
+        }
+
+
 }
 /*styling site*/
 /*body,h1,h2{font-family: "Raleway", sans-serif}*/
