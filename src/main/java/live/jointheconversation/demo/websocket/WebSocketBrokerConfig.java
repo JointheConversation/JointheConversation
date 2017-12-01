@@ -1,5 +1,6 @@
 package live.jointheconversation.demo.websocket;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -16,9 +17,11 @@ import java.util.Map;
 @EnableWebSocketMessageBroker
 public class WebSocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer{
 
+    @Value("${app.origin}")
+    private String origin;
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/questions").withSockJS();
+        registry.addEndpoint("/questions").setAllowedOrigins(origin).withSockJS();
     }
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
