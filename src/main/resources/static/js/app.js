@@ -20,9 +20,10 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
             if(result.status=="Done") {
                 var custList = "";
                 $.each(result.data, function (i, post) {
-                    showGreeting(post.description, post.user.username)
+                    showGreeting(post.description, post.user.username, moment().startOf(post.get(date)).fromNow())
                 })
             }
+
             else{
                 $("#getResultDiv").html("<strong>Error</strong>");
                 console.log("Fail: ", result);
@@ -37,8 +38,6 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
 
 }
 function connect() {
-
-            // var socket = new SockJS('/gs-guide-websocket');
             ws=new SockJS('/questions');
             stompClient = Stomp.over(ws);
 
@@ -48,7 +47,7 @@ function connect() {
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic/questions', function (message) {
                         console.log("Received "+message);
-                        showGreeting(message.body,$('#loggedinuser').val())//make sure your printing out a string.
+                        showGreeting(message.body,$('#loggedinuser').val(),moment().startOf(new Date()).fromNow())//make sure your printing out a string.
                     }
                 )
                 },
@@ -59,16 +58,11 @@ function connect() {
 };
 
 
-// function disconnect() {
-//     if (stompClient !== null) {
-//         stompClient.disconnect();
-//     }
-//     setConnected(false);
-//     console.log("Disconnected");
-// }
+
 
 function sendName() {
     sendForm();
+
     sendPostToPostDao();
 
 
@@ -101,8 +95,8 @@ function resetData(){
 }
 
 
-function showGreeting(message, user) {
-    $("#greetings").append("<tr><td>" + message + "</td><td>By: "+user+"</td></tr>");
+function showGreeting(message, user, date) {
+    $("#greetings").append("<tr><td>" + message + "</td><td>By: "+user+"</td><td>"+date+"</td></tr>");
 }
 
 $(function () {
