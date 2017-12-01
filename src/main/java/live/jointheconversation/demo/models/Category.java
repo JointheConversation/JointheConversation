@@ -1,6 +1,7 @@
 package live.jointheconversation.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +16,7 @@ public class Category {
     private String title;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String image_url_path;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

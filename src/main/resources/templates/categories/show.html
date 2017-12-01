@@ -3,6 +3,8 @@
 <head th:replace="fragments/header :: header('Category:'+category.title)"/>
 <body>
 <nav th:replace="fragments/navbar :: main-navbar"></nav>
+<div th:replace="fragments/footer::jQuery"></div>
+
 <h1 th:text="${category.title}"></h1>
 
 

@@ -1,5 +1,8 @@
 package live.jointheconversation.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -23,18 +26,23 @@ public class Thread {
     private boolean activeStatus;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="category_id")
     private Category category;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "thread")
+    @JsonBackReference
     private List<Post> posts;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "thread")
+    @JsonBackReference
     private List<ThreadWinner> threadWinners;
+
 
     public Thread(){
 

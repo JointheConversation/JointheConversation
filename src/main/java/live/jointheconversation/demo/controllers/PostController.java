@@ -177,4 +177,15 @@ public class PostController {
     }
 
 
+    @GetMapping("/posts.json")
+    @ResponseBody
+    public Iterable<Post> viewAllPostsInJSONFormat(){
+        return postDao.findAll();
+    }
+    @GetMapping("/posts/ajax")
+    public String viewAllAdsWithAjax(){
+        return "posts/ajax1";
+    }
+
+
 }
