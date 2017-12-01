@@ -157,7 +157,6 @@ button{
     /*color: #12123e;*/
 /*}*/
 
-
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
@@ -220,6 +219,35 @@ button{
         color: #12123e;
         background-color: #98c0b2;
     }
+
+    #clockdiv{
+         font-family: sans-serif;
+            color: #FFFFFF;
+            display: inline-block;
+            font-weight: 100;
+           text-align: center;
+           font-size: 30px;
+        }
+        #clockdiv > div{
+            padding: 10px;
+            border-radius: 3px;
+            background: #00BF96;
+            display: inline-block;
+        }
+
+        #clockdiv div > span{
+            padding: 15px;
+            border-radius: 3px;
+            background: #FF69B4;
+            display: inline-block;
+        }
+
+        .smalltext{
+            padding-top: 5px;
+            font-size: 16px;
+        }
+
+
 }
 /*styling site*/
 /*body,h1,h2{font-family: "Raleway", sans-serif}*/

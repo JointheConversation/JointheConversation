@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header(${thread.title})"/>
+<head th:replace="fragments/header :: header(${thread.title})">
+    <link rel="stylesheet" href="/../css/custom_css.css"/>
+</head>
 <body>
-<nav th:replace="fragments/navbar :: main-navbar"></nav>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 <div th:replace="fragments/footer::jQuery"></div>
 
 <h1 th:text="${thread.title}"></h1>
-
+<h1>Converstaion Closes</h1>
+<div id="clockdiv">
+    <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+    </div>
+    <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+    </div>
+    <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+    </div>
+</div>
 
 
 
 <footer th:text="${thread.date}"></footer>
 <footer th:include="fragments/footer :: footer"></footer>
+
+<script>
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 12);
+        return {
+            'total': t,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+
+    function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var hoursSpan = clock.querySelector('.hours');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
+        }
+
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
+    }
+
+    var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
+    initializeClock('clockdiv', deadline);
+</script>
 </body>
 </html>
