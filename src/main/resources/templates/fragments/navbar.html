@@ -72,7 +72,7 @@
                         </li>
                     </ul>
                 </li>
-
+            </ul>
                 <ul class=" nav navbar-nav navbar-form navbar-right">
                 <li sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" th:method="post">
@@ -80,6 +80,7 @@
                     </form>
                 </li>
             </ul>
+
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
