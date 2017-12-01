@@ -1,25 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">>
 <head>
-    <meta charset="UTF-8" th:replace="fragments/header :: header('Start a conversation')" />
     <title>Title</title>
 </head>
 <body>
 <nav th:fragment="nave">
-<div class="head">
-    <div class="headerobjectswrapper">
-        <header>Join The Conversation</header>
+    <div class="head">
+        <div class="headerobjectswrapper">
+            <header>Join The Conversation</header>
+        </div>
+
+        <div class="subhead">
+            <div class="navbar navbar-default custom-nav center-text">
+                <div class="container-fluid  center-text">
+                    <ul>
+                        <li sec:authorize="isAuthenticated()"><a class="top-links"
+                                                                 th:href="@{'/profile/'+ ${#authentication.principal.username}}"
+                                                                 th:text="${#authentication.principal.username}"></a>
+                        </li>
+
+                        <li sec:authorize="isAuthenticated()">
+                            <a class="top-links" href="/categories">Conversations</a>
+                        </li>
+
+                        <li sec:authorize="!isAuthenticated()">
+                            <a class="top-links" href="/register">Sign Up</a>
+                        </li>
+
+                        <li class="dropdown" sec:authorize="!isAuthenticated()">
+                            <a class="top-links dropdown-toggle" href="#" data-toggle="dropdown">Login<span
+                                    class="caret"></span></a>
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form nav-link" role="form" method="post" th:action="@{/login}"
+                                                  accept-charset="UTF-8" id="login-nav">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="username">Username</label>
+                                                    <input type="text" class="form-control" id="username"
+                                                           name="username" placeholder="Username" required="required"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="password">Password</label>
+                                                    <input type="password" id="password" name="password"
+                                                           class="form-control" placeholder="Password"
+                                                           required="required"/>
+                                                    <!--<div class="help-block text-right"><a href="">Forget the password ?</a></div>-->
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="w3-button w3-purple btn-block ">Sign in
+                                                    </button>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"/> keep me logged-in
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="bottom text-center">
+                                            New here ? <a href="/register"><b>Join Us</b></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <form class="top-links logoutbtn" th:action="@{/logout}" th:method="post">
+                                <button>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="subhead"><ul>
-        <li sec:authorize="isAuthenticated()"><a th:href="@{'/profile/'+ ${#authentication.principal.username}}" th:text="${#authentication.principal.username}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></li>
-
-        <li sec:authorize="isAuthenticated()">
-            <a href="/categories">Conversations <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
-        </li>
-    </ul></div>
-
-</div>
 </nav>
 </body>
 </html>
