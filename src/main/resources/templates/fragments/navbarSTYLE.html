@@ -17,6 +17,7 @@
                         <li sec:authorize="isAuthenticated()"><a class="top-links"
                                                                  th:href="@{'/profile/'+ ${#authentication.principal.username}}"
                                                                  th:text="${#authentication.principal.username}"></a>
+                            <input type="hidden" id="loggedinuser" th:value="${#authentication.principal.username}"/>
                         </li>
 
                         <li sec:authorize="isAuthenticated()">

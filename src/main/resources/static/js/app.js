@@ -20,7 +20,7 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
             if(result.status=="Done") {
                 var custList = "";
                 $.each(result.data, function (i, post) {
-                    showGreeting(post.description, post.user.username, moment().startOf(post.get(date)).fromNow())
+                    showGreeting(post.description, post.user.username, moment().startOf(post.date).fromNow())
                 })
             }
 
@@ -47,7 +47,7 @@ function connect() {
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic/questions', function (message) {
                         console.log("Received "+message);
-                        showGreeting(message.body,$('#loggedinuser').val(),moment().startOf(new Date()).fromNow())//make sure your printing out a string.
+                        showGreeting(message.body, $('#loggedinuser').val(), moment().startOf(new Date()).fromNow())//make sure your printing out a string.
                     }
                 )
                 },
@@ -62,9 +62,7 @@ function connect() {
 
 function sendName() {
     sendForm();
-
     sendPostToPostDao();
-
 
 }
 function sendForm(){
@@ -72,11 +70,11 @@ function sendForm(){
 }; //This will send to the subscription in the socket
 // This code comes from the posts.js file REMEMBER THAT!!!!!!
 
-$("#postsForm").submit(function(event) {
-    // Prevent the form from submitting via the browser.
-    event.preventDefault();
-    sendName();
-});
+// $("#postsForm").submit(function(event) {
+//     // Prevent the form from submitting via the browser.
+//     event.preventDefault();
+//     sendName();
+// });
 
 function sendPostToPostDao(){
 // This code comes from the posts.js file REMEMBER THAT!!!!!!
