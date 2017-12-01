@@ -17,14 +17,17 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
         type: "GET",
         url: '/api/post/all',
         success: function (result) {
+            console.log(result);
             if(result.status=="Done") {
                 var custList = "";
                 $.each(result.data, function (i, post) {
                     showGreeting(post.description, post.user.username, moment().startOf(post.date).fromNow())
                 })
+
             }
 
             else{
+
                 $("#getResultDiv").html("<strong>Error</strong>");
                 console.log("Fail: ", result);
             }
