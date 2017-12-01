@@ -36,6 +36,10 @@ public class LandingPage {
         Thread lastthreadwinner = winningThreadInfoService.RetrieveThreadWinnerInfo(); //Finds the winner of the last thread time period
         List<ThreadCount> threadCounts=threadDao.countPostsInThreads();
         Thread thread= threadCountService.firstPlaceThread(threadCounts);
+        if(thread==null){
+            viewModel.addAttribute("databaseThread",false);
+        }
+        viewModel.addAttribute("databaseThread",true);
         viewModel.addAttribute("threadwinner", lastthreadwinner);
         viewModel.addAttribute("thread", thread);
         return "index";

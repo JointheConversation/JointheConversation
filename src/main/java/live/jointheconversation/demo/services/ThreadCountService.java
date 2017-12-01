@@ -66,6 +66,9 @@ public class ThreadCountService {
                 //This is there We will call up on the ThreadWInner model in order to set the winner into that table.
             }
             public Thread firstPlaceThread(List<ThreadCount> threadCounts){
+                if(threadCounts.isEmpty()){
+                    return null;
+                }
                 threadCounts.sort(Comparator.comparingLong(ThreadCount::getCount).reversed());
                 ThreadCount threadCount=threadCounts.get(0); //This is the highest threadcount at the time.
                 Thread thread= new Thread();

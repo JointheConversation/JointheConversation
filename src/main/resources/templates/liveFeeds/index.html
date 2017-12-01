@@ -27,7 +27,10 @@
                 <!--</div>-->
             <!--</form>-->
         <!--</div>-->
-    <div class="row">
+    <div class="row" th:if="databaseThread==false">
+        <h1>No live threads</h1>
+    </div>
+        <div class="row" th:if="databaseThread==true">
         <div class="col-md-12">
             <table id="conversation" class="table table-striped">
                 <thead>
