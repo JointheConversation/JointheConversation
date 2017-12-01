@@ -28,7 +28,6 @@
     <!--<div th:href="@{/category.title(title='category 5')}">Category 5</div>-->
     <!--</div>-->
 
-    </div>
     <h1>Converstaion Closes</h1>
     <div id="clockdiv">
         <div>
@@ -46,11 +45,9 @@
     </div>
 
     <footer th:include="fragments/footer :: footer"></footer>
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+
     <script>
+        //<![CDATA[
         function getTimeRemaining(endtime) {
             var t = Date.parse(endtime) - Date.parse(new Date());
             var seconds = Math.floor((t / 1000) % 60);
@@ -88,6 +85,7 @@
 
         var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
         initializeClock('clockdiv', deadline);
+        //]]>
     </script>
     </body>
 

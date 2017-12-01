@@ -7,8 +7,9 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div th:replace="fragments/footer::jQuery"></div>
 
+<div class="timerBody">
 <h1 th:text="${thread.title}"></h1>
-<h1>Converstaion Closes</h1>
+<h1 class="conversationClose">Converstaion Closes</h1>
 <div id="clockdiv">
     <div>
         <span class="hours"></span>
@@ -22,6 +23,7 @@
         <span class="seconds"></span>
         <div class="smalltext">Seconds</div>
     </div>
+</div>
 </div>
 
 
