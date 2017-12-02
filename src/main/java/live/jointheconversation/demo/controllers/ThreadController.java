@@ -98,7 +98,7 @@ public class ThreadController {
         Category category=categoryService.findByTitle(categoryName);
         viewModel.addAttribute("category",category);
         viewModel.addAttribute("thread",new Thread());
-        return "thread/create";
+        return "threads/create";
     }
 
     @PostMapping("/categories/{categoryName}/threads/create")
@@ -111,16 +111,22 @@ public class ThreadController {
 
     ){
         Category category=categoryService.findByTitle(categoryName);
-        model.addAttribute("category",category);
-        model.addAttribute("media", false);
+        System.out.println(category.getTitle());
         if(validation.hasErrors()){
             model.addAttribute("errors",validation);
             model.addAttribute("thread",thread);
             return "threads/create";
         }
+        System.out.println(category.getTitle());
         uploadCheckService.UploadValidation(uploadedFile,model,thread);
+        model.addAttribute("category",category);
+        model.addAttribute("media", false);
+
+
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        thread.setCategory(category);
         thread.setUser(user);
+        thread.setActiveStatus(true);
         threadService.save(thread);
         return "redirect:/categories/{categoryName}/threads";
     }

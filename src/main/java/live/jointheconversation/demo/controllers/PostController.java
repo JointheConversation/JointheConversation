@@ -68,7 +68,7 @@ public class PostController {
     //Creates Posts
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
-    @GetMapping("/categories/{categoryName}/threads/{id}/posts/create")
+    @GetMapping("/categories/{categoryName}/threads/{id}/posts")
     public String viewPostForm(
             Model viewModel,
             @PathVariable long id,
@@ -81,7 +81,7 @@ public class PostController {
         if(!thread.getActiveStatus()){
             //Checks to see if the thread is still active before posting.
 
-            return "redirect:/categories/threads";
+            return "redirect:/categories/{categoryName}/threads";
         }
         Category category=categoryService.findByTitle(categoryName);
         viewModel.addAttribute("category",category);

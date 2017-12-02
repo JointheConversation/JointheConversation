@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header(${thread.title})"/>
+<head th:replace="fragments/header :: header(${thread.title})"></head>
 <body>
-<nav th:replace="fragments/navbar :: main-navbar"></nav>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 <div th:replace="fragments/footer::jQuery"></div>
 
 <h1 th:text="${thread.title}"></h1>
 
 
-
+<li>
+    <a th:href="@{categories/categoryName/threads/{threadId}/posts/create}"><li th:text="'Post to ' + ${thread.title}"></li></a>
+</li>
 
 <footer th:text="${thread.date}"></footer>
 <footer th:include="fragments/footer :: footer"></footer>

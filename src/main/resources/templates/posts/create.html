@@ -6,12 +6,13 @@
     <title>Start</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div th:replace="fragments/footer::jQuery"></div>
+
 <div class="row">
     <form class="col-md-8 col-md-offset-2">
         <h1 class="text-center">Your thoughts?</h1>
         <form th:replace="fragments/form :: form-post"
-                th:method="post"
-                th:action="@{/categories/{categoryName}/threads/{threadId}/posts/create}"
               th:object="${post}"
               enctype="multipart/form-data"></form>
     </form>

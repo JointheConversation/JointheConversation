@@ -6,44 +6,43 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: main-navbar"></nav>
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
 <!-- if user is creating a thread -->
     <form th:fragment="form-thread">
     <div class="form-group">
         <label for="title">Title</label>
-        <input id="title" th:field="*{title}" class="form-control" />
+        <input id="title" name="title" th:field="*{title}" class="form-control"/>
     </div>
-    <div class="form-group">
-        <label for="body">Body</label>
-        <input id="body" th:field="*{body}" class="form-control" />
-    </div>
-
+    <!--<div class="form-group">-->
+        <!--<label for="body">Body</label>-->
+        <!--<input id="body" th:field="*{body}" class="form-control" />-->
+    <!--</div>-->
         <div>
             <label for="file">Upload a file!</label>
             <input id="file" name="file" type="file" />
             <br />
-
         </div>
-
-    <input type="submit" class="btn btn-primary btn-block" />
+        <!--<input type="submit" class="btn btn-primary btn-block" />-->
+        <button type="submit" class="btn btn-primary btn-block">Start a conversation</button>
 </form>
 
     <!-- if user is creating a post on a thread -->
 
 
 
-<form th:fragment="form-post">
+<form th:fragment="form-post" th:action="@{/categories/{categoryName}/threads/{threadId}/posts/create}" th:method="post">
 <div class="form-group">
-    <label for="body">your thoughts?</label>
-    <input th:field="*{body}" class="form-control" />
+    <label  for="description">your thoughts?</label>
+    <input class="form-control" id="description" name="description" type="text"/>
 </div>
     <div>
         <label for="file">Upload a file!</label>
         <input id="file" name="file" type="file" />
         <br />
     </div>
-<input type="submit" class="btn btn-primary btn-block" />
+<!--<input type="submit" class="btn btn-primary btn-block"/>-->
+    <button type="submit" class="btn btn-primary btn-block">Submit Post!</button>
 </form>
 
     </body>
