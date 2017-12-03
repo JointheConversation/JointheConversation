@@ -25,7 +25,7 @@
 </div>
 
 <li>
-    <a th:href="@{categories/categoryName/threads/{threadId}/posts/create}"><li th:text="'Post to ' + ${thread.title}"></li></a>
+    <a th:href="@{'/categories/'+ ${category.title}+'/threads/'+{thread.id}+'/posts/create'}"><li th:text="'Post to ' + ${thread.title}"></li></a>
 </li>
 
 <footer th:text="${thread.date}"></footer>
