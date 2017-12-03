@@ -41,15 +41,16 @@ public class PostController {
     }
 
     //This getmapping will allow users to view all posts within a given thread
-    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts")
-    public String showAllPosts(Model viewModel, @PathVariable long threadId, @PathVariable String categoryName){
-        Category category=categoryService.findByTitle(categoryName);
-        viewModel.addAttribute("category",category);
-        Thread thread=threadService.findById(threadId);
-        viewModel.addAttribute("thread",thread);
-        viewModel.addAttribute("posts",postDao.findByThread(thread));
-        return "posts/index";
-    }
+//    moved mapping into threads/show for showing a single thread
+//    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts")
+//    public String showAllPosts(Model viewModel, @PathVariable long threadId, @PathVariable String categoryName){
+//        Category category=categoryService.findByTitle(categoryName);
+//        viewModel.addAttribute("category",category);
+//        Thread thread=threadService.findById(threadId);
+//        viewModel.addAttribute("thread",thread);
+//        viewModel.addAttribute("posts",postDao.findByThread(thread));
+//        return "posts/index";
+//    }
     //May not need this.
 //    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}")
 //    public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel,@PathVariable String categoryName){
@@ -112,7 +113,8 @@ public class PostController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postService.save(post);
-        return "redirect:/categories/threads/{threadId}/posts";
+//        redirecting to threads/show(shows single thread and all posts for that thread)
+        return "redirect:/categories/{categoryName}/threads/{id}";
     }
 
 
