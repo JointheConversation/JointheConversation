@@ -35,7 +35,9 @@ public class LandingPage {
         System.out.println("It passed through the Landing controller");
         Thread lastthreadwinner = winningThreadInfoService.RetrieveThreadWinnerInfo(); //Finds the winner of the last thread time period
         List<ThreadCount> threadCounts=threadDao.countPostsInThreads();
+
         Thread thread= threadCountService.firstPlaceThread(threadCounts);
+        System.out.println("Landing controller "+thread.getTitle()+" : visual for the landing page.");
         if(thread==null){
             viewModel.addAttribute("databaseThread",false);
         }
