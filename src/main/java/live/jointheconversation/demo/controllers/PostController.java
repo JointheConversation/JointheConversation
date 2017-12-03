@@ -112,7 +112,7 @@ public class PostController {
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postService.save(post);
-        return "redirect:/categories/threads/{id}/posts";
+        return "redirect:/categories/threads/{threadId}/posts";
     }
 
 
