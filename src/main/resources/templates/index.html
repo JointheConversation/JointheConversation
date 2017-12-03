@@ -9,6 +9,7 @@
 
 
 <body>
+
 <nav th:replace="fragments/navbarSTYLE :: nave"></nav>
 <!--Adrian's script's please don't DELETE!!!!!!!!!-->
 <!--<script src="/webjars/sockjs-client/sockjs.min.js"></script>-->
@@ -29,8 +30,8 @@
 
 <h1>Join Our Conversations</h1>
 
-<div th:replace="liveFeeds/index::websocket"></div>
-
+<div th:if="${thread==null}"></div>
+<div th:if="${thread!=null}" th:replace="liveFeeds/index::websocket"></div>
 
 
 

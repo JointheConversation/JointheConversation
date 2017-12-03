@@ -37,13 +37,19 @@ public class LandingPage {
         List<ThreadCount> threadCounts=threadDao.countPostsInThreads();
 
         Thread thread= threadCountService.firstPlaceThread(threadCounts);
-        System.out.println("Landing controller "+thread.getTitle()+" : visual for the landing page.");
         if(thread==null){
             viewModel.addAttribute("databaseThread",false);
+            viewModel.addAttribute("thread",null);
+            System.out.println("Landing controller Thread is null");
         }
-        viewModel.addAttribute("databaseThread",true);
-        viewModel.addAttribute("threadwinner", lastthreadwinner);
-        viewModel.addAttribute("thread", thread);
+        else {
+
+        System.out.println("Landing controller "+thread.getTitle()+" : visual for the landing page.");
+            viewModel.addAttribute("databaseThread", true);
+            viewModel.addAttribute("threadwinner", lastthreadwinner);
+            viewModel.addAttribute("thread", thread);
+
+        }
         return "index";
     }
 }
