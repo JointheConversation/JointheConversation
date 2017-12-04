@@ -39,7 +39,7 @@ public class User {
     private List<Thread> threads;
 
     @Column(nullable = true)
-    private String userpic_path;
+    private String uploadPathUser;
 
     @Column(nullable = true)
     @JsonIgnore
@@ -52,23 +52,23 @@ public class User {
     public User(){
     }
 
-    public User(String username, String email, String password, Date date, List<Post> posts, String userpic_path, String userbanner_pic_path, Date birthday) {
+    public User(String username, String email, String password, Date date, List<Post> posts, String uploadPathUser, String userbanner_pic_path, Date birthday) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.date = date;
         this.posts = posts;
-        this.userpic_path = userpic_path;
+        this.uploadPathUser = uploadPathUser;
         this.userbanner_pic_path = userbanner_pic_path;
         this.birthday = birthday;
     }
 
-    public User(String username, String email, String password, List<Post> posts, String userpic_path, String userbanner_pic_path) {
+    public User(String username, String email, String password, List<Post> posts, String uploadPathUser, String userbanner_pic_path) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.posts = posts;
-        this.userpic_path = userpic_path;
+        this.uploadPathUser = uploadPathUser;
         this.userbanner_pic_path = userbanner_pic_path;
     }
 
@@ -91,14 +91,14 @@ public class User {
         this.password=password.trim();
     }
 
-    public User(String username, String email, String password, Date date, List<Post> posts, List<Thread> threads, String userpic_path, String userbanner_pic_path, Date birthday) {
+    public User(String username, String email, String password, Date date, List<Post> posts, List<Thread> threads, String uploadPathUser, String userbanner_pic_path, Date birthday) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.date = date;
         this.posts = posts;
         this.threads = threads;
-        this.userpic_path = userpic_path;
+        this.uploadPathUser = uploadPathUser;
         this.userbanner_pic_path = userbanner_pic_path;
         this.birthday = birthday;
     }
@@ -106,11 +106,9 @@ public class User {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         username = copy.username;
         email = copy.email;
-
         password = copy.password;
-
         date=copy.date;
-        userpic_path = copy.userpic_path;
+        uploadPathUser = copy.uploadPathUser;
     }
 
     public long getId() {
@@ -161,12 +159,12 @@ public class User {
         this.posts = posts;
     }
 
-    public String getUserpic_path() {
-        return userpic_path;
+    public String getUploadPathUser() {
+        return uploadPathUser;
     }
 
-    public void setUserpic_path(String userpic_path) {
-        this.userpic_path = userpic_path;
+    public void setUploadPathUser(String uploadPathUser) {
+        this.uploadPathUser = uploadPathUser;
     }
 
     public String getUserbanner_pic_path() {

@@ -69,14 +69,8 @@ public class UserController {
     ){
         User user=usersDao.findByUsername(name);
         List<Thread> threadAwards=userThreadWinsService.ShowAllThreadWinningAwards(user);
-        List<Post> postAwards =userThreadWinsService.ShowAllPostWinningAwards(user);
 
         model.addAttribute("threadAwards",threadAwards);
-        model.addAttribute("postAwards",postAwards);
-//        System.out.println("The size of postAwards is: "+ postAwards.size());
-//        if(!postAwards.isEmpty()) {
-//            System.out.println("Here is the post by B " + postAwards.get(0).getDescription() + " : it should not be empty");
-//        }
 
         model.addAttribute("user", user);
         model.addAttribute("threads", user.getThreads()); //Can create an if statement in the view if they have any threads to display them.

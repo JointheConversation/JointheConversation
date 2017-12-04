@@ -7,9 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ThreadWinnerRepository extends CrudRepository<ThreadWinner, Long> {
-    ThreadWinner findByThreadId(long thread_id);
+    ThreadWinner findByThreadId(Long thread_id);
     ThreadWinner findByThread(Thread thread);
     ThreadWinner findByActiveStatus(Boolean statement);
+
 
 
 

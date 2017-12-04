@@ -51,9 +51,17 @@ public class ScheduledThread {
             threadIndexed.setActiveStatus(false);
             threadWinnerDao.save(threadIndexed);
         }
+
         //This is where the service is being implemented that will run the thread counting service.
         List<ThreadCount> threadCounts = threadDao.countPostsInThreads();
         threadCountService.compare(threadCounts);
+        //Code turns off threads after the scheduled amount of time.
+        Iterable<Thread> threadList=threadDao.findAll();
+        for(Thread threadDisable:threadList){
+            threadDisable.setActiveStatus(false);
+            threadDao.save(threadDisable);
+
+        }
 
 
 
