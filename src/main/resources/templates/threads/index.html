@@ -5,13 +5,26 @@
 
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
-<nav th:replace="fragments/navbar :: main-navbar"></nav>
 <div th:replace="fragments/footer::jQuery"></div>
 
 
-<div th:each="thread : ${threads}">
-    <ul><a th:href="@{${'/categories/'+ category.title+'/threads/'+thread.id}+'/posts'}"><li th:text="${thread.title}"></li></a></ul>
+<div>
+    <ul>
+        <a th:each="thread : ${threads}"
+           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}"><div class="col-xs-4 col-md-2 categories">
+            <li th:text="${thread.title}"></li></div>
+        </a>
+    </ul>
 </div>
+<!--need following code on threads/show-->
+<ul>
+<li>
+    <a th:href="@{'/categories/'+ ${category.title}+'/threads/create'}"><li th:text="'Start a conversation on ' + ${category.title}"></li></a>
+</li>
+</ul>
+<footer th:include="fragments/footer :: footer"></footer>
+
+
 <!--<h1>Converstaion Closes</h1>-->
 <!--<div id="clockdiv">-->
     <!--<div>-->
@@ -28,7 +41,7 @@
     <!--</div>-->
 <!--</div>-->
 
-<footer th:include="fragments/footer :: footer"></footer>
+
 <!--<script-->
         <!--src="https://code.jquery.com/jquery-3.2.1.min.js"-->
         <!--integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="-->

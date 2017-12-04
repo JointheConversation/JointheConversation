@@ -30,6 +30,7 @@ public interface ThreadRepository extends CrudRepository<Thread, Long> {
     @Query("select t from ThreadWinner w join w.thread t join t.user u where u = ?1")
     List<Thread> findAllWinnerThreadsOfUser(User user);
 
+
     //    @Query("select t from ThreadWinner w join t where w.activeStatus =1")
 //    @Query("select t from ThreadWinner w where w=?1")
 //    Thread findActiveWinningThread(ThreadWinner threadWinner);

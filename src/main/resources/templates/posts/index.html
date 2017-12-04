@@ -4,9 +4,10 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<h1>Post Away!</h1>
+
 <div th:replace="fragments/footer::jQuery"></div>
 <div class="container">
+
     <h1 th:text="${thread.title}"></h1>
     <div class="row">
             <ul>
@@ -15,10 +16,18 @@
                 </li>
                 <!--th:href="@{/posts/{id}(id=${posts.id})}"-->
             </ul>
-            <a th:if="${createduser}" class="btn btn-sm btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+        <div class="row">
+            <form class="col-md-8 col-md-offset-2">
+                <h1 class="text-center">Your thoughts?</h1>
+                <form th:replace="fragments/form :: form-post"
+                      th:object="${post}"
+                      enctype="multipart/form-data"></form>
+            </form>
+        </div>
+    </div>
+            <!--<a th:if="${createduser}" class="btn btn-sm btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>-->
 
     </div>
-</div>
 
 <footer th:text="${thread.date}"></footer>
 <footer th:include="fragments/footer :: footer"></footer>

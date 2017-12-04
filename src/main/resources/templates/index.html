@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header::header('Join the Conversation')"/>
-
-<body>
-<nav th:replace="fragments/navbarSTYLE :: nave"></nav>
-<!--Adrian's script's please don't DELETE!!!!!!!!!-->
-<script src="/webjars/sockjs-client/sockjs.min.js"></script>
-<script src="/webjars/stomp-websocket/stomp.min.js"></script>
-<script src="/js/app.js"></script>
-
-<div class="jumbotron"><img src="/css/michaeldale (6).png" class="img-logo" /></div>
-
 <div th:replace="fragments/footer::jQuery"></div>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 <script src="/js/app.js"></script>
-<!--<script src="/js/posts.js"></script>-->
+<script src="/js/get.js"></script>
+
+
+<body>
+
+<nav th:replace="fragments/navbarSTYLE :: nave"></nav>
+<!--Adrian's script's please don't DELETE!!!!!!!!!-->
+<!--<script src="/webjars/sockjs-client/sockjs.min.js"></script>-->
+<!--<script src="/webjars/stomp-websocket/stomp.min.js"></script>-->
+<!--<script src="/js/app.js"></script> -->
+
+<div class="jumbotron"><img src="/css/michaeldale (6).png" class="img-logo" /></div>
+
+<!--<div th:replace="fragments/footer::jQuery"></div>-->
+<!--<script src="/webjars/sockjs-client/sockjs.min.js"></script>-->
+<!--<script src="/webjars/stomp-websocket/stomp.min.js"></script>-->
+<!--<script src="/js/app.js"></script>-->
+<!--&lt;!&ndash;<script src="/js/posts.js"></script>&ndash;&gt;-->
 <!--<script src="/js/get.js"></script>-->
 
 <div id="time"></div>
@@ -23,14 +30,14 @@
 
 <h1>Join Our Conversations</h1>
 
-<div th:replace="liveFeeds/index::websocket"></div>
+<div th:if="${thread==null}"></div>
+<div th:if="${thread!=null}" th:replace="liveFeeds/index::websocket"></div>
 
 
 
-
-<p th:if="${thread==null}" th:text="'There is No Current Winner'"></p>
-<div th:if="${thread!=null}">
-    <p th:text="${'The Last thradwinner was '+threadwinner.title}"></p>
+<p th:if="${threadwinner==null}" th:text="'There is No Current Winner'"></p>
+<div th:if="${threadwinner!=null}">
+    <p th:text="${'The Last threadwinner was '+threadwinner.title}"></p>
     <p th:text="${'It was created by '+threadwinner.user.username}"></p>
 </div>
 

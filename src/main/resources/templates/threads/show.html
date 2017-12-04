@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header(${thread.title})">
-    <link rel="stylesheet" href="/../css/custom_css.css"/>
-</head>
+<head th:replace="fragments/header :: header(${thread.title})"></head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div th:replace="fragments/footer::jQuery"></div>
 
-<h1 th:text="${thread.title}"></h1>
-<h1>Converstaion Closes</h1>
+
+<h2 th:text="${thread.title}"></h2>
+
+    <div class="container">
+        <ul>
+            <a th:each="post : ${posts}"
+               th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/edit'}">
+                <div class="col-xs-4 col-md-2 categories"><li th:text="${post.description}"></li></div>
+
+            </a>
+        </ul>
+            <!--th:href="@{/posts/{id}(id=${posts.id})}"-->
+        <!--</ul>-->
+        <!--Created by: <a th:href="@{'mailto:' + ${post.user_id.email} }"><span th:text="${post.user.username}"></span></a>-->
+
+        <!--&lt;!&ndash; Buttons for editing + deleting &ndash;&gt;-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--<a th:href="@{'/posts/'+ ${post.id}+ '/edit'}" class="btn btn-block btn-warning">Edit This Post</a>-->
+            <!--</div>-->
+            <!--<form method="post" th:action="@{'/posts/' +${post.id}+ '/delete'}" class="col-md-6">-->
+                <!--<input class="btn btn-block btn-danger" type="submit" value="Delete This Post" />-->
+            <!--</form>-->
+        <!--</div>-->
+
+    </div>
+
+
+    <li>
+        <a th:href="@{'/categories/'+ ${category.title}+'/threads/'+ ${thread.id}+'/posts/create'}"><li th:text="'Post your thought'"></li></a>
+    </li>
+
+
+
+
+
+    <div class="timerBody">
+    <h1 class="conversationClose">Countdown</h1>
 <div id="clockdiv">
     <div>
         <span class="hours"></span>
@@ -23,50 +57,52 @@
         <div class="smalltext">Seconds</div>
     </div>
 </div>
+</div>
 
 
+<!--categories/{categoryName}/threads/{id}/posts"-->
 
 <footer th:text="${thread.date}"></footer>
 <footer th:include="fragments/footer :: footer"></footer>
 
-<script>
-    function getTimeRemaining(endtime) {
-        var t = Date.parse(endtime) - Date.parse(new Date());
-        var seconds = Math.floor((t / 1000) % 60);
-        var minutes = Math.floor((t / 1000 / 60) % 60);
-        var hours = Math.floor((t / (1000 * 60 * 60)) % 12);
-        return {
-            'total': t,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
-        };
-    }
+<!--<script>-->
+    <!--function getTimeRemaining(endtime) {-->
+        <!--var t = Date.parse(endtime) - Date.parse(new Date());-->
+        <!--var seconds = Math.floor((t / 1000) % 60);-->
+        <!--var minutes = Math.floor((t / 1000 / 60) % 60);-->
+        <!--var hours = Math.floor((t / (1000 * 60 * 60)) % 12);-->
+        <!--return {-->
+            <!--'total': t,-->
+            <!--'hours': hours,-->
+            <!--'minutes': minutes,-->
+            <!--'seconds': seconds-->
+        <!--};-->
+    <!--}-->
 
-    function initializeClock(id, endtime) {
-        var clock = document.getElementById(id);
-        var hoursSpan = clock.querySelector('.hours');
-        var minutesSpan = clock.querySelector('.minutes');
-        var secondsSpan = clock.querySelector('.seconds');
+    <!--function initializeClock(id, endtime) {-->
+        <!--var clock = document.getElementById(id);-->
+        <!--var hoursSpan = clock.querySelector('.hours');-->
+        <!--var minutesSpan = clock.querySelector('.minutes');-->
+        <!--var secondsSpan = clock.querySelector('.seconds');-->
 
-        function updateClock() {
-            var t = getTimeRemaining(endtime);
+        <!--function updateClock() {-->
+            <!--var t = getTimeRemaining(endtime);-->
 
-            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+            <!--hoursSpan.innerHTML = ('0' + t.hours).slice(-2);-->
+            <!--minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);-->
+            <!--secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);-->
 
-            if (t.total <= 0) {
-                clearInterval(timeinterval);
-            }
-        }
+            <!--if (t.total <= 0) {-->
+                <!--clearInterval(timeinterval);-->
+            <!--}-->
+        <!--}-->
 
-        updateClock();
-        var timeinterval = setInterval(updateClock, 1000);
-    }
+        <!--updateClock();-->
+        <!--var timeinterval = setInterval(updateClock, 1000);-->
+    <!--}-->
 
-    var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
-    initializeClock('clockdiv', deadline);
-</script>
+    <!--var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);-->
+    <!--initializeClock('clockdiv', deadline);-->
+<!--</script>-->
 </body>
 </html>

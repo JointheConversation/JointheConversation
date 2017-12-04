@@ -8,10 +8,18 @@
 
 
 <h1><span class="title-text" th:text="|Welcome, ${user.username}|"></span></h1>
-<div th:each="award : ${awards}" th:if="${award!=null}">
+<div th:text="${user.birthday}"></div>
+
+
+<div th:each="threadAward : ${threadAwards}" th:if="${threadAward!=null}">
     <img src="/achievement_icons/threadWinner.png"/>
-    <p th:text="${award.title}"></p>
-    <p th:text="${award.user.username}"></p>
+    <p th:text="${threadAward.title}"></p>
+    <p th:text="${threadAward.user.username}"></p>
+</div>
+<div th:each:="postAward : ${postAwards}" th:if="${postAward!=null}">
+    <img src="/achievement_icons/postWinner.png"/>
+    <p th:text="${postAward.title}"></p>
+    <p th:text="${postAward.user.username}"></p>
 </div>
 
 <footer th:replace="fragments/footer :: footer"></footer>
