@@ -101,9 +101,10 @@ function showGreeting(message, user, date) {
 }
 
 $(function () {
-    $(".form-post").on('submit', function (e) {
+    $("#postsForm").on('submit', function (e) {
         e.preventDefault();
     });
+
     $("#send").click(function (e) {
         e.preventDefault();
         sendName();

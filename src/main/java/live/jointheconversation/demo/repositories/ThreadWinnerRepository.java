@@ -11,4 +11,6 @@ public interface ThreadWinnerRepository extends CrudRepository<ThreadWinner, Lon
     ThreadWinner findByThread(Thread thread);
     ThreadWinner findByActiveStatus(Boolean statement);
 
+
+
 }

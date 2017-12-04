@@ -4,33 +4,25 @@
     <title>Hello WebSocket</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <!--<link href="/main.css" rel="stylesheet"/>-->
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/js/app.js"></script>
+    <!--<script src="/webjars/jquery/jquery.min.js"></script>-->
+    <!--<script src="/webjars/sockjs-client/sockjs.min.js"></script>-->
+    <!--<script src="/webjars/stomp-websocket/stomp.min.js"></script>-->
+    <!--<script src="/js/app.js"></script>-->
 </head>
 <body>
 <div th:fragment="websocket">
-
     <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
     enabled. Please enable
     Javascript and reload this page!</h2></noscript>
 <div id="main-content" class="container">
-    <!--<div class="row">-->
-        <!--<div class="col-md-6">-->
-            <!--<form class="form-inline">-->
-                <!--<div class="form-group">-->
-                    <!--<label for="connect">WebSocket connection:</label>-->
-                    <!--<button id="connect" class="btn btn-default" type="submit">Connect</button>-->
-                    <!--<button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect-->
-                    <!--</button>-->
-                <!--</div>-->
-            <!--</form>-->
-        <!--</div>-->
-    <div class="row" th:if="databaseThread==false">
+
+
+    <div class="row" th:if="${databaseThread==false}">
         <h1>No live threads</h1>
     </div>
-        <div class="row" th:if="databaseThread==true">
+
+    <div th:if="${databaseThread==true}">
+        <div class="row" >
         <div class="col-md-12">
             <table id="conversation" class="table table-striped">
                 <thead>
@@ -51,10 +43,10 @@
                 <!--</div>-->
         <!--</div>-->
     </div>
-                <div class="row">
+    <div class="row" sec:authorize="isAuthenticated()">
                     <div class="col-md-6 col-md-offset-3">
                         <!--id="customerForm"-->
-                        <form id="postsForm" class="form-inline form-post" sec:authorize="isAuthenticated()">
+                        <form id="postsForm" class="form-inline form-post">
                             <div class="form-group">
                                 <label for="description">Join the hottest Thread</label>
                                 <input type="text" id="description" name="description" class="form-control" placeholder="Type your post here..."/>
@@ -66,7 +58,8 @@
                             <button id="send" class="btn btn-default" type="submit">Send</button>
                         </form>
                     </div>
-                </div>
+    </div>
+    </div>
 
 
 
