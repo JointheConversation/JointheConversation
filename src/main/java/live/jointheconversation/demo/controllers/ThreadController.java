@@ -4,6 +4,7 @@ import live.jointheconversation.demo.models.Category;
 import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
+import live.jointheconversation.demo.repositories.PostRepository;
 import live.jointheconversation.demo.repositories.ThreadRepository;
 import live.jointheconversation.demo.services.CategoryService;
 import live.jointheconversation.demo.services.ThreadService;
@@ -26,14 +27,16 @@ public class ThreadController {
     private final UploadCheckService uploadCheckService;
     private final CategoryService categoryService;
     private final ThreadRepository threadDao;
+    private final PostRepository postDao;
 
     @Autowired
-    public ThreadController(ThreadService threadService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService, CategoryService categoryService, ThreadRepository threadDao){
+    public ThreadController(ThreadService threadService, UserOwnerService userOwnerService, UploadCheckService uploadCheckService, CategoryService categoryService, ThreadRepository threadDao, PostRepository postDao){
         this.threadService=threadService;
         this.userOwnerService=userOwnerService;
         this.uploadCheckService=uploadCheckService;
         this.categoryService=categoryService;
         this.threadDao=threadDao;
+        this.postDao=postDao;
     }
     //These Getmappings will show thread information for all and single threads
     @GetMapping("/categories/{categoryName}/threads")
@@ -48,13 +51,20 @@ public class ThreadController {
         Category category=categoryService.findByTitle(categoryName);
         viewModel.addAttribute("category",category);
         Thread thread=threadService.findById(id);
+
         if(userOwnerService.isOwner(thread)){
             viewModel.addAttribute("createduser",true);
         }
         viewModel.addAttribute("thread",thread);
+        viewModel.addAttribute("posts",postDao.findByThread(thread));
+
         return "threads/show";
 
     }
+
+
+
+
     //This postMapping will delete a thread if the user is user who created it.
     @PostMapping("/categories/{categoryName}/threads/{id}/delete")
     public String deleteThread(@PathVariable long id, @PathVariable String categoryName){

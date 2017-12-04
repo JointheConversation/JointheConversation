@@ -10,14 +10,18 @@
 <div th:replace="fragments/footer::jQuery"></div>
 
 <div class="row">
-    <form class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2">
         <h1 class="text-center">Your thoughts?</h1>
-        <form th:replace="fragments/form :: form-post"
+        <form th:include="fragments/form :: form-post"
+              th:method="post"
+              th:action="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/create'}"
               th:object="${post}"
-              enctype="multipart/form-data"></form>
-    </form>
+              enctype="multipart/form-data">
+        </form>
     </div>
-</div>
+    </div>
+
+
 <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

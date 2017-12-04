@@ -40,17 +40,25 @@ public class PostController {
         this.threadCountService=threadCountService;
     }
 
-    //This getmapping will allow users to view all posts within a given thread
-    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts")
-    public String showAllPosts(Model viewModel, @PathVariable long threadId, @PathVariable String categoryName){
-        Category category=categoryService.findByTitle(categoryName);
-        viewModel.addAttribute("category",category);
-        Thread thread=threadService.findById(threadId);
-        viewModel.addAttribute("thread",thread);
-        viewModel.addAttribute("posts",postDao.findByThread(thread));
-        return "posts/index";
-    }
-    //May not need this.
+//    This getmapping will allow users to view all posts within a given thread
+//    moved mapping into threads/show for showing a single thread
+
+    //PROBABLY DONT NEED THIS
+
+//    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts")
+//    public String showAllPosts(Model viewModel, @PathVariable long threadId, @PathVariable String categoryName){
+//        Category category=categoryService.findByTitle(categoryName);
+//        viewModel.addAttribute("category",category);
+//        Thread thread=threadService.findById(threadId);
+//        viewModel.addAttribute("thread",thread);
+//        viewModel.addAttribute("posts",postDao.findByThread(thread));
+//        return "redirect:/categories/{categoryName}/threads/{id}";
+//    }
+
+
+
+
+//    May not need this.
 //    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/{id}")
 //    public String singlePost(@PathVariable long threadId, @PathVariable long id, Model viewModel,@PathVariable String categoryName){
 //        Post post=postService.findById(id);
@@ -68,16 +76,14 @@ public class PostController {
     //Creates Posts
 
     //This getmapping and postmapping relationship will allow users to create posts within a their given thread
-    @GetMapping("/categories/{categoryName}/threads/{id}/posts")
+    @GetMapping("/categories/{categoryName}/threads/{threadId}/posts/create")
     public String viewPostForm(
             Model viewModel,
-            @PathVariable long id,
-            @PathVariable String categoryName,
-            @RequestParam(name = "file") MultipartFile uploadedFile
-
+            @PathVariable long threadId,
+            @PathVariable String categoryName
     )
     {
-        Thread thread=threadService.findById(id);
+        Thread thread=threadService.findById(threadId);
         if(!thread.getActiveStatus()){
             //Checks to see if the thread is still active before posting.
 
@@ -111,8 +117,10 @@ public class PostController {
         uploadCheckService.UploadValidation(uploadedFile,viewModel,post);
         User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
+        post.setThread(thread);
         postService.save(post);
-        return "redirect:/categories/threads/{id}/posts";
+//        redirecting to threads/show(shows single thread and all posts for that thread)
+        return "redirect:/categories/{categoryName}/threads/{threadId}";
     }
 
 
