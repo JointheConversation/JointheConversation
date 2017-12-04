@@ -11,7 +11,9 @@
 <div>
     <ul>
         <a th:each="thread : ${threads}"
-           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}"><div class="col-xs-4 col-md-2 categories">
+           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}">
+            <div class="col-xs-4 col-md-2 categories">
+                <img class="img-circle img-responsive "  style="width:12%" th:if="${thread.imageUrlPath!=null}" th:src="${'/uploads/'+ thread.imageUrlPath}"/>
             <li th:text="${thread.title}"></li></div>
         </a>
     </ul>

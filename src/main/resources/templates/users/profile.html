@@ -8,19 +8,34 @@
 
 
 <h1><span class="title-text" th:text="|Welcome, ${user.username}|"></span></h1>
-<div th:text="${user.birthday}"></div>
+<!--<div th:text="${user.birthday}"></div>-->
+<div class="container row">
+    <div class="col-xs-4 col-md-2 categories">
+        <div class="container row">
+        <a th:each="thread : ${threads}"
+       th:href="@{'/categories/'+ ${thread.category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}" class="col-md-2">
+            <img class="img-circle img-responsive" th:if="${thread.imageUrlPath==null}" src="http://lorempixel.com/255/200/"/>
+            <img class="img-circle img-responsive thread-cicles" th:if="${thread.imageUrlPath!=null}" th:src="${'/uploads/'+ thread.imageUrlPath}"/>
+            <li class="text-center" th:text="${thread.title}"></li>
+
+    </a>
+    </div>
+</div>
+</div>
+
 
 
 <div th:each="threadAward : ${threadAwards}" th:if="${threadAward!=null}">
-    <img src="/achievement_icons/threadWinner.png"/>
-    <p th:text="${threadAward.title}"></p>
-    <p th:text="${threadAward.user.username}"></p>
+    <h2>Congratulations on Having the most talked about Thread Topic!!!</h2>
+    <img class="threadAward" src="/achievement_icons/threadWinner.png"/>
+    <h4 th:text="${'The winning Topic was: '+threadAward.title}"></h4>
 </div>
-<div th:each:="postAward : ${postAwards}" th:if="${postAward!=null}">
-    <img src="/achievement_icons/postWinner.png"/>
-    <p th:text="${postAward.title}"></p>
-    <p th:text="${postAward.user.username}"></p>
-</div>
+
+<!--<div th:each:="postAward : ${postAwards}" th:if="${postAward!=null}">-->
+    <!--<img src="/achievement_icons/postWinner.png"/>-->
+    <!--<p th:text="${postAward.title}"></p>-->
+    <!--<p th:text="${postAward.user.username}"></p>-->
+<!--</div>-->
 
 <footer th:replace="fragments/footer :: footer"></footer>
 </body>

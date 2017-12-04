@@ -28,9 +28,6 @@ public class ThreadService {
         return threadDao.findOne(id);
     }
 
-    public void update(Thread thread){
-        threads.set((int) thread.getId()-1, thread);
-    }
     public void delete(long id) {
         threadDao.delete(id);
     }
