@@ -3,7 +3,7 @@
       lang="en">
 
     <head th:replace="fragments/header :: header('Choose a category')"></head>
-    <body>
+    <body class="index_body">
     <nav th:replace="fragments/navbar::navbar"></nav>
     <h2>Conversations</h2>
     <div th:replace="fragments/footer::jQuery"></div>
@@ -18,37 +18,7 @@
 
 
 
-    <!--iterates through data base, for each "category" display the title, then link there.-->
-    <!--<div class="categories-index">-->
-        <!--<tr th:each="category:${categories}" >-->
-            <!--<td th:text="${category.title}"></td>-->
-            <!--<a th:href="@{'/category/'+ ${category.title}}"></a></tr>-->
-    <!--</div>-->
 
-
-    <!--<div th:href="@{/category.title(title='category 1')}">Category 1</div>-->
-    <!--<div th:href="@{/category.title(title='category 2')}">Category 2</div>-->
-    <!--<div th:href="@{/category.title(title='category 3')}">Category 3</div>-->
-    <!--<div th:href="@{/category.title(title='category 4')}">Category 4</div>-->
-    <!--<div th:href="@{/category.title(title='category 5')}">Category 5</div>-->
-    <!--</div>-->
-
-
-    <h5>Converstaion Closes</h5>
-    <div id="clockdiv">
-        <div>
-            <span class="hours"></span>
-            <div class="smalltext">Hours</div>
-        </div>
-        <div>
-            <span class="minutes"></span>
-            <div class="smalltext">Minutes</div>
-        </div>
-        <div>
-            <span class="seconds"></span>
-            <div class="smalltext">Seconds</div>
-        </div>
-    </div>
 
     <footer th:include="fragments/footer :: footer"></footer>
 

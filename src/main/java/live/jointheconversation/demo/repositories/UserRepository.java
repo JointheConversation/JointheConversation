@@ -1,6 +1,6 @@
 package live.jointheconversation.demo.repositories;
 import live.jointheconversation.demo.models.Post;
-import live.jointheconversation.demo.models.Thread;
+
 import live.jointheconversation.demo.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

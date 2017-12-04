@@ -69,9 +69,9 @@ public class UserController {
     ){
         User user=usersDao.findByUsername(name);
         List<Thread> threadAwards=userThreadWinsService.ShowAllThreadWinningAwards(user);
-//        List<Post> postAwards =userThreadWinsService.ShowAllPostWinningAwards(user);
+
         model.addAttribute("threadAwards",threadAwards);
-//        model.addAttribute("postAwards",postAwards);
+
         model.addAttribute("user", user);
         model.addAttribute("threads", user.getThreads()); //Can create an if statement in the view if they have any threads to display them.
         model.addAttribute("posts", user.getPosts());
