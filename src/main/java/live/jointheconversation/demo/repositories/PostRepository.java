@@ -13,6 +13,7 @@ import java.util.List;
 public interface PostRepository extends CrudRepository<Post,Long>{
     Post findById(long id);
     List<Post> findByThread(Thread thread);
+    Post findByThreadId(Long threadId);
     Post findByUser(User user);
 
 //    List<Post> findByThread(Thread thread);
