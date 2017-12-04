@@ -72,9 +72,9 @@ public class UserController {
 
         User user=usersDao.findByUsername(name);
         List<Thread> threadAwards=userThreadWinsService.ShowAllThreadWinningAwards(user);
-        //        List<Post> postAwards =userThreadWinsService.ShowAllPostWinningAwards(user);
+
+
         model.addAttribute("threadAwards",threadAwards);
-//        model.addAttribute("postAwards",postAwards);
 
 
         model.addAttribute("user", user);
