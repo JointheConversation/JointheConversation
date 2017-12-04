@@ -57,6 +57,7 @@ public class ThreadController {
         }
         viewModel.addAttribute("thread",thread);
         viewModel.addAttribute("posts",postDao.findByThread(thread));
+        viewModel.addAttribute("postNew",new Post());
 
         return "threads/show";
 
