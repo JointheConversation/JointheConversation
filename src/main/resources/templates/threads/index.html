@@ -11,8 +11,8 @@
 <div>
     <ul>
         <a th:each="thread : ${threads}"
-           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}">
-            <li th:text="${thread.title}"></li>
+           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}"><div class="col-xs-4 col-md-2 categories">
+            <li th:text="${thread.title}"></li></div>
         </a>
     </ul>
 </div>

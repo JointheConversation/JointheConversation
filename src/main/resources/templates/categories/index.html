@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      lang="en">
 
-    <head th:replace="fragments/header :: header('Choose a category')"/>
+    <head th:replace="fragments/header :: header('Choose a category')"></head>
     <body>
     <nav th:replace="fragments/navbar::navbar"></nav>
-    <h1>#Trending here</h1>
+    <h2>Conversations</h2>
     <div th:replace="fragments/footer::jQuery"></div>
 
-    <div class="trendingtopics">
-        <ul >
-            <a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><li th:text="${category.title}"></li></a>
+    <div class="cat-slider">
+        <div class="row">
+        <ul>
+            <a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><div class="col-xs-4 col-md-2 team-circle" ><li class="team-lable" th:text="${category.title}"></li></div></a>
         </ul>
     </div>
+    </div>
+
+
 
     <!--iterates through data base, for each "category" display the title, then link there.-->
     <!--<div class="categories-index">-->
@@ -29,7 +34,7 @@
     <!--</div>-->
 
 
-    <h1>Converstaion Closes</h1>
+    <h5>Converstaion Closes</h5>
     <div id="clockdiv">
         <div>
             <span class="hours"></span>

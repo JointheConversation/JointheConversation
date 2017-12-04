@@ -8,6 +8,9 @@
 
 
 <h1><span class="title-text" th:text="|Welcome, ${user.username}|"></span></h1>
+<div th:text="${user.birthday}"></div>
+
+
 <div th:each="threadAward : ${threadAwards}" th:if="${threadAward!=null}">
     <img src="/achievement_icons/threadWinner.png"/>
     <p th:text="${threadAward.title}"></p>
