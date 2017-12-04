@@ -5,9 +5,44 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div th:replace="fragments/footer::jQuery"></div>
 
-<div class="timerBody">
+
 <h1 th:text="${thread.title}"></h1>
-<h1 class="conversationClose">Converstaion Closes</h1>
+
+    <div class="container">
+        <ul>
+            <a th:each="post : ${posts}"
+               th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/edit'}">
+                <li th:text="${post.description}"></li>
+
+            </a>
+        </ul>
+            <!--th:href="@{/posts/{id}(id=${posts.id})}"-->
+        <!--</ul>-->
+        <!--Created by: <a th:href="@{'mailto:' + ${post.user_id.email} }"><span th:text="${post.user.username}"></span></a>-->
+
+        <!--&lt;!&ndash; Buttons for editing + deleting &ndash;&gt;-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--<a th:href="@{'/posts/'+ ${post.id}+ '/edit'}" class="btn btn-block btn-warning">Edit This Post</a>-->
+            <!--</div>-->
+            <!--<form method="post" th:action="@{'/posts/' +${post.id}+ '/delete'}" class="col-md-6">-->
+                <!--<input class="btn btn-block btn-danger" type="submit" value="Delete This Post" />-->
+            <!--</form>-->
+        <!--</div>-->
+
+    </div>
+
+
+    <li>
+        <a th:href="@{'/categories/'+ ${category.title}+'/threads/'+ ${thread.id}+'/posts/create'}"><li th:text="'Post your thought'"></li></a>
+    </li>
+
+
+
+
+
+    <div class="timerBody">
+    <h1 class="conversationClose">Countdown</h1>
 <div id="clockdiv">
     <div>
         <span class="hours"></span>
@@ -24,9 +59,8 @@
 </div>
 </div>
 
-<li>
-    <a th:href="@{'/categories/'+ ${category.title}+'/threads/'+{thread.id}+'/posts/create'}"><li th:text="'Post to ' + ${thread.title}"></li></a>
-</li>
+
+<!--categories/{categoryName}/threads/{id}/posts"-->
 
 <footer th:text="${thread.date}"></footer>
 <footer th:include="fragments/footer :: footer"></footer>

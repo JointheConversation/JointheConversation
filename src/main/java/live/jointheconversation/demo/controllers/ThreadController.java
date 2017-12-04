@@ -51,6 +51,7 @@ public class ThreadController {
         Category category=categoryService.findByTitle(categoryName);
         viewModel.addAttribute("category",category);
         Thread thread=threadService.findById(id);
+
         if(userOwnerService.isOwner(thread)){
             viewModel.addAttribute("createduser",true);
         }
