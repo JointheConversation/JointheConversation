@@ -24,7 +24,10 @@ p{
     margin-bottom: 20px;
 
 }
+
+h2{ column-span: all; -webkit-column-span:all; /*spans all the columns*/  font-size: 1.8em; text-align: center; color: #903; font-weight: 300;}
 .head,
+
 nav{
     text-align: center;
     position: relative;
@@ -91,9 +94,43 @@ button{
     margin-right: auto;
     margin-left: auto;
 }
+
+.categories{
+
+    margin: 1em 2em;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+.team-circle{
+    border-radius: 50%;
+    border: 16px solid #318d8c;
+    width: 200px;
+    height: 200px;
+    background-image: url(http://www.conversionscouts.de/tests/css/circle/s-schramm.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:296px;
+    margin: 0 auto;
+}
+.team-lable{
+    display:none;
+}
+.team-circle:hover .team-lable{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.85em;
+    color: white;
+    padding: 6px;
+    display:block;
+    margin: 72% auto;
+    width: 110px;
+    text-align: center;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.4);
+}
+
 /*NAVBAR STYLING*/
 /*.navbar-default {*/
-    /*background-color: #0d3d23;*/
+    /*background-color: #663399;*/
 
 
 
