@@ -131,40 +131,6 @@ button{
     background: #685167;
 }
 
-.timerBody{
-    text-align: center;
-
-    font-family: sans-serif;
-    font-weight: 100;
-}
-
-
-#clockdiv{
-    font-family: sans-serif;
-    color: #FFFFFF;
-    display: inline-block;
-    font-weight: 100;
-    text-align: center;
-    font-size: 30px;
-}
-#clockdiv > div{
-    padding: 10px;
-    border-radius: 3px;
-    background: #685167;
-    display: inline-block;
-}
-
-#clockdiv div > span{
-    padding: 15px;
-    border-radius: 3px;
-    background: #318d8c;
-    display: inline-block;
-}
-
-.smalltext{
-    padding-top: 5px;
-    font-size: 16px;
-}
 
 
 
