@@ -8,16 +8,21 @@
 <div th:include="fragments/footer::jQuery"></div>
 
 
-<div>
-    <ul>
-        <a th:each="thread : ${threads}"
-           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}">
+        <div class="container row">
             <div class="col-xs-4 col-md-2 categories">
+                <div class="container row">
+                <a th:each="thread : ${threads}"
+           th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}" class="col-md-2">
+
+                <img class="img-circle img-responsive" th:if="${thread.imageUrlPath==null}" src="http://lorempixel.com/255/200/"/>
+
                 <img class="img-circle img-responsive "  style="width:12%" th:if="${thread.imageUrlPath!=null}" th:src="${'/uploads/'+ thread.imageUrlPath}"/>
-            <li th:text="${thread.title}"></li></div>
-        </a>
-    </ul>
-</div>
+            <li th:text="${thread.title}"></li>
+            </a>
+            </div>
+        </div>
+        </div>
+
 <!--need following code on threads/show-->
 <ul>
 <li>

@@ -11,7 +11,8 @@
     <div class="cat-slider">
         <div class="row">
         <ul>
-            <a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><div class="col-xs-4 col-md-2 team-circle" ><li class="team-lable" th:text="${category.title}"></li></div></a>
+            <a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><div class="col-xs-4 col-md-2 team-circle" >
+                <li class="team-lable" th:text="${category.title}"></li></div></a>
         </ul>
     </div>
     </div>
