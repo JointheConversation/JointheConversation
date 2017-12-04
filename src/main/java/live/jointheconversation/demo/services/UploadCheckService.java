@@ -58,7 +58,7 @@ public class UploadCheckService {
         File destinationFile = new File(filepath.toString());
         try {
             uploadedFile.transferTo(destinationFile);
-            thread.setImage_url_path(filepath.getFileName().toString());
+            thread.setImageUrlPath(filepath.getFileName().toString());
             model.addAttribute("message", "File successfully uploaded!");
         } catch (IOException e) {
             e.printStackTrace();

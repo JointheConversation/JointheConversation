@@ -234,6 +234,15 @@ button{
     color: #fff;
     background-color:#59b5fa;
 }
+.threadAward{
+    width: 10%;
+    height: auto;
+
+}
+.thread-cicles{
+    width:160px;
+    height:125px;
+}
 @media(max-width:768px){
     #login-dp{
         background-color: inherit;
@@ -297,6 +306,7 @@ button{
             padding-top: 5px;
             font-size: 16px;
         }
+
 
 
 }
