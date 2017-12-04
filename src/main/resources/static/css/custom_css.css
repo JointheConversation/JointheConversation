@@ -20,14 +20,20 @@ header{
 
 }
 p{
+    font-family: 'Droid Serif', serif;
     margin-top: 0;
     margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
 
 }
+footer{
+    border-top: solid 1px silver;
+}
 
-h2{ column-span: all; -webkit-column-span:all; /*spans all the columns*/  font-size: 1.8em; text-align: center; color: #903; font-weight: 300;}
+
+
 .head,
-
 nav{
     text-align: center;
     position: relative;
@@ -56,6 +62,7 @@ button{
     cursor:pointer;
     overflow: hidden;
 }
+
 
 .logoutbtn{
     padding: 0;
@@ -90,17 +97,13 @@ button{
     padding: 0;
 }
 
+
 .row{
     margin-right: auto;
     margin-left: auto;
 }
 
-.categories{
 
-    margin: 1em 2em;
-    border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
-}
 .team-circle{
     border-radius: 50%;
     border: 16px solid #318d8c;
@@ -125,8 +128,45 @@ button{
     width: 110px;
     text-align: center;
     border-radius: 3px;
-    background: rgba(0,0,0,0.4);
+    background: #685167;
 }
+
+.timerBody{
+    text-align: center;
+
+    font-family: sans-serif;
+    font-weight: 100;
+}
+
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #685167;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #318d8c;
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+
 
 /*NAVBAR STYLING*/
 /*.navbar-default {*/
@@ -234,22 +274,26 @@ button{
     color: #fff;
     background-color:#59b5fa;
 }
-@media(max-width:768px){
-    #login-dp{
+@media(max-width:768px) {
+    #login-dp {
         background-color: inherit;
         color: #fff;
     }
-    #login-dp .bottom{
+
+    #login-dp .bottom {
         background-color: inherit;
-        border-top:0 none;
+        border-top: 0 none;
     }
+
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #fff4fe;
     }
+
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #12123e;
     }
+
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
@@ -257,46 +301,53 @@ button{
         background-color: #98c0b2;
     }
 
-    .timerBody{
+    header{
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        font-size: 80px;
+        text-transform: uppercase;
+        display: inline-block;
+        line-height: 72px;
+        margin-bottom: 20px;
+
+    }
+    p{
+        margin-top: 0;
+        margin-bottom: 20px;
+
+    }
+
+
+
+    .head,
+    nav{
         text-align: center;
-        background: #663399;
-        font-family: sans-serif;
-        font-weight: 100;
+        position: relative;
+
+
     }
 
-    .conversationClose{
-        color: #00C799;
-        font-weight: 100;
-        font-size: 40px;
-        margin: 40px 0px 20px;
+    .headerobjectswrapper{
+    }
+    ul,li{
+        list-style: none;
+        display: inline-block;
+        color: black;
+        text-transform: uppercase;
+        margin-top: 1%;
     }
 
-    #clockdiv{
-         font-family: sans-serif;
-            color: #FFFFFF;
-            display: inline-block;
-            font-weight: 100;
-           text-align: center;
-           font-size: 30px;
-        }
-        #clockdiv > div{
-            padding: 10px;
-            border-radius: 3px;
-            background: #00BF96;
-            display: inline-block;
-        }
-
-        #clockdiv div > span{
-            padding: 15px;
-            border-radius: 3px;
-            background: #FF69B4;
-            display: inline-block;
-        }
-
-        .smalltext{
-            padding-top: 5px;
-            font-size: 16px;
-        }
+    button{
+        color: black;
+        text-transform: uppercase;
+        margin-top: 1%;
+        margin-right:1%;
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+        cursor:pointer;
+        overflow: hidden;
+    }
 
 
 }

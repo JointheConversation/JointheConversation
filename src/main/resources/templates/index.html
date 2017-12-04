@@ -25,7 +25,7 @@
 <!--&lt;!&ndash;<script src="/js/posts.js"></script>&ndash;&gt;-->
 <!--<script src="/js/get.js"></script>-->
 
-<div id="time"></div>
+<div class="trend-winnder" id="time"></div>
 
 
 <h1>Join Our Conversations</h1>
@@ -37,8 +37,8 @@
 
 <p th:if="${threadwinner==null}" th:text="'There is No Current Winner'"></p>
 <div th:if="${threadwinner!=null}">
-    <p th:text="${'The Last threadwinner was '+threadwinner.title}"></p>
-    <p th:text="${'It was created by '+threadwinner.user.username}"></p>
+    <p th:text="${' Last 24 hour top trend '+threadwinner.title}"></p>
+    <p th:text="${'was created by '+threadwinner.user.username}"></p>
 </div>
 
 <!--<p th:text="${thread.user.username}"></p>-->

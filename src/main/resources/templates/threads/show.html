@@ -12,7 +12,7 @@
         <ul>
             <a th:each="post : ${posts}"
                th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/edit'}">
-                <div class="col-xs-4 col-md-2 categories"><li th:text="${post.description}"></li></div>
+                <div class="col-xs-4 col-md-2 columns"><li th:text="${post.description}"></li></div>
 
             </a>
         </ul>
@@ -40,24 +40,6 @@
 
 
 
-
-    <div class="timerBody">
-    <h1 class="conversationClose">Countdown</h1>
-<div id="clockdiv">
-    <div>
-        <span class="hours"></span>
-        <div class="smalltext">Hours</div>
-    </div>
-    <div>
-        <span class="minutes"></span>
-        <div class="smalltext">Minutes</div>
-    </div>
-    <div>
-        <span class="seconds"></span>
-        <div class="smalltext">Seconds</div>
-    </div>
-</div>
-</div>
 
 
 <!--categories/{categoryName}/threads/{id}/posts"-->

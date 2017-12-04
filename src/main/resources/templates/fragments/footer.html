@@ -7,14 +7,34 @@
 <body>
 <div th:fragment="jQuery">
     <script  src="/webjars/jquery/jquery.min.js"></script>
+
 </div>
 <footer th:fragment="footer">
 
-    <!--<script-->
-            <!--src="https://code.jquery.com/jquery-3.1.1.min.js"-->
-            <!--integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="-->
-            <!--crossorigin="anonymous">-->
-    <!--</script>-->
+    <div class="timerBody">
+    <h4 id="footertext" class="conversationClose">Converstaion countdown</h4>
+    <div id="clockdiv">
+        <div>
+            <span class="hours"></span>
+            <div class="smalltext">Hours</div>
+        </div>
+        <div>
+            <span class="minutes"></span>
+            <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+            <span class="seconds"></span>
+            <div class="smalltext">Seconds</div>
+        </div>
+    </div>
+</div>
+    <script src="js/index_timer.js"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
