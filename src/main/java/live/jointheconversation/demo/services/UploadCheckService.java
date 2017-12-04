@@ -3,7 +3,6 @@ package live.jointheconversation.demo.services;
 import live.jointheconversation.demo.models.Post;
 import live.jointheconversation.demo.models.Thread;
 import live.jointheconversation.demo.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -46,7 +45,7 @@ public class UploadCheckService {
         File destinationFile = new File(filepath.toString());
         try {
             uploadedFile.transferTo(destinationFile);
-            user.setUserpic_path(filepath.getFileName().toString());
+            user.setUploadPathUser(filepath.getFileName().toString());
             model.addAttribute("message", "File successfully uploaded!");
         } catch (IOException e) {
             e.printStackTrace();

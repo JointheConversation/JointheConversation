@@ -52,6 +52,7 @@ public class ThreadCountService {
                     threadWinner.setActiveStatus(true);
                     threadWinnerDao.save(threadWinner);
 
+
                 System.out.println("The title is "
                         + threadCount.getThreadTitle()+ " with an id of: "+ threadCount.getId());
                 System.out.println("The thread count is "+threadCount.getCount());

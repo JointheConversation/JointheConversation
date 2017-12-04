@@ -11,10 +11,7 @@ import live.jointheconversation.demo.repositories.UserRepository;
 import org.mockito.cglib.core.CollectionUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class WinningThreadInfoService {
@@ -30,7 +27,7 @@ public class WinningThreadInfoService {
         this.postDao = postDao;
     }
 
-    //Finds the thread winning thread
+    //Finds the threadwinning threads
     public Thread RetrieveThreadWinnerInfo() {
         Iterable<ThreadWinner> threadWinners = threadWinnerDao.findAll();
         for (ThreadWinner threadWinner : threadWinners) {
@@ -72,45 +69,86 @@ public class WinningThreadInfoService {
 
     //This code will be used in conjunction with the winningThreadParticipantsThreads in order to generate a list of users who participated in the Thread.
 
-    public List<Post> winningThreadParticipantsUsers() {
-        //Creates a list of threads that have won.
-        List<Thread> threads = winningThreadParticipantsThreads();
-        //Creates an empty list of posts.
-        List<Post> postsUser = new ArrayList<>();
-        //Creates an empty collection of a list of posts.
-        List<Post> postsWin = new ArrayList<>();
+//    public Map<User,List<Post>> winningThreadParticipantsUsers() {
+//        List<Long> winningThreadIds=WinningThreadId();
+//        //Creates a list of threads that have won.
+//        List<Thread> threads = winningThreadParticipantsThreads();
+//        //Creates an empty list of posts.
+//        List<Post> postsUser = new ArrayList<>();
+//        //Creates an empty collection of a list of posts.
+//        List<Post> postsWin = new ArrayList<>();
+//        List<Post> postsThread=new ArrayList<>();
+//        Map<User,List<Post>> userMap= new HashMap<User,List<Post>>();
+//        //Within that loop loops through the winning threads
+//        for (Long threadId : winningThreadIds) {
+//            //Loops through each user in the database
+//            postsThread.add((postDao.findByThreadId(threadId)));
+//        }
+//
+//        for (User userPost : userDao.findAll()) {
+//                //Adds the posts in a winning thread from each user into a List of posts.
+//            postsUser.add(postDao.findByUser(userPost));
+//        }
+//
+////        postsUser.sort(Comparator.comparing(Post::getId));
+////        postsUser.sort(Comparator.comparing(Post::getId));
+//
+//
+//
+//        System.out.println("The size of postsUser "+postsUser.size());
+//        System.out.println("The size of postsThread "+postsThread.size());
+//
+////        for(int i=0; i<postsUser.size(); i++){
+////            System.out.println(postsUser.get(i).getDescription());
+////        }
+////
+////        for(int i=0; i<postsThread.size(); i++){
+////            System.out.println(postsThread.get(i).getDescription());
+////        }
+////                if (postsUser.isEmpty()) {
+////                    System.out.println("Is postsUser empty: "+postsUser.isEmpty());
+////                }
+////                if(postsThread.isEmpty()){
+////                    System.out.println("Is postsThread empty: "+postsThread.isEmpty());
+////                }
+//
+//                    //Gets all posts from the winning thread
+//        if(postsThread.size()>=postsUser.size()) {
+//            System.out.println("PostThread is larger than Postuser");
+////            System.out.println(postsThread.get(0).getDescription());
+//            for (Post postUser:postsUser) {
+//                if (postsThread.contains(postsUser)) {
+//                    userMap.put(postUser.getUser(),postsThread);
+////                   System.out.println("User winning threadlists posts" + postsWin.get(i).getDescription());
+//                }
+//                    break;
+//
+//            }
+//        }
+//
+//        else if(postsThread.size()<postsUser.size()){
+//            System.out.println("PostUser is larger than PostThreads");
+////            System.out.println(postsUser.get(0).getDescription());
+//            for (Post postThread:postsThread) {
+//                if (postsUser.contains(postThread)) {
+//                    userMap.put(postThread.getUser(),postsThread);
+////                    System.out.println("User winning threadlists posts" + postsWin.get(i).getDescription());
+//                }
+//                break;
+//            }
+//
+//        }
+//                    System.out.println("The size of postsWin "+postsWin.size());
+//                    return userMap;
+//
+//    }
 
-
-        //Within that loop loops through the winning threads
-        for (Thread thread : threads) {
-            //Loops through each user in the database
-
-            for (User userPost : userDao.findAll()) {
-
-                //Adds the posts in a winning thread from each user into a List of posts.
-                postsUser.add(postDao.findByUser(userPost));
-                if (postsUser.isEmpty()) {
-                    return null;
-                } else {
-                    //Gets all posts from the winning thread
-                    List<Post> postsThread = (postDao.findByThread(thread));
-                    for (int i = 0; i < postsThread.size(); i++) {
-                        if (postsUser.contains(postsThread)) {
-                            System.out.println("the forloop of WTIS");
-                            return postsUser;
-                        }
-                    }
-                    System.out.println("the first null of WTIS");
-
-                    return null;
-                }
-
-            }
-            System.out.println("the second null of WTIS");
-
-            return null;
+    public List<Long> WinningThreadId(){
+        List<Thread> threads=winningThreadParticipantsThreads();
+        List<Long> threadWinID=new ArrayList<>();
+        for (Thread thread:threads){
+            threadWinID.add(threadWinnerDao.findByThreadId(thread.getId()).getId());
         }
-        System.out.println("the third null of WTIS");
-        return null;
+            return threadWinID;
     }
 }

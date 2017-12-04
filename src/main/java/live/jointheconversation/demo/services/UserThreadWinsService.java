@@ -10,10 +10,7 @@ import live.jointheconversation.demo.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserThreadWinsService {
@@ -37,23 +34,14 @@ public class UserThreadWinsService {
         List<Thread> threadsAwards=threadDao.findAllWinnerThreadsOfUser(user);
         return threadsAwards;
     }
-    public List<Post> ShowAllPostWinningAwards(User user) {
-//        List<Thread> threadsAwards=threadDao.findAllWinnerThreadsOfUser(user);
-        List<Post> finalPostWinningUsers = new ArrayList<>();
 
-        List<Post> posts = winningThreadInfoService.winningThreadParticipantsUsers();
-        if (posts==null) {
-            return null;
-        } else {
-            for (Post post : posts) {
-                post = postDao.findByUser(user);
-                finalPostWinningUsers.add(post);
-            }
+//    public List<Post> ShowAllPostWinningAwards(User user) {
+//        List<Post> finalPostWinningUsers = new ArrayList<>();
+//        Map<User,List<Post>> userMap=winningThreadInfoService.winningThreadParticipantsUsers();
+//        return userMap.get(user);
+//
+//    }
 
-            System.out.println(finalPostWinningUsers.size());
-            return finalPostWinningUsers;
-        }
-    }
 
 
 }
