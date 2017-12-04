@@ -246,9 +246,10 @@ button{
     height: auto;
 
 }
-.thread-cicles{
-    width:160px;
-    height:125px;
+.thread-cicles {
+    width: 160px;
+    height: 125px;
+}
 
 @media(max-width:768px) {
     #login-dp {
