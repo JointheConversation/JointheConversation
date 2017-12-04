@@ -13,8 +13,8 @@
     <p th:text="${threadAward.title}"></p>
     <p th:text="${threadAward.user.username}"></p>
 </div>
-<div th:each:="postAward: ${postAwards}" th:if="${postAward!=null}">
-    <!--<img src="/achievement_icons/threadWinner.png"/>-->
+<div th:each:="postAward : ${postAwards}" th:if="${postAward!=null}">
+    <img src="/achievement_icons/postWinner.png"/>
     <p th:text="${postAward.title}"></p>
     <p th:text="${postAward.user.username}"></p>
 </div>

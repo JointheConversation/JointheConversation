@@ -7,9 +7,12 @@ import live.jointheconversation.demo.repositories.PostRepository;
 import live.jointheconversation.demo.repositories.ThreadRepository;
 import live.jointheconversation.demo.repositories.ThreadWinnerRepository;
 import live.jointheconversation.demo.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -34,19 +37,23 @@ public class UserThreadWinsService {
         List<Thread> threadsAwards=threadDao.findAllWinnerThreadsOfUser(user);
         return threadsAwards;
     }
-    public List<Post> ShowAllPostWinningAwards(User user){
+    public List<Post> ShowAllPostWinningAwards(User user) {
 //        List<Thread> threadsAwards=threadDao.findAllWinnerThreadsOfUser(user);
-        List<Post> finalPostWinningUsers=new ArrayList<>();
+        List<Post> finalPostWinningUsers = new ArrayList<>();
 
-        for(List<Post>posts:winningThreadInfoService.winningThreadParticipantsUsers()){
-            if(posts==postDao.findByUser(user)){
-                for(Post post:posts)
+        List<Post> posts = winningThreadInfoService.winningThreadParticipantsUsers();
+        if (posts==null) {
+            return null;
+        } else {
+            for (Post post : posts) {
+                post = postDao.findByUser(user);
                 finalPostWinningUsers.add(post);
             }
-        }
-        return finalPostWinningUsers;
-    }
 
+            System.out.println(finalPostWinningUsers.size());
+            return finalPostWinningUsers;
+        }
+    }
 
 
 }

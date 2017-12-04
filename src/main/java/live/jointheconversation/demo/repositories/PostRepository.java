@@ -13,7 +13,7 @@ import java.util.List;
 public interface PostRepository extends CrudRepository<Post,Long>{
     Post findById(long id);
     List<Post> findByThread(Thread thread);
-    List<Post> findByUser(User user);
+    Post findByUser(User user);
 
 //    List<Post> findByThread(Thread thread);
 //    List<Post> findAllWinnerPostOfUser;
