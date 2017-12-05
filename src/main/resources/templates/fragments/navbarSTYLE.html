@@ -5,13 +5,13 @@
 </head>
 <body>
 <nav th:fragment="nave">
-    <div class="head">
-        <div class="headerobjectswrapper">
-            <header>Join The Conversation</header>
+    <div class="head container-fluid">
+        <div class="headerobjectswrapper row" >
+            <header class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Join The Conversation</header>
         </div>
 
         <div class="subhead">
-            <div class="navbar navbar-default custom-nav center-text">
+            <div class="navbar navbar-default custom-nav">
                 <div class="container-fluid  center-text">
                     <ul>
                         <li sec:authorize="isAuthenticated()"><a class="top-links"

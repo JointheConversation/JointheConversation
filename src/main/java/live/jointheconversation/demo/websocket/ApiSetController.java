@@ -33,7 +33,6 @@ public class ApiSetController {
         List<ThreadCount> threadCounts=threadDao.countPostsInThreads();
         Thread thread= threadCountService.firstPlaceThread(threadCounts);
         Response response = new Response("Done", postDao.findByThread(thread));
-        System.out.println(response);
         return response;
     }
 
@@ -50,6 +49,16 @@ public class ApiSetController {
         //Response response = new Response("Done", post);
         return post;
     }
+
+    @GetMapping(value="/thread/{threadId}")
+    public Response getThreadThreadId(@PathVariable Long threadId){
+        Thread thread=threadDao.findOne(threadId);
+        Response response=new Response("Done", postDao.findByThread(thread));
+        System.out.println(response);
+        return response;
+    }
+
+
 
 
 }

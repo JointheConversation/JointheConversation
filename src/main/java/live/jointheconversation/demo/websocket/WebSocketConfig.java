@@ -20,6 +20,7 @@ public class WebSocketConfig implements WebSocketConfigurer{
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(new QuestionHandler(), "/questions").withSockJS();
+        registry.addHandler(new QuestionHandler(), "/liveThread").withSockJS();
     }
 
     public class QuestionHandler extends TextWebSocketHandler{

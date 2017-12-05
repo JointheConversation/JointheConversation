@@ -23,10 +23,12 @@ public class WebSocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigu
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/questions").setAllowedOrigins(origin).withSockJS();
+        registry.addEndpoint("/liveThread").setAllowedOrigins(origin).withSockJS();
     }
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
         registry.setApplicationDestinationPrefixes("/app").enableSimpleBroker("/topic","/queue");
+        registry.setApplicationDestinationPrefixes("/liveThread").enableSimpleBroker("/thread","queue");
     }
 
 }
