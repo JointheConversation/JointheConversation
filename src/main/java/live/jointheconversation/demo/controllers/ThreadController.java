@@ -124,7 +124,7 @@ public class ThreadController {
             @RequestParam(name = "file") MultipartFile uploadedFile
 
     ){
-        List<String>threadDucks= Arrays.asList("ducky-1.png","ducky-2.png","ducky-3.png","ducky-4.png","ducky-5.png","ducky-6.png","ducky-7.png","ducky-8.png");
+        List<String>threadDucks= Arrays.asList("threadplaceholder1.jpeg","threadplaceholder2.png","threadplaceholder3.jpg");
 
 
         Category category=categoryService.findByTitle(categoryName);
@@ -145,7 +145,7 @@ public class ThreadController {
         thread.setActiveStatus(true);
             Random r = new Random();
             int Low = 0;
-            int High = 9;
+            int High = 4;
             int Result = r.nextInt(High-Low) + Low;
 //            Collections.shuffle(Arrays.asList(threadDucks));
 

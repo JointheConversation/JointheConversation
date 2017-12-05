@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+        th:replace="fragments/header :: header('Conversations')">
+    <meta charset="UTF-8"/>
+    <title>Join the Conversation</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div th:replace="fragments/footer::jQuery"></div>
+
+<div class="container">
+    <h2>Our Team</h2>
+    <p>Thank you for coming out this evening to checkout all of our hard work</p>
+    <!--<p>We invite you to come speak with us in the back to start </p>-->
+    <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="thumbnail">
+                <a href="#" target="_blank">
+                    <img src="/uploads/aboutuspics/RebeccaTolentino.jpg" alt="Lights" style="width:100%"/>
+                    <div class="caption">
+                        <p>Rebecca Tolentino</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="#" target="_blank">
+                    <img src="/uploads/aboutuspics/AdrianPerez.jpg" alt="Nature" style="width:100%"/>
+                    <div class="caption">
+                        <p>Adrian Perez</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="#" target="_blank">
+                    <img src="/uploads/aboutuspics/EdwardDelgado.jpg" alt="Fjords" style="width:100%"/>
+                    <div class="caption">
+                        <p>Edward Delgado</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
