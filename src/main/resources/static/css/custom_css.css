@@ -121,6 +121,18 @@ button{
     margin-right: auto;
     margin-left: auto;
 }
+.catCircle{
+    width: 250px;
+    height: 250px;
+    background-color: papayawhip;
+    /*-moz-border-radius: 50px;*/
+    /*-webkit-border-radius: 50px;*/
+    border-radius: 200px;
+    border:5px solid black;
+}
+.topcentering{
+    padding-top:100px;
+}
 
 
 .team-circle{

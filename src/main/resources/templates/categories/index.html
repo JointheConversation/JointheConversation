@@ -5,18 +5,31 @@
     <head th:replace="fragments/header :: header('Choose a category')"></head>
     <body class="index_body">
     <nav th:replace="fragments/navbarSTYLE::nave"></nav>
-    <h2>Conversations</h2>
+    <h1 class="text-center">Categories</h1>
     <div th:replace="fragments/footer::jQuery"></div>
 
-    <div>
-        <div class="row">
-        <ul>
-            <a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><div class="col-xs-4 col-md-2 team-circle" >
-                <li class="team-lable" th:text="${category.title}"></li></div></a>
-        </ul>
-    </div>
-    </div>
+    <!--<div>-->
+        <!--<div class="row">-->
+        <!--<ul>-->
+            <!--<a th:each="category:${categories}" th:href="@{'/categories/'+ ${category.title}+'/threads'}"><div class="col-xs-4 col-md-2 team-circle" >-->
+                <!--<li class="team-lable" th:text="${category.title}"></li></div></a>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--</div>-->
 
+    <div class="container row">
+        <div class="categories">
+            <div class="container row center-block" >
+
+                <a th:each="category : ${categories}"
+                   th:href="@{'/categories/'+ ${category.title}+'/threads'}"  class="col-lg-4 col-sm-6 col-md-4 col-xs-6" >
+                    <div class="catCircle center-block container">
+                        <h3 th:text="${category.title}" class="text-center topcentering"></h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
 
 
