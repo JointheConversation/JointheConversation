@@ -70,6 +70,8 @@ button{
 .jumbotron {
     margin-bottom: 0;
     padding-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .custom-nav {
@@ -81,7 +83,7 @@ button{
 
 .top-links {
     color: black;
-    padding: 1em 1em;
+    /*padding: 1em 1em;*/
     font-size: 1.3em;
 }
 
@@ -106,8 +108,14 @@ button{
     text-align: center;
 }
 
+.index_icons{
+    padding-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
 .indexbottom{
-    background-color: #87e0df;
+    background-color: #3333332b;
 }
 
 

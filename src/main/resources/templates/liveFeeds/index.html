@@ -26,13 +26,13 @@
         <div class="col-md-12 col-xs-12 col-sm-12">
             <div class="table-responsive">
             <table id="conversation" class="table table-dark table-responsive table-striped">
-                <thead>
-                <tr class="index_body">
-                    <th class="text-center" th:text="'#' + ${thread.title} + ' is trending now'" ></th>
-                    <!--<th scope='col' class="text-center" th:text="${'Category: '+thread.category.title}" ></th>-->
-                </tr>
 
-                </thead>
+                <p class="index_body">
+                    <p class="text-center" th:text="'#' + ${thread.title} + ' is trending now'" ></p>
+                    <!--<th scope='col' class="text-center" th:text="${'Category: '+thread.category.title}" ></th>-->
+                </p>
+
+
                 <tbody id="greetings">
                 </tbody>
             </table>
