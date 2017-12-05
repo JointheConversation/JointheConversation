@@ -21,13 +21,13 @@
         <h1>No live threads</h1>
     </div>
 
-    <div th:if="${databaseThread==true}">
+    <div class="container" th:if="${databaseThread==true}">
         <div class="row" >
         <div class="col-md-12">
             <table id="conversation" class="table table-dark table-responsive table-striped">
                 <thead>
                 <tr>
-                    <th th:text="${'Trending Topic: '+thread.title +' Category: '+thread.category.title}" ></th>
+                    <th class="text-center" th:text="${'Trending Topic: '+thread.title +' Category: '+thread.category.title}" ></th>
                     <input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>
                 </tr>
                 </thead>

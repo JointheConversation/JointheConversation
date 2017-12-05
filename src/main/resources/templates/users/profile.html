@@ -14,7 +14,7 @@
         <div class="container row">
         <a th:each="thread : ${threads}"
        th:href="@{'/categories/'+ ${thread.category.title}+'/threads/'+${thread.id}}" th:if="${thread.activeStatus}" class="col-md-2">
-            <img class="img-circle img-responsive" th:if="${thread.imageUrlPath==null}" src="http://lorempixel.com/255/200/"/>
+            <img class="img-circle img-responsive" th:if="${thread.imageUrlPath==null}" th:src="${'/threadDucks/'+ thread.imageUrlPath}"/>
 
             <img class="img-circle img-responsive thread-cicles" th:if="${thread.imageUrlPath!=null}" th:src="${'/uploads/'+ thread.imageUrlPath}"/>
 
