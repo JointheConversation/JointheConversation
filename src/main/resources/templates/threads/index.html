@@ -7,6 +7,12 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div th:include="fragments/footer::jQuery"></div>
 
+<ul>
+    <li>
+        <a th:href="@{'/categories/'+ ${category.title}+'/threads/create'}"><li th:text="'Start a conversation on ' + ${category.title}"></li></a>
+    </li>
+</ul>
+
 
         <div class="container row">
             <div class="col-xs-4 col-md-2 categories">
@@ -24,11 +30,7 @@
         </div>
 
 <!--need following code on threads/show-->
-<ul>
-<li>
-    <a th:href="@{'/categories/'+ ${category.title}+'/threads/create'}"><li th:text="'Start a conversation on ' + ${category.title}"></li></a>
-</li>
-</ul>
+
 <footer th:include="fragments/footer :: footer"></footer>
 
 

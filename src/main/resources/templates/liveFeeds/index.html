@@ -22,16 +22,20 @@
     </div>
 
     <div class="container" th:if="${databaseThread==true}">
-        <div class="row" >
+        <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12">
             <div class="table-responsive">
-            <table id="conversation" class="table table-condensed table-hover success table-responsive ">
 
-                <p class="index_body">
-                    <p class="text-center" th:text="'#' + ${thread.title} + ' is trending now'" ></p>
-                    <!--<th scope='col' class="text-center" th:text="${'Category: '+thread.category.title}" ></th>-->
-                </p>
+            <table id="conversation" class="table table-dark table-responsive table-hover success">
+                <thead>
+                <tr class="index_body">
+                    <th scope='col' class="text-center" th:text="${'Trending Topic: '+thread.title}" ></th>
+                    <th scope='col' class="text-center" th:text="${'Category: '+thread.category.title}" ></th>
+                    <input type="hidden" id="thread" th:value="${thread.id}"/>
 
+                </tr>
+
+                </thead>
 
                 <tbody id="greetings">
                 </tbody>
@@ -68,15 +72,20 @@
 
 
 </div>
-    <!--<footer id="simpleTime">-->
-        <!--<input type="hidden" id="dateCreated" th:value="${thread.date}" th:data="${thread.date}"/>-->
-    <!--</footer>-->
 
-    <!--<script type="text/javascript">-->
-        <!--var time= moment($("#dateCreated").val()).fromNow();-->
-        <!--console.log(time);-->
-        <!--$("#simpleTime").html('This thread was made: '+time);-->
-    <!--</script>-->
+  
+    <div th:if="${thread!=null}">
+    <footer id="simpleTime">
+        <input type="hidden" id="dateCreated" th:value="${thread.date}" th:data="${thread.date}"/>
+    </footer>
+    </div>
+
+    <script type="text/javascript">
+        var time= moment($("#dateCreated").val()).fromNow();
+        console.log(time);
+        $("#simpleTime").html('This thread was made: '+time);
+    </script>
+
 
 
 
