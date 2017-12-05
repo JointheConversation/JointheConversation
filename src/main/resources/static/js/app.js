@@ -41,14 +41,14 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
 
 }
 function connect() {
-            ws=new SockJS('/questions');
+            ws=new SockJS('/liveThread');
             stompClient = Stomp.over(ws);
 
             stompClient.connect({}, function (frame) {
                 // setConnected(true);
                 ajaxStart(); //Starts Ajax request get the descriptions
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/questions', function (message) {
+                stompClient.subscribe('/thread/liveThread', function (message) {
                         console.log("Received "+message);
                         showGreeting(message.body, $('#loggedinuser').val(), moment().startOf(new Date()).fromNow())//make sure your printing out a string.
                     }
@@ -69,7 +69,7 @@ function sendName() {
 
 }
 function sendForm(){
-    stompClient.send("/app/questions",{},$('#description').val());
+    stompClient.send("/thread/liveThread",{},$('#description').val());
 }; //This will send to the subscription in the socket
 // This code comes from the posts.js file REMEMBER THAT!!!!!!
 
