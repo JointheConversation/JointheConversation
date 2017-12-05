@@ -40,6 +40,7 @@ public class LandingPage {
         if(thread==null){
             viewModel.addAttribute("databaseThread",false);
             viewModel.addAttribute("thread",null);
+            viewModel.addAttribute("threadwinner", lastthreadwinner);
             System.out.println("Landing controller Thread is null");
         }
         else {
