@@ -26,7 +26,7 @@
         <div class="col-md-12">
             <table id="conversation" class="table table-striped">
                 <thead>
-                <tr>
+                <tr class="index_body">
                     <th th:text="${'Trending Topic: '+thread.title +' Category: '+thread.category.title}" ></th>
                     <input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>
                 </tr>
