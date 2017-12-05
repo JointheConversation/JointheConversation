@@ -27,12 +27,10 @@
             <div class="table-responsive">
             <table id="conversation" class="table table-dark table-responsive table-striped">
                 <thead>
-                <tr>
+                <tr class="index_body">
                     <th scope='col' class="text-center" th:text="${'Trending Topic: '+thread.title}" ></th>
                     <th scope='col' class="text-center" th:text="${'Category: '+thread.category.title}" ></th>
 
-                    <input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>
-                </tr>
                 </thead>
                 <tbody id="greetings">
                 </tbody>
