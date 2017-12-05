@@ -24,16 +24,20 @@
     <div class="container" th:if="${databaseThread==true}">
         <div class="row" >
         <div class="col-md-12">
+            <div class="table-responsive">
             <table id="conversation" class="table table-dark table-responsive table-striped">
                 <thead>
                 <tr>
-                    <th class="text-center" th:text="${'Trending Topic: '+thread.title +' Category: '+thread.category.title}" ></th>
+                    <th scope='col' class="text-center" th:text="${'Trending Topic: '+thread.title}" ></th>
+                    <th scope='col' class="text-center" th:text="${'Category: '+thread.category.title}" ></th>
+
                     <input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>
                 </tr>
                 </thead>
                 <tbody id="greetings">
                 </tbody>
             </table>
+            </div>
         </div>
 
     </div>
@@ -65,6 +69,15 @@
 
 
 </div>
+    <footer id="simpleTime">
+        <input type="hidden" id="dateCreated" th:value="${thread.date}" th:data="${thread.date}"/>
+    </footer>
+
+    <script type="text/javascript">
+        var time= moment($("#dateCreated").val()).fromNow();
+        console.log(time);
+        $("#simpleTime").html('This thread was made: '+time);
+    </script>
 
 
 

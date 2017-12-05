@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header(${thread.title})"></head>
+<div th:replace="fragments/footer::jQuery"></div>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/js/get.js"></script>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
-<div th:replace="fragments/footer::jQuery"></div>
 
 
 <h2 th:text="${thread.title}"></h2>
 
-
-    <div class="container">
-        <ul>
-            <a th:each="post : ${posts}"
-               th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/edit'}">
-
-      <div class="col-xs-4 col-md-2 columns"><li th:text="${post.description}"></li></div>
+<div th:if="${thread==null}"></div>
+<div th:if="${thread!=null}" th:replace="liveFeeds/index::websocket"></div>
 
 
-        
+    <!--<div class="container">-->
+        <!--<ul>-->
+            <!--&lt;!&ndash;<a th:each="post : ${posts}"&ndash;&gt;-->
+               <!--&lt;!&ndash;th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/edit'}">&ndash;&gt;-->
 
-            </a>
+      <!--&lt;!&ndash;<div class="col-xs-4 col-md-2 columns"><li th:text="${post.description}"></li></div>&ndash;&gt;-->
 
-            <!--form inside of the threads show-->
-            <div>
-            <li class="dropdown">
-        <a class="top-links dropdown-toggle" href="#" data-toggle="dropdown">Your Thoughts<span
-                class="caret"></span></a>
-        <ul id="login-dp" class="dropdown-menu">
-            <li class="dropdown">
-                <div class="row">
-                <div class="col-md-12">
-                    <form th:include="fragments/form :: form-post"
-                          th:method="post"
-                          th:action="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/create'}"
-                          th:object="${postNew}"
-                          enctype="multipart/form-data">
-                    </form>
-                </div>
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--<input type="hidden" th:value="${thread.id}" id="thread" name="threadId" th:data="${thread.id}"/>-->
+            <!--&lt;!&ndash;form inside of the threads show&ndash;&gt;-->
+            <!--<div>-->
+            <!--<li class="dropdown">-->
+        <!--<a class="top-links dropdown-toggle" href="#" data-toggle="dropdown">Your Thoughts<span-->
+                <!--class="caret"></span></a>-->
+        <!--<ul id="login-dp" class="dropdown-menu">-->
+            <!--<li class="dropdown">-->
+                <!--<div class="row">-->
+                <!--<div class="col-md-12">-->
+                    <!--<form th:include="fragments/form :: form-post"-->
+                          <!--th:method="post"-->
+                          <!--th:action="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/create'}"-->
+                          <!--th:object="${postNew}"-->
+                          <!--enctype="multipart/form-data">-->
+                    <!--</form>-->
+                <!--</div>-->
 
-            </div>
-            </li>
-        </ul>
-            </li>
-            </div>
-        </ul>
-            <!--th:href="@{/posts/{id}(id=${posts.id})}"-->
-        <!--</ul>-->
-        <!--Created by: <a th:href="@{'mailto:' + ${post.user_id.email} }"><span th:text="${post.user.username}"></span></a>-->
-
-        <!--&lt;!&ndash; Buttons for editing + deleting &ndash;&gt;-->
-        <!--<div class="row">-->
-            <!--<div class="col-md-6">-->
-                <!--<a th:href="@{'/posts/'+ ${post.id}+ '/edit'}" class="btn btn-block btn-warning">Edit This Post</a>-->
             <!--</div>-->
-            <!--<form method="post" th:action="@{'/posts/' +${post.id}+ '/delete'}" class="col-md-6">-->
-                <!--<input class="btn btn-block btn-danger" type="submit" value="Delete This Post" />-->
-            <!--</form>-->
-        <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+            <!--</li>-->
+            <!--</div>-->
+        <!--</ul>-->
+            <!--&lt;!&ndash;th:href="@{/posts/{id}(id=${posts.id})}"&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;Created by: <a th:href="@{'mailto:' + ${post.user_id.email} }"><span th:text="${post.user.username}"></span></a>&ndash;&gt;-->
 
-    </div>
+        <!--&lt;!&ndash;&lt;!&ndash; Buttons for editing + deleting &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-md-6">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a th:href="@{'/posts/'+ ${post.id}+ '/edit'}" class="btn btn-block btn-warning">Edit This Post</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<form method="post" th:action="@{'/posts/' +${post.id}+ '/delete'}" class="col-md-6">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input class="btn btn-block btn-danger" type="submit" value="Delete This Post" />&ndash;&gt;-->
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--</div>-->
 
 
     <!--<li>-->
@@ -72,9 +75,18 @@
 
 <!--categories/{categoryName}/threads/{id}/posts"-->
 
-<footer th:text="${thread.date}"></footer>
+
 <footer th:include="fragments/footer :: footer"></footer>
 
+<footer id="simpleTime">
+    <input type="hidden" id="dateCreated" th:value="${thread.date}" th:data="${thread.date}"/>
+</footer>
+
+<script type="text/javascript">
+    var time= moment($("#dateCreated").val()).fromNow();
+    console.log(time);
+    $("#simpleTime").html('This thread was made: '+time);
+</script>
 <!--<script>-->
     <!--function getTimeRemaining(endtime) {-->
         <!--var t = Date.parse(endtime) - Date.parse(new Date());-->

@@ -201,6 +201,16 @@ public class PostController {
 //    public String viewAllAdsWithAjax(){
 //        return "posts/ajax1";
 //    }
+@GetMapping("/{threadId}/threads.json")
+@ResponseBody
+public Iterable<Post> viewPostsBasedonThreadId(
+        @PathVariable Long threadId
+){
+        Thread thread=threadDao.findOne(threadId);
+    List<Post>posts=postDao.findByThread(thread);
+    return posts;
+
+}
 
 
 }

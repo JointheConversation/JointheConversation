@@ -34,7 +34,7 @@
 
 
 
-<p th:if="${threadwinner==null}" th:text="'There is No Current Winner'"></p>
+<p th:if="${threadwinner==null}" th:text="'There is Was no Current Winner'"></p>
 <div th:if="${threadwinner!=null}">
     <p th:text="${' Last 24 hour top trend '+threadwinner.title}"></p>
     <p th:text="${'was created by '+threadwinner.user.username}"></p>

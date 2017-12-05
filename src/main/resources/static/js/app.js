@@ -97,7 +97,7 @@ function resetData(){
 
 
 function showGreeting(message, user, date) {
-    $("#greetings").append("<tr><td>" + message + "</td><td>By: "+user+"</td><td>"+date+"</td></tr>");
+    $("#greetings").append("<tr scope='row'><td>" + message + "</td><td>By: "+user+"</td><td>"+date+"</td></tr>");
 }
 
 $(function () {

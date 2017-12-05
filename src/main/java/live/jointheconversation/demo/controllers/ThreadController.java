@@ -59,6 +59,8 @@ public class ThreadController {
         viewModel.addAttribute("thread",thread);
         viewModel.addAttribute("posts",postDao.findByThread(thread));
         viewModel.addAttribute("postNew",new Post());
+        viewModel.addAttribute("databaseThread", true);
+
 
         return "threads/show";
 
@@ -160,5 +162,8 @@ public class ThreadController {
     public Iterable<Thread> viewAllPostsInJSONFormat(){
         return threadDao.findAll();
     }
+
+
+
 
 }
