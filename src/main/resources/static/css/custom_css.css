@@ -1,5 +1,5 @@
 body{
-    font-family: 'Droid Serif', serif;
+
     font-size: 14px;
     color: #2f2f2f;
     background-color: #f5f5f5;
@@ -48,6 +48,8 @@ ul,li{
     color: black;
     text-transform: uppercase;
     margin-top: 1%;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 button{
@@ -70,6 +72,8 @@ button{
 .jumbotron {
     margin-bottom: 0;
     padding-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .custom-nav {
@@ -81,13 +85,14 @@ button{
 
 .top-links {
     color: black;
-    padding: 1em 1em;
+    /*padding: 1em 1em;*/
     font-size: 1.3em;
 }
 
 
 .logoutbtn{
     padding: 0;
+    padding-bottom: 0;
 }
 
 .subhead
@@ -103,24 +108,42 @@ button{
     color: black;
     text-transform: uppercase;
     padding: 12px 0 12px 0;
+    text-align: center;
+}
+
+.index_icons{
+    padding-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .indexbottom{
-    background-color: #87e0df;
+    background-color: #8b98802b;
 }
 
 
 .home-display{
-    padding-top: 15%;
-    padding-bottom: 15%;
-    background-color: #f3c156;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: white;
+    color:#000000ad;
 }
 
 
-.row{
-    margin-right: auto;
-    margin-left: auto;
+
+.catCircle{
+    width: 250px;
+    height: 250px;
+    background-color: papayawhip;
+    /*-moz-border-radius: 50px;*/
+    /*-webkit-border-radius: 50px;*/
+    border-radius: 200px;
+    border:5px solid black;
 }
+.topcentering{
+    padding-top:100px;
+}
+
 
 
 .team-circle{
