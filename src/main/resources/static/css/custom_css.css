@@ -29,6 +29,10 @@ p{
 footer{
     border-top: solid 1px silver;
     color: goldenrod;
+    background-color: #3b5998;
+    margin: 0;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
 
@@ -129,6 +133,10 @@ button{
     color:#000000ad;
 }
 
+.categories-index{
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
 
 
 .catCircle{
@@ -146,32 +154,32 @@ button{
 
 
 
-.team-circle{
-    border-radius: 50%;
-    border: 16px solid #318d8c;
-    width: 200px;
-    height: 200px;
-    background-image: url(http://www.conversionscouts.de/tests/css/circle/s-schramm.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size:296px;
-    margin: 0 auto;
-}
-.team-lable{
-    display:none;
-}
-.team-circle:hover .team-lable{
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 0.85em;
-    color: white;
-    padding: 6px;
-    display:block;
-    margin: 72% auto;
-    width: 110px;
-    text-align: center;
-    border-radius: 3px;
-    background: #685167;
-}
+/*.team-circle{*/
+    /*border-radius: 50%;*/
+    /*border: 16px solid #318d8c;*/
+    /*width: 200px;*/
+    /*height: 200px;*/
+    /*background-image: url(http://www.conversionscouts.de/tests/css/circle/s-schramm.jpg);*/
+    /*background-position: center center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size:296px;*/
+    /*margin: 0 auto;*/
+/*}*/
+/*.team-lable{*/
+    /*display:none;*/
+/*}*/
+/*.team-circle:hover .team-lable{*/
+    /*font-family: 'Roboto Condensed', sans-serif;*/
+    /*font-size: 0.85em;*/
+    /*color: white;*/
+    /*padding: 6px;*/
+    /*display:block;*/
+    /*margin: 72% auto;*/
+    /*width: 110px;*/
+    /*text-align: center;*/
+    /*border-radius: 3px;*/
+    /*background: #685167;*/
+/*}*/
 
 .profileNav{
     padding-bottom: 6px;
@@ -247,6 +255,8 @@ button{
     width: 160px;
     height: 125px;
 }
+
+
 /*mobile responsive */
 
 @media(max-width:768px) {

@@ -10,8 +10,8 @@
 
 
 <h2 th:text="${thread.title}"></h2>
-
-<div th:if="${thread==null}"></div>
+<div ><p></p></div>
+<div th:if="${thread==null}" th:replace="${Looks like this conversation topic is empty, be a leader and start your own}"></div>
 <div th:if="${thread!=null}" th:replace="liveFeeds/index::websocket"></div>
 
 
