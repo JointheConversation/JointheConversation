@@ -103,6 +103,7 @@ button{
     color: black;
     text-transform: uppercase;
     padding: 12px 0 12px 0;
+    text-align: center;
 }
 
 .indexbottom{
