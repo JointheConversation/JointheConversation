@@ -24,7 +24,8 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
                     showGreeting(
                         post.description,
                         post.user.username,
-                        moment(post.date, 'YYYY-MM-DD HH:mm:ss').fromNow())
+                        moment(post.date, 'YYYY-MM-DD HH:mm:ss').fromNow()
+                    )
                 })
 
             }

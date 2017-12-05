@@ -34,7 +34,14 @@
                     <!--<img class="img-circle img-responsive navbar-right"  style="width:12%" th:if="${#authentication.principal.uploadPathUser!=null}" th:src="${'/userprofilepic/'+ #authentication.principal.uploadPathUser}"/>-->
                 <!--</li>-->
 
-                <li sec:authorize="isAuthenticated()"><p class="navbar-text nav navbar-nav  nav-link"><a th:href="@{'/profile/'+ ${#authentication.principal.username}}" th:text="${#authentication.principal.username}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></p></li>
+                <li sec:authorize="isAuthenticated()"><p class="navbar-text nav navbar-nav  nav-link">
+                    <a th:href="@{'/profile/'+ ${#authentication.principal.username}}" th:text="${#authentication.principal.username}">
+
+                    <!--<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>-->
+                    </a>
+                </p>
+                    <input type="hidden" id="loggedinuser" th:value="${#authentication.principal.username}"/>
+                </li>
 
                 <li sec:authorize="isAuthenticated()">
                    <p class="navbar-text nav navbar-nav nav-link">
