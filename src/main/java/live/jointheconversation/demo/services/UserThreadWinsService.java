@@ -21,19 +21,83 @@ public class UserThreadWinsService {
     private WinningThreadInfoService winningThreadInfoService;
     private PostRepository postDao;
 
-    public UserThreadWinsService(ThreadWinnerRepository threadWinnerDao, UserRepository userDao, ThreadRepository threadDao, UserOwnerService userOwnerService,WinningThreadInfoService winningThreadInfoService,PostRepository postDao){
-        this.threadDao=threadDao;
-        this.threadWinnerDao=threadWinnerDao;
-        this.userDao=userDao;
-        this.userOwnerService=userOwnerService;
-        this.winningThreadInfoService=winningThreadInfoService;
-        this.postDao=postDao;
+    public UserThreadWinsService(ThreadWinnerRepository threadWinnerDao, UserRepository userDao, ThreadRepository threadDao, UserOwnerService userOwnerService, WinningThreadInfoService winningThreadInfoService, PostRepository postDao) {
+        this.threadDao = threadDao;
+        this.threadWinnerDao = threadWinnerDao;
+        this.userDao = userDao;
+        this.userOwnerService = userOwnerService;
+        this.winningThreadInfoService = winningThreadInfoService;
+        this.postDao = postDao;
     }
 
-    public List<Thread> ShowAllThreadWinningAwards(User user){
-        List<Thread> threadsAwards=threadDao.findAllWinnerThreadsOfUser(user);
+    public List<Thread> ShowAllThreadWinningAwards(User user) {
+        List<Thread> threadsAwards = threadDao.findAllWinnerThreadsOfUser(user);
         return threadsAwards;
     }
+
+//    public List<Thread> showUserCurrentEventsThreadList(User user) {
+//        List<Thread> threadsCE = new ArrayList<>();
+//        for (Thread thread : user.getThreads()) {
+//            if (thread.getCategory().equals("Current-Events")) {
+//                threadsCE.add(thread);
+//            }
+//        }
+//        return threadsCE;
+//
+//    }
+//
+//    public List<Thread> showUserArtThreadList(User user) {
+//        List<Thread> threadsArt = new ArrayList<>();
+//        for (Thread thread : user.getThreads()) {
+//            if (thread.getCategory().equals("Art")) {
+//                threadsArt.add(thread);
+//            }
+//        }
+//        return threadsArt;
+//    }
+//
+//    public List<Thread> showUserHumorThreadList(User user) {
+//        List<Thread> threadsHumor = new ArrayList<>();
+//        for (Thread thread : user.getThreads()) {
+//            if (thread.getCategory().equals("Humor")) {
+//                threadsHumor.add(thread);
+//            }
+//        }
+//        return threadsHumor;
+//
+//    }
+//
+//    public List<Thread> showUserFoodThreadList(User user) {
+//        List<Thread> threadsFood = new ArrayList<>();
+//        for (Thread thread : user.getThreads()) {
+//            if (thread.getCategory().equals("Food")) {
+//                threadsFood.add(thread);
+//            }
+//        }
+//        return threadsFood;
+//    }
+//
+//    public List<Thread> showUserSportsThreadList(User user) {
+//        List<Thread> threadsSports = new ArrayList<>();
+//        for (Thread thread : user.getThreads()) {
+//            if (thread.getCategory().equals("Sports")) {
+//                threadsSports.add(thread);
+//            }
+//        }
+//        return threadsSports;
+//    }
+//
+//    public List<Thread> showUserTechnologyThreadList(User user) {
+//        List<Thread> threadsTechnology = new ArrayList<>();
+//        for (Thread thread : user.getThreads()) {
+//            if (thread.getCategory().equals("Technolgoy")) {
+//                threadsTechnology.add(thread);
+//            }
+//        }
+//        return threadsTechnology;
+//    }
+}
+
 
 //    public List<Post> ShowAllPostWinningAwards(User user) {
 //        List<Post> finalPostWinningUsers = new ArrayList<>();
@@ -43,5 +107,3 @@ public class UserThreadWinsService {
 //    }
 
 
-
-}

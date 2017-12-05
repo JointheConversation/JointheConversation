@@ -17,7 +17,7 @@ public class Thread {
     private String title;
 
     @Column(nullable = true)
-    private String image_url_path;
+    private String imageUrlPath;
 
     @Column(insertable = false, updatable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date date;
@@ -47,22 +47,22 @@ public class Thread {
     public Thread(){
 
     }
-    public Thread(String title, String image_url_path, Date date, User user) {
+    public Thread(String title, String imageUrlPath, Date date, User user) {
         this.title = title;
-        this.image_url_path = image_url_path;
+        this.imageUrlPath=imageUrlPath;
         this.date = date;
         this.user = user;
     }
 
-    public Thread(String title, String image_url_path, User user) {
+    public Thread(String title, String imageUrlPath, User user) {
         this.title = title;
-        this.image_url_path = image_url_path;
+        this.imageUrlPath=imageUrlPath;
         this.user = user;
     }
 
-    public Thread(String title, String image_url_path, Date date, Boolean activeStatus, User user, Category category, List<Post> posts, List<ThreadWinner> threadWinners) {
+    public Thread(String title, String imageUrlPath, Date date, Boolean activeStatus, User user, Category category, List<Post> posts, List<ThreadWinner> threadWinners) {
         this.title = title;
-        this.image_url_path = image_url_path;
+        this.imageUrlPath=imageUrlPath;
         this.date = date;
         this.activeStatus = activeStatus;
         this.user = user;
@@ -71,13 +71,10 @@ public class Thread {
         this.threadWinners = threadWinners;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -87,13 +84,7 @@ public class Thread {
         this.title = title;
     }
 
-    public String getImage_url_path() {
-        return image_url_path;
-    }
 
-    public void setImage_url_path(String image_url_path) {
-        this.image_url_path = image_url_path;
-    }
 
     public Date getDate() {
         return date;
@@ -139,7 +130,20 @@ public class Thread {
         return activeStatus;
     }
 
-    public void setActiveStatus(Boolean activeStatus) {
+
+    public String getImageUrlPath() {
+        return imageUrlPath;
+    }
+
+    public void setImageUrlPath(String imageUrlPath) {
+        this.imageUrlPath = imageUrlPath;
+    }
+
+    public boolean isActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(boolean activeStatus) {
         this.activeStatus = activeStatus;
     }
 }

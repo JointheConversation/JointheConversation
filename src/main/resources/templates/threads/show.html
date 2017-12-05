@@ -14,10 +14,10 @@
             <a th:each="post : ${posts}"
                th:href="@{'/categories/'+ ${category.title}+'/threads/'+${thread.id}+'/posts/edit'}">
 
-                <div class="col-xs-4 col-md-2 columns"><li th:text="${post.description}"></li></div>
+      <div class="col-xs-4 col-md-2 columns"><li th:text="${post.description}"></li></div>
 
 
-         
+        
 
             </a>
 

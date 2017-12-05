@@ -1,10 +1,10 @@
 package live.jointheconversation.demo.controllers;
 
-import live.jointheconversation.demo.models.Post;
+import live.jointheconversation.demo.models.*;
 import live.jointheconversation.demo.models.Thread;
-import live.jointheconversation.demo.models.User;
 import live.jointheconversation.demo.repositories.UserRepository;
 import live.jointheconversation.demo.services.CreateUserValidationService;
+import live.jointheconversation.demo.services.ThreadCountService;
 import live.jointheconversation.demo.services.UploadCheckService;
 import live.jointheconversation.demo.services.UserThreadWinsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,16 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private UserThreadWinsService userThreadWinsService;
     private UploadCheckService uploadCheckService;
+    private ThreadCountService threadCountService;
 
     @Autowired
-    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder, UserThreadWinsService userThreadWinsService, UploadCheckService uploadCheckService){
+    public UserController(UserRepository usersDao, CreateUserValidationService userValidationService, PasswordEncoder passwordEncoder, UserThreadWinsService userThreadWinsService, UploadCheckService uploadCheckService, ThreadCountService threadCountService){
         this.usersDao=usersDao;
         this.userValidationService=userValidationService;
         this.passwordEncoder=passwordEncoder;
         this.userThreadWinsService= userThreadWinsService;
         this.uploadCheckService=uploadCheckService;
+        this.threadCountService=threadCountService;
     }
 
     @GetMapping("/register")
@@ -67,10 +69,13 @@ public class UserController {
             @PathVariable String name,
             Model model
     ){
+
         User user=usersDao.findByUsername(name);
         List<Thread> threadAwards=userThreadWinsService.ShowAllThreadWinningAwards(user);
 
+
         model.addAttribute("threadAwards",threadAwards);
+
 
         model.addAttribute("user", user);
         model.addAttribute("threads", user.getThreads()); //Can create an if statement in the view if they have any threads to display them.

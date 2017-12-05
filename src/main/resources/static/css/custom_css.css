@@ -192,9 +192,23 @@ button{
 }
 
 
+
+
+
+.threadAward{
+    width: 10%;
+    height: auto;
+
+}
+.thread-cicles {
+    width: 160px;
+    height: 125px;
+}
 /*mobile responsive */
+
 @media(max-width:768px) {
     #login-dp {
+
         background-color: inherit;
         color: #fff;
     }
@@ -266,6 +280,7 @@ button{
         cursor:pointer;
         overflow: hidden;
     }
+
 
 
 }
