@@ -78,7 +78,7 @@ function sendForm(){
 //     event.preventDefault();
 //     sendName();
 // });
-s
+
 function sendPostToPostDao(){
 // This code comes from the posts.js file REMEMBER THAT!!!!!!
     var threadId = $('#thread').val();
