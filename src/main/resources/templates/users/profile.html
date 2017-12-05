@@ -26,12 +26,13 @@
 </div>
 </div>
 
-
-
-<div th:each="threadAward : ${threadAwards}" th:if="${threadAward!=null}">
+<div th:if="${threadAward!=null}">
+<h2>Congratulations on Having the most talked about Thread Topic!!!</h2>
+<div th:each="threadAward : ${threadAwards}">
     <h2>Congratulations on Having the most talked about Thread Topic!!!</h2>
     <img class="threadAward" src="/achievement_icons/threadWinner.png"/>
     <h4 th:text="${'The winning Topic was: '+threadAward.title}"></h4>
+</div>
 </div>
 
 <!--<div th:each:="postAward : ${postAwards}" th:if="${postAward!=null}">-->
