@@ -26,14 +26,15 @@
 </div>
 </div>
 
-<!--<div th:if="${threadAward!=null}">-->
+<div th:if="${threadAwards!=null}">
 <h2>Congratulations on Having the most talked about Thread Topic!!!</h2>
 <div th:each="threadAward : ${threadAwards}">
     <!--<h2>Congratulations on Having the most talked about Thread Topic!!!</h2>-->
     <img class="threadAward" src="/achievement_icons/threadWinner.png"/>
     <h4 th:text="${'The winning Topic was: '+threadAward.title}"></h4>
+    <!--<h4 th:text="${'It was create'+threadAward.date}"></h4>-->
 </div>
-<!--</div>-->
+</div>
 
 <!--<div th:each:="postAward : ${postAwards}" th:if="${postAward!=null}">-->
     <!--<img src="/achievement_icons/postWinner.png"/>-->
@@ -41,6 +42,7 @@
     <!--<p th:text="${postAward.user.username}"></p>-->
 <!--</div>-->
 
-<footer th:replace="fragments/footer :: footer"></footer>
+
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

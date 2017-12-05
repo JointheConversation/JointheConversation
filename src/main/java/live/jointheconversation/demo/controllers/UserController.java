@@ -84,6 +84,11 @@ public class UserController {
         return "users/profile";
     }
 
+    @GetMapping("/aboutus")
+    public String showAboutUs(Model model){
+        return "users/aboutus";
+    }
+
 
     @GetMapping("/users.json")
     @ResponseBody
