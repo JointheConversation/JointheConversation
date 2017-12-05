@@ -56,7 +56,11 @@ function ajaxStart(){ //Gets all Posts from the Dao and displays them
             if(result.status=="Done") {
                 var custList = "";
                 $.each(result.data, function (i, post) {
-                    showGreeting(post.description, post.user.username, moment().startOf(post.date).fromNow())
+                    showGreeting(
+                        post.description,
+                        post.user.username,
+                        moment(post.date, 'YYYY-MM-DD HH:mm:ss').fromNow()
+                    )
                 })
 
             }
@@ -85,7 +89,8 @@ function connect() {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/thread/liveThread', function (message) {
                     console.log("Received "+message);
-                    showGreeting(message.body, $('#loggedinuser').val(), moment().startOf(new Date()).fromNow())//make sure your printing out a string.
+                var parts = message.body.split(',');
+                showGreeting(parts[0], parts[1], moment().startOf(parts[2]).fromNow())
                 }
             )
         },
@@ -104,7 +109,9 @@ function sendName() {
 
 }
 function sendForm(){
-    stompClient.send("/thread/liveThread",{},$('#description').val());
+    var message = $('#description').val() + ',' + $('#loggedinuser').val() + ','
+        + moment().format("YYYY-MM-DD HH:mm:ss");
+    stompClient.send("/thread/liveThread", {}, message);
 }; //This will send to the subscription in the socket
 // This code comes from the posts.js file REMEMBER THAT!!!!!!
 
