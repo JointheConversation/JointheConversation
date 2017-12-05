@@ -19,7 +19,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <p class="navbar-text nav navbar-nav nav-link">
                 <a class="navbar-brand" href="/">Join The Conversation</a>
+            </p>
 
         </div>
 
@@ -35,16 +37,31 @@
                 <li sec:authorize="isAuthenticated()"><p class="navbar-text nav navbar-nav  nav-link"><a th:href="@{'/profile/'+ ${#authentication.principal.username}}" th:text="${#authentication.principal.username}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></p></li>
 
                 <li sec:authorize="isAuthenticated()">
+                   <p class="navbar-text nav navbar-nav nav-link">
                     <a href="/categories">Conversations <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></a>
+                   </p>
+                </li>
+                <li sec:authorize="!isAuthenticated()" >
+                    <p class="navbar-text nav navbar-nav nav-link">
+                    <a href="/register">Sign Up</a>
+                    </p>
+                </li>
+                <!--<li sec:authorize="isAuthenticated()">-->
+                    <!--<span class="navbar-text nav navbar-nav nav-link formSpanLogout ">-->
+                    <!--<form th:action="@{/logout}" th:method="post">-->
+                        <!--<button class="btn-link btn nav-link formButtonLogout">Logout</button>-->
+                    <!--</form>-->
+                        <!--</span>-->
+                <!--</li>-->
+                <li sec:authorize="isAuthenticated()">
+                    <form class="top-links logoutbtn profileNav" th:action="@{/logout}" th:method="post">
+                        <button class="buttonLogoutForm">Logout</button>
+                    </form>
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li sec:authorize="!isAuthenticated()" >
-                    <a href="/register">Sign Up</a>
-                </li>
-
-                <li class="dropdown" sec:authorize="!isAuthenticated()">
+            <ul class="nav navbar-nav navbar-right" sec:authorize="!isAuthenticated()">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
@@ -63,11 +80,7 @@
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"/> keep me logged-in
-                                            </label>
-                                        </div>
+
                                     </form>
                                 </div>
                                 <div class="bottom text-center">
@@ -78,13 +91,13 @@
                     </ul>
                 </li>
             </ul>
-                <ul class=" nav navbar-nav navbar-form navbar-left">
-                <li sec:authorize="isAuthenticated()">
-                    <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn nav-link">Logout</button>
-                    </form>
-                </li>
-            </ul>
+                <!--<ul class=" nav navbar-nav navbar-form navbar-left">-->
+                <!--<li sec:authorize="isAuthenticated()">-->
+                    <!--<form th:action="@{/logout}" th:method="post">-->
+                    <!--<button class="btn-link btn nav-link">Logout</button>-->
+                    <!--</form>-->
+                <!--</li>-->
+            <!--</ul>-->
             <!--</ul>-->
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
