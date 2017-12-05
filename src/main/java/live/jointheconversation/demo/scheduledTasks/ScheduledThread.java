@@ -44,7 +44,7 @@ public class ScheduledThread {
 //    }
 //    @Scheduled(fixedRate = 360000) //  6 minutes
     //Change back to 10 in the morning
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "0 8 14 * * *")
     public void countThreadPosts(){
         //Sets all of the winner posts to in-active so that only the current winner will be displayed.
         Iterable<ThreadWinner> threadsWinnerList=threadWinnerDao.findAll();
