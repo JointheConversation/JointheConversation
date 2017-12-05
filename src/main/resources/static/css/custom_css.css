@@ -1,5 +1,5 @@
 body{
-    font-family: 'Droid Serif', serif;
+
     font-size: 14px;
     color: #2f2f2f;
     background-color: #f5f5f5;
@@ -48,6 +48,8 @@ ul,li{
     color: black;
     text-transform: uppercase;
     margin-top: 1%;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 button{
@@ -90,6 +92,7 @@ button{
 
 .logoutbtn{
     padding: 0;
+    padding-bottom: 0;
 }
 
 .subhead
@@ -115,21 +118,18 @@ button{
 }
 
 .indexbottom{
-    background-color: #3333332b;
+    background-color: #8b98802b;
 }
 
 
 .home-display{
-    padding-top: 15%;
-    padding-bottom: 15%;
-    background-color: #f3c156;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: white;
+    color:#000000ad;
 }
 
 
-.row{
-    margin-right: auto;
-    margin-left: auto;
-}
 
 
 .team-circle{

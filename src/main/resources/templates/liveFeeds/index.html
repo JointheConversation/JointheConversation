@@ -25,7 +25,7 @@
         <div class="row" >
         <div class="col-md-12 col-xs-12 col-sm-12">
             <div class="table-responsive">
-            <table id="conversation" class="table table-dark table-responsive table-striped">
+            <table id="conversation" class="table table-condensed table-hover success table-responsive ">
 
                 <p class="index_body">
                     <p class="text-center" th:text="'#' + ${thread.title} + ' is trending now'" ></p>
@@ -68,15 +68,15 @@
 
 
 </div>
-    <footer id="simpleTime">
-        <input type="hidden" id="dateCreated" th:value="${thread.date}" th:data="${thread.date}"/>
-    </footer>
+    <!--<footer id="simpleTime">-->
+        <!--<input type="hidden" id="dateCreated" th:value="${thread.date}" th:data="${thread.date}"/>-->
+    <!--</footer>-->
 
-    <script type="text/javascript">
-        var time= moment($("#dateCreated").val()).fromNow();
-        console.log(time);
-        $("#simpleTime").html('This thread was made: '+time);
-    </script>
+    <!--<script type="text/javascript">-->
+        <!--var time= moment($("#dateCreated").val()).fromNow();-->
+        <!--console.log(time);-->
+        <!--$("#simpleTime").html('This thread was made: '+time);-->
+    <!--</script>-->
 
 
 
