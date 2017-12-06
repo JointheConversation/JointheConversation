@@ -1,3 +1,4 @@
+
 body{
 
     font-size: 14px;
@@ -5,12 +6,30 @@ body{
     background-color: #f5f5f5;
     text-align: center;
 }
+.sizeoftext{
+    font-size: 2.5em;
+}
+.winner-text{
+    color:goldenrod;
+}
+
+.catCircle{
+    border-radius: 100%;
+    display: block;
+    height: 0;
+    width: 100%;
+    padding: 50% 0;
+    background: papayawhip;
+    border: 5px solid black;
+    position:relative;
+}
 
 
-header{
+.headerConversation{
     font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 80px;
+    font-size: 40px;
+    width:100%;
     text-transform: uppercase;
     display: inline-block;
     line-height: 72px;
@@ -37,7 +56,6 @@ footer{
 
 
 
-.head,
 nav{
     text-align: center;
     position: relative;
@@ -139,17 +157,16 @@ button{
 }
 
 
-.catCircle{
-    width: 250px;
-    height: 250px;
-    background-color: papayawhip;
-    /*-moz-border-radius: 50px;*/
-    /*-webkit-border-radius: 50px;*/
-    border-radius: 200px;
-    border:5px solid black;
-}
+
+
+
 .topcentering{
-    padding-top:100px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
 }
 
 
@@ -287,34 +304,28 @@ button{
         background-color: #98c0b2;
     }
 
-    header{
-        font-family: 'Playfair Display', serif;
-        font-weight: 900;
-        font-size: 80px;
-        text-transform: uppercase;
-        display: inline-block;
-        line-height: 72px;
-        margin-bottom: 20px;
-
-    }
-    p{
+    /*header{*/
+    /*font-family: 'Playfair Display', serif;*/
+    /*font-weight: 900;*/
+    /*font-size: 80px;*/
+    /*text-transform: uppercase;*/
+    /*display: inline-block;*/
+    /*line-height: 72px;*/
+    /*margin-bottom: 20px;*/
+    /*}*/
+    p {
         margin-top: 0;
         margin-bottom: 20px;
 
     }
 
-
-
-    .head,
-    nav{
+    nav {
         text-align: center;
         position: relative;
 
-
     }
 
-
-    ul,li{
+    ul, li {
         list-style: none;
         display: inline-block;
         color: black;
@@ -322,18 +333,46 @@ button{
         margin-top: 1%;
     }
 
-    button{
+    button {
         color: black;
         text-transform: uppercase;
         margin-top: 1%;
-        margin-right:1%;
+        margin-right: 1%;
         background-color: Transparent;
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
         border: none;
-        cursor:pointer;
+        cursor: pointer;
         overflow: hidden;
     }
 
 
+    /*@media (max-width: 768px) {*/
 
+    /*.catCircle {*/
+        /*width: 50px;*/
+        /*height: 50px;*/
+        /*background-color: papayawhip;*/
+        /*!*-moz-border-radius: 50px;*!*/
+        /*!*-webkit-border-radius: 50px;*!*/
+        /*border-radius: 200px;*/
+        /*border: 5px solid black;*/
+    /*}*/
+    /*@media(max-width:480px){*/
+
+
+    /*}*/
+/*@media all and (max-width: 1200px){*/
+
+
+
+    /*}*/
+    @media all and (max-width: 500px){
+        .sizeoftext{
+            font-size: 1em;
+        }
+    }
 }
+
+
+
+

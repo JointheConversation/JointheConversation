@@ -30,14 +30,17 @@
 <div><h2>Join Our Conversations or Start your own</h2></div>
 
     <div><p>Stay up to date, Learn something new, and have some some fun incentive.</p></div>
-    <div>
+    <div class="hidden-xs hidden-sm">
         <img class="index_icons" th:src="@{css/refresh.png}" />
         <img class="index_icons" th:src="@{css/people.png}" />
         <img class="index_icons" th:src="@{css/happy.png}" />
-
-
     </div>
-
+    <p th:if="${threadwinner==null}" th:text="'There is was no thread winner'"></p>
+    <div  th:if="${threadwinner!=null}">
+        <p class="winner-text" th:text="${'Yesterday''s top trend: '+threadwinner.title}"></p>
+        <p class="winner-text" th:text="${'created by: '+threadwinner.user.username}"></p>
+        <img class="threadAward"  src="/achievement_icons/threadWinner.png"/>
+    </div>
 
 </div>
 
@@ -49,11 +52,7 @@
 
 
 
-<p th:if="${threadwinner==null}" th:text="'There is was no thread winner'"></p>
-<div th:if="${threadwinner!=null}">
-    <p th:text="${' Last 24 hour top trend '+threadwinner.title}"></p>
-    <p th:text="${'was created by '+threadwinner.user.username}"></p>
-</div>
+
 </div>
 
 
