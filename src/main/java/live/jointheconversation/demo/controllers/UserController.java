@@ -72,6 +72,14 @@ public class UserController {
 
         User user=usersDao.findByUsername(name);
         List<Thread> threadAwards=userThreadWinsService.ShowAllThreadWinningAwards(user);
+        System.out.println("ThreadAwards has this many items "+threadAwards.size());
+        if(threadAwards.size()==0){
+            model.addAttribute("threadAwardsview",false);
+        }
+        else{
+            model.addAttribute("threadAwardsview",true);
+
+        }
 
 
         model.addAttribute("threadAwards",threadAwards);
